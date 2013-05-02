@@ -23,6 +23,7 @@ these config files:
 * screen
 * tmux
 * git
+* subversion
 * vim
 * ssh
 
