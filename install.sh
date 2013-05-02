@@ -13,7 +13,8 @@ cd ~
 
 mkdir ~/.zsh
 cd ~/.zsh
-git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
+[[ ! -d ~/.zsh/zsh-syntax-highlighting ]] && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
+[[ -d ~/.zsh/zsh-syntax-highlighting ]] && (cd ~/.zsh/zsh-syntax-highlighting ; git pull )
 ln -sf $DOTFILES/zsh/prompt_hyacinthe_setup ~/.zsh/prompt_hyacinthe_setup
 ln -sf $DOTFILES/zsh/zshrc ~/.zshrc
 
