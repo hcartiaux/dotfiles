@@ -1,0 +1,86 @@
+" vundle
+" https://github.com/shingara/vim-conf/blob/master/vimrc
+" http://blog.shingara.fr/vundle-ou-le-bundler-de-vim.html
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-git'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-markdown'
+Bundle 'rodjek/vim-puppet'
+Bundle 'vim-ruby/vim-ruby'
+" Bundle 'altercation/vim-colors-solarized'
+
+syntax on
+set background=dark
+colorscheme default
+" hi CursorLineNr   term=bold ctermfg=Yellow gui=bold guifg=Yellow
+filetype on
+
+" set number
+set nocompatible
+set hlsearch
+set nostartofline
+
+" Garde toujours une ligne visible au dessus du curseur
+set scrolloff=1
+
+" Essaye de garder le curseur dans la même colonne quand on change de ligne
+set nostartofline
+
+" set smartindent
+set cindent
+set softtabstop=2
+set tabstop=2
+set expandtab
+set shiftwidth=2
+
+" set textwidth=80
+
+" set mouse=a
+
+set encoding=utf-8
+set fileencoding=utf-8
+
+set showcmd
+set showmatch
+set cursorline
+
+let g:qb_hotkey = "<F1>"
+
+"set laststatus=2
+
+" backup
+set backup
+set backupdir=$HOME/.vim/backup
+
+" Vim 7 spell checker (z=)
+if has("spell")
+  setlocal spell spelllang=
+  " Language : FR
+  map ,lf :setlocal spell spelllang=fr<cr>
+  " Language : EN
+  map ,le :setlocal spell spelllang=en<cr>
+  " Language : Aucun
+  map ,ln :setlocal spell spelllang=<cr>
+endif
+
+
+set spellsuggest=5
+autocmd BufEnter *.txt,*.tex,*.md set spell
+autocmd BufEnter *.txt,*.tex set spelllang=fr
+autocmd BufEnter *.md set spelllang=en
+autocmd BufNewFile,BufRead PKGBUILD set syntax=sh
+
+autocmd bufnewfile *.rb so ~/.vim/header/ruby
+autocmd bufnewfile *.pl so ~/.vim/header/perl
+autocmd bufnewfile *.sh so ~/.vim/header/shell
+au BufRead,BufNewFile *.md set syntax=markdown
+
+" Pour afficher les espaces blancs
+set list listchars=tab:\ \ ,trail:·
+" Pour supprimer les espaces blancs au write
+autocmd BufWritePre * :%s/\s\+$//e
+
