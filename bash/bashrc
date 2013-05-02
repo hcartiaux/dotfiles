@@ -77,7 +77,7 @@ umask 0022
 export CLICOLOR=1
 
 # we always pass these to ls(1)
-LS_COMMON="-hB"
+LS_COMMON="-h"
 
 # if the dircolors utility is available, set that up to
 dircolors="$(type -P gdircolors dircolors | head -1)"
@@ -99,6 +99,7 @@ if [ "$UNAME" = Darwin ]; then
     }
 elif [ "$UNAME" = Linux ]; then
     LS_COMMON="$LS_COMMON --color"
+    alias grep='grep --color=auto'
 fi
 
 # setup the main ls alias if we've established common args
@@ -119,10 +120,6 @@ alias mv='mv -iv'
 alias rm='rm -i'
 
 alias ..='cd ..'
-# Color aliases
-alias grep='grep --color=auto'
-#alias fgrep='fgrep --color=auto'
-#alias egrep='egrep --color=auto'
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
@@ -283,7 +280,12 @@ else
 fi
 
 # Configure a set of useful variables for the prompt
-DOMAIN=`hostname -f | cut -d '.' -f 2`
+if [[ "`echo $UNAME | grep -c -i -e '^.*bsd$'`" == "1" ]] ; then
+    DOMAIN=`hostname | cut -d '.' -f 2`
+else
+    DOMAIN=`hostname -f | cut -d '.' -f 2`
+fi
+
 # get virtualization information
 XENTYPE=""
 if [ -f "/sys/hypervisor/uuid" ]; then
@@ -360,79 +362,10 @@ __set_my_prompt() {
     PS1="$(__colorized_exit_status) ${LIGHT_CYAN}[\t]${RESET_COLOR} ${COLOR_USER}\u${RESET_COLOR}@${CYAN_UNDERLINE}\h${RESET_COLOR}(${PS1_EXTRAINFO}) ${BLUE}\W${RESET_COLOR}${GREEN}\$(__git_ps1 \" (%s)\")\$(__svn_ps1)${RESET_COLOR}${P}> "
 }
 
-
-# --------------------------------------------------------------------
-# PATH MANIPULATION FUNCTIONS (thanks rtomayko ;) )
-# --------------------------------------------------------------------
-######
-# List path entries of PATH or environment variable <var>.
-# Usage: pls [<var>]
-###
-pls () { eval echo \$${1:-PATH} |tr : '\n'; }
-
-######
-# Shift <num> entries off the front of PATH or environment var <var>.
-# with the <var> option.
-# Usage:  pshift [-n <num>] [<var>]
-# Useful: pshift $(pwd)
-####
-pshift () {
-    local n=1
-    [ "$1" = "-n" ] && { n=$(( $2 + 1 )); shift 2; }
-    eval "${1:-PATH}='$(pls |tail -n +$n |tr '\n' :)'"
-}
-
-######
-# Pop <num> entries off the end of PATH or environment variable <var>.
-# Usage: ppop [-n <num>] [<var>]
-####
-ppop () {
-    local n=1 i=0
-    [ "$1" = "-n" ] && { n=$2; shift 2; }
-    while [ $i -lt $n ]
-    do eval "${1:-PATH}='\${${1:-PATH}%:*}'"
-        i=$(( i + 1 ))
-    done
-}
-
-######
-# Remove <path> from PATH or environment variable <var>.
-# Usage: prm <path> [<var>]
-####
-prm () { eval "${2:-PATH}='$(pls $2 |grep -v "^$1\$" |tr '\n' :)'"; }
-
-######
-# Shift <path> onto the beginning of PATH or environment variable <var>.
-# Usage: punshift <path> [<var>]
-#####
-punshift () { eval "${2:-PATH}='$1:$(eval echo \$${2:-PATH})'"; }
-
-#######
-# push <path>
-# Usage: ppush <path> [<var>]
-####
-ppush () { eval "${2:-PATH}='$(eval echo \$${2:-PATH})':$1"; }
-
-######
-# Remove duplicate entries from a PATH style value while retaining
-# the original order. Use PATH if no <path> is given.
-# Usage: puniq [<path>]
-#
-# Example:
-#   $ puniq /usr/bin:/usr/local/bin:/usr/bin
-#   /usr/bin:/usr/local/bin
-###
-puniq () {
-    echo "$1" |tr : '\n' |nl |sort -u -k 2,2 |sort -n |
-    cut -f 2- |tr '\n' : |sed -e 's/:$//' -e 's/^://'
-}
-
 # -------------------------------------------------------------------
 # USER SHELL ENVIRONMENT
 # -------------------------------------------------------------------
 # condense PATH entries
-PATH=$(puniq $PATH)
-MANPATH=$(puniq $MANPATH)
 
 # Set the color prompt by default when interactive
 if [ -n "$PS1" ]; then
