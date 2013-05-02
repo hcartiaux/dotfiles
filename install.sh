@@ -11,7 +11,7 @@ cd ~
 
 ## zsh
 
-mkdir ~/.zsh
+mkdir -p ~/.zsh
 cd ~/.zsh
 [[ ! -d ~/.zsh/zsh-syntax-highlighting ]] && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
 [[ -d ~/.zsh/zsh-syntax-highlighting ]] && (cd ~/.zsh/zsh-syntax-highlighting ; git pull )
