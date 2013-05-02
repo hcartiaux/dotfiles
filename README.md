@@ -24,6 +24,7 @@ these config files:
 * tmux
 * git
 * vim
+* ssh
 
 ## Installation
 
@@ -51,7 +52,7 @@ FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 Hyacinthe Cartiaux, using various contributions on the Internet, in particular:
 
-*  [Sebastien Varrette](http://github.com/Falkor/dotfiles)
+*  [Sebastien Varrette dotfiles](http://github.com/Falkor/dotfiles)
 *  [Derek Payton dotfiles](http://bitbucket.org/dmpayton/dotfiles/src/tip/.bashrc)
 *  [Ryan Tomayko dotfiles](http://github.com/rtomayko/dotfiles/blob/rtomayko/.bashrc)
 
