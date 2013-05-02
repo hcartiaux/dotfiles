@@ -40,7 +40,7 @@ mkdir -p backup spell bundle
 [[ -d bundle/vundle ]] && ( cd bundle/vundle ; git pull )
 
 ln -sf $DOTFILES/vim/vimrc ~/.vimrc
-ln -sf $DOTFILES/vim/header ~/.vim/header
+[[ ! -h ~/.vim/header ]] && ln -sf $DOTFILES/vim/header ~/.vim/header
 
 ## tmux
 
