@@ -34,7 +34,7 @@ mkdir -p backup spell bundle
 [[ -d bundle/vundle ]] && ( cd bundle/vundle ; git pull )
 
 ln -sf $DOTFILES/vim/vimrc ~/.vimrc
-ln -sf $DOTFILES/vim/header ~/.vimrc/header
+ln -sf $DOTFILES/vim/header ~/.vim/header
 
 ## tmux
 
@@ -52,5 +52,5 @@ ln -sf $DOTFILES/git/gitconfig ~/.gitconfig
 
 mkdir -p ~/.ssh/sockets
 ln -s $DOTFILES/ssh/sshpubkey ~/.ssh/sshpubkey
-[[ ! -f ~/.ssh/config ]] ln -s $DOTFILES/ssh/config ~/.ssh/config
+[[ ! -f ~/.ssh/config ]] && ln -s $DOTFILES/ssh/config ~/.ssh/config
 
