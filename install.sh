@@ -51,6 +51,6 @@ ln -sf $DOTFILES/git/gitconfig ~/.gitconfig
 ## ssh
 
 mkdir -p ~/.ssh/sockets
-ln -s $DOTFILES/ssh/sshpubkey ~/.ssh/sshpubkey
-[[ ! -f ~/.ssh/config ]] && ln -s $DOTFILES/ssh/config ~/.ssh/config
+ln -sf $DOTFILES/ssh/sshpubkey ~/.ssh/sshpubkey
+[[ ! -f ~/.ssh/config ]] && ln -sf $DOTFILES/ssh/config ~/.ssh/config
 
