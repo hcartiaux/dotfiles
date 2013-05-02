@@ -55,6 +55,9 @@ unset MAILCHECK
 test -r /etc/bashrc &&
 . /etc/bashrc
 
+# bring in git prompt
+. ~/.git-prompt.sh
+
 # shell opts. see bash(1) for details
 shopt -s cdspell                 >/dev/null 2>&1  # correct minor errors in the spelling
                                                   # of a directory in a cd command

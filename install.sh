@@ -25,6 +25,11 @@ ln -sf $DOTFILES/bash/bash_profile ~/.bash_profile
 ln -sf $DOTFILES/bash/profile      ~/.profile
 ln -sf $DOTFILES/bash/bash_logout  ~/.bash_logout
 
+if [[ ! -f ~/.git-prompt.sh ]] ; then
+    curl -o ~/.git-prompt.sh \
+         https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh
+fi
+
 ## vim (don't forget :BundleInstall & :BundleInstall!)
 
 mkdir -p ~/.vim
