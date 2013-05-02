@@ -2,7 +2,7 @@
 
 set -x # Debug
 
-$DOTFILES=~/.dotfiles
+DOTFILES=~/.dotfiles
 
 [[ ! -d ~/.dotfiles ]] && git clone https://github.com/hcartiaux/dotfiles.git $DOTFILES
 [[ -d ~/.dotfiles ]] && ( cd $DOTFILES ; git pull )
@@ -18,8 +18,6 @@ ln -sf $DOTFILES/zsh/prompt_hyacinthe_setup ~/.zsh/prompt_hyacinthe_setup
 ln -sf $DOTFILES/zsh/zshrc ~/.zshrc
 
 ## bash
-
-mv ~/.bashrc ~/.inputrc ~/.bash_profile ~/.profile ~/.bash_logout $BACKUP
 
 ln -sf $DOTFILES/bash/bashrc       ~/.bashrc
 ln -sf $DOTFILES/bash/inputrc      ~/.inputrc
@@ -54,5 +52,5 @@ ln -sf $DOTFILES/git/gitconfig ~/.gitconfig
 
 mkdir -p ~/.ssh/sockets
 ln -s $DOTFILES/ssh/sshpubkey ~/.ssh/sshpubkey
-[! -f ~/.ssh/config ] ln -s $DOTFILES/ssh/config ~/.ssh/config
+[[ ! -f ~/.ssh/config ]] ln -s $DOTFILES/ssh/config ~/.ssh/config
 
