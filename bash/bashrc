@@ -365,8 +365,6 @@ __set_my_prompt() {
 # -------------------------------------------------------------------
 # USER SHELL ENVIRONMENT
 # -------------------------------------------------------------------
-# condense PATH entries
-
 # Set the color prompt by default when interactive
 if [ -n "$PS1" ]; then
     __set_my_prompt
