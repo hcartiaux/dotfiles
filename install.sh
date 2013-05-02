@@ -3,12 +3,9 @@
 set -x # Debug
 
 $DOTFILES=~/.dotfiles
-$BACKUP=~/.dotfiles_backup
 
 [[ ! -d ~/.dotfiles ]] && git clone https://github.com/hcartiaux/dotfiles.git $DOTFILES
 [[ -d ~/.dotfiles ]] && ( cd $DOTFILES ; git pull )
-
-mkdir -p $BACKUP
 
 cd ~
 
