@@ -1,0 +1,135 @@
+# hyacinthe prompt theme with git support
+# Derivated from <http://sebastiancelis.com/2009/11/16/zsh-prompt-git-users/>
+
+prompt_hyacinthe_help () {
+  cat <<'EOF'
+
+  This prompt is color-scheme-able.  You can invoke it thus:
+
+  prompt hyacinthe [<color1> [<color2> [<color3> [<color4> [<color5>]]]]]
+
+  The defaults colors are red, cyan, green, white, and yellow, respectively.
+
+EOF
+}
+
+prompt_hyacinthe_setup () {
+
+  local p_date p_userpwd p_end p_win
+  local -A pc
+
+  setopt prompt_subst
+
+  pcc[1]=${1:-${${SSH_CLIENT+'yellow'}:-'red'}}
+  pcc[2]=${2:-'cyan'}
+
+  if [[ "$USERNAME" == "root" ]] ; then
+    pcc[3]=${3:-'red'}
+  else
+    pcc[3]=${3:-'green'}
+  fi
+
+  pcc[4]=${4:-'white'}
+  pcc[5]=${5:-'yellow'}
+
+  pc['\[']="%F{$pcc[1]}["
+  pc['\]']="%F{$pcc[1]}]"
+  pc['<']="%F{$pcc[1]}<"
+  pc['>']="%F{$pcc[1]}>"
+  pc['\(']="%F{$pcc[1]}("
+  pc['\)']="%F{$pcc[1]})"
+
+  p_date="$pc['\[']%F{$pcc[2]}%D{%R}$pc['\]']"
+
+  [[ -n "$WINDOW" ]] && p_win="$pc['\(']%F{$pcc[4]}$WINDOW$pc['\)']"
+
+  p_userpwd="$pc['<']%F{$pcc[3]}%n@%m$p_win%F{$pcc[5]}:%F{$pcc[4]}%~$pc['>']"
+
+  p_end="%f%B%#%b "
+
+  zle_highlight[(r)default:*]=default:$pcc[2]
+  prompt="$p_date $p_userpwd $p_end"
+  PS2='%(4_.\.)%3_> %E'
+
+  add-zsh-hook precmd  update_git_vars
+  add-zsh-hook preexec preexec_update_git_vars
+  add-zsh-hook chpwd   update_git_vars
+}
+
+update_current_git_vars()
+{
+  unset __CURRENT_GIT_BRANCH
+  unset __CURRENT_GIT_BRANCH_STATUS
+  unset __CURRENT_GIT_BRANCH_IS_DIRTY
+
+  local st="$(git status 2>/dev/null)"
+  if [[ -n "$st" ]]; then
+          local -a arr
+          arr=(${(f)st})
+
+          if [[ $arr[1] =~ 'Not currently on any branch.' ]]; then
+                  __CURRENT_GIT_BRANCH='no-branch'
+          else
+                  __CURRENT_GIT_BRANCH="${arr[1][(w)4]}";
+          fi
+
+          if [[ $arr[2] =~ 'Your branch is' ]]; then
+                  if [[ $arr[2] =~ 'ahead' ]]; then
+                          __CURRENT_GIT_BRANCH_STATUS='ahead'
+                  elif [[ $arr[2] =~ 'diverged' ]]; then
+                          __CURRENT_GIT_BRANCH_STATUS='diverged'
+                  else
+                          __CURRENT_GIT_BRANCH_STATUS='behind'
+                  fi
+          fi
+
+          if [[ ! $st =~ 'nothing to commit' ]]; then
+                  __CURRENT_GIT_BRANCH_IS_DIRTY='1'
+          fi
+  fi
+}
+
+prompt_git_info()
+{
+  if [ -n "$__CURRENT_GIT_BRANCH" ]; then
+          local s="("
+          case "$__CURRENT_GIT_BRANCH_STATUS" in
+                  ahead)
+                  s+="↑"
+                  ;;
+                  diverged)
+                  s+="↕"
+                  ;;
+                  behind)
+                  s+="↓"
+                  ;;
+          esac
+          if [ -n "$__CURRENT_GIT_BRANCH_IS_DIRTY" ]; then
+                  s+="⚡"
+          fi
+          s+="$__CURRENT_GIT_BRANCH"
+          s+=")"
+
+          printf " %s%s" "%{${fg[yellow]}%}" $s
+  fi
+}
+
+preexec_update_git_vars()
+{
+  case "$1" in
+    git*)
+       __EXECUTED_GIT_COMMAND=1
+       ;;
+  esac
+}
+
+update_git_vars() {
+  update_current_git_vars
+
+  if [ "$__CURRENT_GIT_BRANCH" != "no-branch" ] ; then
+    RPROMPT="%F{$pcc[3]}$(prompt_git_info)"
+  fi
+}
+
+prompt_hyacinthe_setup "$@"
+
