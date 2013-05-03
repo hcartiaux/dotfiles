@@ -233,7 +233,7 @@ __oar_ps1_remaining_time(){
     DATE_JOB_START=$(stat -c %Y $OAR_NODE_FILE)
     DATE_TMP=$OAR_JOB_WALLTIME_SECONDS
     ((DATE_TMP = (DATE_TMP - DATE_NOW + DATE_JOB_START) / 60))
-    echo -n " [OAR$OAR_JOB_ID->$DATE_TMP]"
+    echo -n "[OAR$OAR_JOB_ID->$DATE_TMP]"
   fi
 }
 
@@ -311,7 +311,7 @@ if [ "$LOGNAME" = "root" ]; then
   P="#"
 else
   COLOR_USER="${BLUE}"
-  P=""
+  P="$"
 fi
 
 # Configure a set of useful variables for the prompt
@@ -394,7 +394,7 @@ __set_compact_prompt() {
 # This prompt is perfect for terminal with black background, in my case the
 # Vizor color set (see http://visor.binaryage.com/) or iTerm2
 __set_my_prompt() {
-  PS1="$(__colorized_exit_status) ${LIGHT_CYAN}[\t]${RESET_COLOR} ${COLOR_USER}\u${RESET_COLOR}@${CYAN_UNDERLINE}\h${RESET_COLOR}(${PS1_EXTRAINFO}) ${BLUE}\W${RESET_COLOR}${GREEN}\$(__git_ps1 \" (%s)\")\$(__svn_ps1)${RESET_COLOR}${RED}$(__oar_ps1_remaining_time)${RESET_COLOR}${P}> "
+  PS1="$(__colorized_exit_status) ${LIGHT_CYAN}\t${RESET_COLOR} ${COLOR_USER}\u${RESET_COLOR}@${CYAN_UNDERLINE}\h${RESET_COLOR}(${PS1_EXTRAINFO})${RED}$(__oar_ps1_remaining_time)${RESET_COLOR}${GREEN}\$(__git_ps1 \" (%s)\")\$(__svn_ps1)${RESET_COLOR} ${BLUE}\W${RESET_COLOR} ${P} "
 }
 
 # -------------------------------------------------------------------
