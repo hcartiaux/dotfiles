@@ -76,3 +76,6 @@
 
 [http]
   sslverify = false
+
+[push]
+  default = simple
