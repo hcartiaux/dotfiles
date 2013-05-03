@@ -78,4 +78,4 @@
   sslverify = false
 
 [push]
-  default = simple
+  default = matching
