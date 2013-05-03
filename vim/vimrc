@@ -52,9 +52,14 @@ let g:qb_hotkey = "<F1>"
 
 "set laststatus=2
 
-" backup
+" Centralize backups, swapfiles and undo history
 set backup
 set backupdir=$HOME/.vim/backup
+set directory=$HOME/.vim/swap
+if exists("&undodir")
+    set undodir=$HOME/.vim/undo
+endif
+set viminfo+=n$HOME/.vim/.viminfo
 
 " Vim 7 spell checker (z=)
 if has("spell")

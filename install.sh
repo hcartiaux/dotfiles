@@ -35,12 +35,14 @@ fi
 
 mkdir -p ~/.vim
 cd ~/.vim
-mkdir -p backup spell bundle
+mkdir -p backup undo swap spell bundle
 [[ ! -d bundle/vundle ]] && git clone https://github.com/gmarik/vundle.git bundle/vundle
 [[ -d bundle/vundle ]] && ( cd bundle/vundle ; git pull )
 
 ln -sf $DOTFILES/vim/vimrc ~/.vimrc
 [[ ! -h ~/.vim/header ]] && ln -sf $DOTFILES/vim/header ~/.vim/header
+
+[[ -e ~/.viminfo ]] && mv ~/.viminfo ~/.vim/
 
 ## tmux
 
