@@ -233,7 +233,7 @@ __oar_ps1_remaining_time(){
     DATE_JOB_START=$(stat -c %Y $OAR_NODE_FILE)
     DATE_TMP=$OAR_JOB_WALLTIME_SECONDS
     ((DATE_TMP = (DATE_TMP - DATE_NOW + DATE_JOB_START) / 60))
-    echo -n " [OAR$OAR_JOB_ID-->$DATE_TMP]"
+    echo -n " [OAR$OAR_JOB_ID->$DATE_TMP]"
   fi
 }
 
@@ -310,7 +310,7 @@ if [ "$LOGNAME" = "root" ]; then
   COLOR_USER="${RED}"
   P="#"
 else
-  COLOR_USER="${WHITE}"
+  COLOR_USER="${BLUE}"
   P=""
 fi
 
