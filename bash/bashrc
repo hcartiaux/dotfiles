@@ -310,7 +310,7 @@ if [ "$LOGNAME" = "root" ]; then
   COLOR_USER="${RED}"
   P="#"
 else
-  COLOR_USER="${BLUE}"
+  COLOR_USER="${WHITE}"
   P="$"
 fi
 
