@@ -81,25 +81,25 @@ LS_COMMON="-h"
 
 # if the dircolors utility is available, set that up to
 dircolors="$(type -P gdircolors dircolors | head -1)"
-test -n "$dircolors" && {
-    COLORS=/etc/DIR_COLORS
-    test -e "/etc/DIR_COLORS.$TERM"   && COLORS="/etc/DIR_COLORS.$TERM"
-    test -e "$HOME/.dircolors"        && COLORS="$HOME/.dircolors"
-    test ! -e "$COLORS"               && COLORS=
-    eval `$dircolors --sh $COLORS`
-}
+test -n "$dircolors" && (
+  COLORS=/etc/DIR_COLORS
+  test -e "/etc/DIR_COLORS.$TERM"   && COLORS="/etc/DIR_COLORS.$TERM"
+  test -e "$HOME/.dircolors"        && COLORS="$HOME/.dircolors"
+  test ! -e "$COLORS"               && COLORS=
+  eval `$dircolors --sh $COLORS`
+)
 unset dircolors
 
 if [ "$UNAME" = Darwin ]; then
-    # check if you're using gnu core-utils then use --color
-    test "`which ls`" = "/opt/local/bin/ls" && {
-        LS_COMMON="$LS_COMMON --color"
-    } || {
-        LS_COMMON="$LS_COMMON -G"
-    }
+  # check if you're using gnu core-utils then use --color
+  test "`which ls`" = "/opt/local/bin/ls" && (
+      LS_COMMON="$LS_COMMON --color"
+  ) || (
+      LS_COMMON="$LS_COMMON -G"
+  )
 elif [ "$UNAME" = Linux ]; then
-    LS_COMMON="$LS_COMMON --color"
-    alias grep='grep --color=auto'
+  LS_COMMON="$LS_COMMON --color"
+  alias grep='grep --color=auto'
 fi
 
 # setup the main ls alias if we've established common args
@@ -122,7 +122,7 @@ alias rm='rm -i'
 alias ..='cd ..'
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 
 # ----------------------------------------------------------------------
@@ -130,14 +130,14 @@ fi
 # ----------------------------------------------------------------------
 # detect interactive shell
 case "$-" in
-    *i*) INTERACTIVE=yes ;;
-    *)   unset INTERACTIVE ;;
+  *i*) INTERACTIVE=yes ;;
+  *)   unset INTERACTIVE ;;
 esac
 
 # detect login shell
 case "$0" in
-    -*) LOGIN=yes ;;
-    *)  unset LOGIN ;;
+  -*) LOGIN=yes ;;
+  *)  unset LOGIN ;;
 esac
 
 # enable en_US locale w/ ISO-8859-15 encodings if not already configured
@@ -183,11 +183,11 @@ export EDITOR
 
 # Default pager ('less' is so much better than 'more'...)
 if test -n "$(command -v less)" ; then
-    PAGER="less -FirSwX"
-    MANPAGER="less -FiRswX"
+  PAGER="less -FirSwX"
+  MANPAGER="less -FiRswX"
 else
-    PAGER=more
-    MANPAGER="$PAGER"
+  PAGER=more
+  MANPAGER="$PAGER"
 fi
 export PAGER MANPAGER
 
@@ -196,19 +196,54 @@ export PAGER MANPAGER
 # ----------------------------------------------------------------------
 
 bash=${BASH_VERSION%.*}; bmajor=${bash%.*}; bminor=${bash#*.}
-test -n "$PS1" && test $bmajor -gt 1 && {
-        # search for a bash_completion file to source
-    for f in /usr/local/etc/bash_completion \
-        /opt/local/etc/bash_completion \
-        /etc/bash_completion
-    do
-        test -f $f && {
-            . $f
-            break
-        }
-    done
-}
+test -n "$PS1" && test $bmajor -gt 1 && (
+  # search for a bash_completion file to source
+  for f in /usr/local/etc/bash_completion \
+    /opt/local/etc/bash_completion \
+    /etc/bash_completion
+  do
+    test -f $f && (
+      . $f
+      break
+    )
+  done
+)
 unset bash bmajor bminor
+
+# ----------------------------------------------------------------------
+# OAR Batch scheduler
+# ----------------------------------------------------------------------
+# Resources:
+# - http://wiki-oar.imag.fr/index.php/Customization_tips
+# - http://wiki-oar.imag.fr/index.php/Oarsh_and_bash_completion
+
+# oarsh completion
+function _oarsh_complete_()
+{
+  local word=${COMP_WORDS[COMP_CWORD]}
+  local list=`cat $OAR_NODEFILE | uniq | tr '\n' ' '`
+  COMPREPLY=($(compgen -W "$list" -- "${word}"))
+}
+complete -F _oarsh_complete_ oarsh
+
+# Job + Remaining time
+__oar_ps1_remaining_time(){
+  if [ -n "$OAR_JOB_WALLTIME_SECONDS" -a -n "$OAR_NODE_FILE" -a -r "$OAR_NODE_FILE" ]; then
+    DATE_NOW=$(date +%s)
+    DATE_JOB_START=$(stat -c %Y $OAR_NODE_FILE)
+    DATE_TMP=$OAR_JOB_WALLTIME_SECONDS
+    ((DATE_TMP = (DATE_TMP - DATE_NOW + DATE_JOB_START) / 60))
+    echo -n " [OAR$OAR_JOB_ID-->$DATE_TMP]"
+  fi
+}
+
+# OAR motd
+
+test -n "$INTERACTIVE" && test -n "$OAR_NODE_FILE" && (
+  echo "[OAR] OAR_JOB_ID=$OAR_JOB_ID"
+  echo "[OAR] Your nodes are:"
+  sort $OAR_NODE_FILE | uniq -c | awk '{printf("      %s*%d\n",$2,$1)}END{printf("\n")}' | sed -e 's/,$//'
+)
 
 # ----------------------------------------------------------------------
 # BASH HISTORY
@@ -233,12 +268,12 @@ export SVN_EDITOR=$EDITOR
 
 ## display the current subversion revision (to be used later in the prompt)
 __svn_ps1() {
-    local svnversion=`svnversion | sed -e "s/[:M]//g"`
-    # Continue if $svnversion is numerical
-    if let $svnversion 2>/dev/null
-    then
-        printf " (svn:%s)" `svnversion`
-    fi
+  local svnversion=`svnversion | sed -e "s/[:M]//g"`
+  # Continue if $svnversion is numerical
+  if let $svnversion 2>/dev/null
+  then
+      printf " (svn:%s)" `svnversion`
+  fi
 }
 
 # === GIT ===
@@ -272,41 +307,41 @@ CYAN_UNDERLINE="\[\e[4;36m\]"
 
 # Configure user color and prompt type depending on whoami
 if [ "$LOGNAME" = "root" ]; then
-    COLOR_USER="${RED}"
-    P="#"
+  COLOR_USER="${RED}"
+  P="#"
 else
-    COLOR_USER="${WHITE}"
-    P=""
+  COLOR_USER="${WHITE}"
+  P=""
 fi
 
 # Configure a set of useful variables for the prompt
 if [[ "`echo $UNAME | grep -c -i -e '^.*bsd$'`" == "1" ]] ; then
-    DOMAIN=`hostname | cut -d '.' -f 2`
+  DOMAIN=`hostname | cut -d '.' -f 2`
 else
-    DOMAIN=`hostname -f | cut -d '.' -f 2`
+  DOMAIN=`hostname -f | cut -d '.' -f 2`
 fi
 
 # get virtualization information
 XENTYPE=""
 if [ -f "/sys/hypervisor/uuid" ]; then
-    if [ $(</sys/hypervisor/uuid) == "00000000-0000-0000-0000-000000000000" ]; then
-        XENTYPE=",Dom0"
-    else
-        XENTYPE=",DomU"
-    fi
+  if [ $(</sys/hypervisor/uuid) == "00000000-0000-0000-0000-000000000000" ]; then
+      XENTYPE=",Dom0"
+  else
+      XENTYPE=",DomU"
+  fi
 fi
 # Test the PS1_EXTRA variable
 if [ -z "${PS1_EXTRA}" -a -f "/proc/cmdline" ]; then
-    # Here PS1_EXTRA is not set and/or empty, check additionally if it has not
-    # been set via kernel comment
-    kernel_ps1_extra="$(grep PS1_EXTRA /proc/cmdline)"
-    if [ -n "${kernel_ps1_extra}" ]; then
-        PS1_EXTRA=` sed -e "s/.*PS1_EXTRA=\"\?\([^ ^\t^\"]\+\)\"\?.*/\1/g" /proc/cmdline `
-    fi
+  # Here PS1_EXTRA is not set and/or empty, check additionally if it has not
+  # been set via kernel comment
+  kernel_ps1_extra="$(grep PS1_EXTRA /proc/cmdline)"
+  if [ -n "${kernel_ps1_extra}" ]; then
+      PS1_EXTRA=` sed -e "s/.*PS1_EXTRA=\"\?\([^ ^\t^\"]\+\)\"\?.*/\1/g" /proc/cmdline `
+  fi
 fi
 PS1_EXTRAINFO="${BOLD_COLOR}${DOMAIN}${XENTYPE}${RESET_COLOR}"
 if [ -n "${PS1_EXTRA}" ]; then
-    PS1_EXTRAINFO="${PS1_EXTRAINFO},${YELLOW}${PS1_EXTRA}${RESET_COLOR}"
+  PS1_EXTRAINFO="${PS1_EXTRAINFO},${YELLOW}${PS1_EXTRA}${RESET_COLOR}"
 fi
 
 
@@ -314,10 +349,10 @@ fi
 # exit status of the last run command.
 # Exit status 130 is also considered as good as it corresponds to a CTRL-D
 __colorized_exit_status() {
-    printf -- "\`status=\$? ; if [[ \$status = 0 || \$status = 130  ]]; then \
-                                echo -e '\[\e[01;32m\]'\$status;             \
-                              else                                           \
-                                echo -e '\[\e[01;31m\]'\$status; fi\`"
+  printf -- "\`status=\$? ; if [[ \$status = 0 || \$status = 130  ]]; then \
+                              echo -e '\[\e[01;32m\]'\$status;             \
+                            else                                           \
+                              echo -e '\[\e[01;31m\]'\$status; fi\`"
 }
 
 # Simple (basic) prompt
@@ -335,7 +370,7 @@ __set_compact_prompt() {
 ###########
 # my prompt; the format is as follows:
 #
-#    [hh:mm:ss]:$?: username@hostname(domain[,xentype][,extrainfo]) workingdir(svn/git status)$>
+#    [hh:mm:ss]:$?: username@hostname(domain[,xentype][,extrainfo]) workingdir(svn/git status) [OAR job info]$>
 #    `--------'  ^  `------' `------'         `--------'`--------------'
 #       cyan     |  root:red   cyan              light     green
 #                |           underline            blue   (absent if not relevant)
@@ -359,7 +394,7 @@ __set_compact_prompt() {
 # This prompt is perfect for terminal with black background, in my case the
 # Vizor color set (see http://visor.binaryage.com/) or iTerm2
 __set_my_prompt() {
-    PS1="$(__colorized_exit_status) ${LIGHT_CYAN}[\t]${RESET_COLOR} ${COLOR_USER}\u${RESET_COLOR}@${CYAN_UNDERLINE}\h${RESET_COLOR}(${PS1_EXTRAINFO}) ${BLUE}\W${RESET_COLOR}${GREEN}\$(__git_ps1 \" (%s)\")\$(__svn_ps1)${RESET_COLOR}${P}> "
+  PS1="$(__colorized_exit_status) ${LIGHT_CYAN}[\t]${RESET_COLOR} ${COLOR_USER}\u${RESET_COLOR}@${CYAN_UNDERLINE}\h${RESET_COLOR}(${PS1_EXTRAINFO}) ${BLUE}\W${RESET_COLOR}${GREEN}\$(__git_ps1 \" (%s)\")\$(__svn_ps1)${RESET_COLOR}${RED}$(__oar_ps1_remaining_time)${RESET_COLOR}${P}> "
 }
 
 # -------------------------------------------------------------------
@@ -368,14 +403,14 @@ __set_my_prompt() {
 # Set the color prompt by default when interactive
 if [ -n "$PS1" ]; then
     __set_my_prompt
+    export PS1
 fi
-export PS1
 
 # MOTD
-test -n "$INTERACTIVE" -a -n "$LOGIN" && {
-    uname -npsr
-    uptime
-}
+test -n "$INTERACTIVE" -a -n "$LOGIN" && (
+  uname -npsr
+  uptime
+)
 
 export PKG_CONFIG_PATH
 export C_INCLUDE_PATH   CPLUS_INCLUDE_PATH   LIBRARY_PATH   DYLD_FALLBACK_LIBRARY_PATH
