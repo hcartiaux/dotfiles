@@ -9,7 +9,6 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-git'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-markdown'
-Bundle 'rodjek/vim-puppet'
 Bundle 'vim-ruby/vim-ruby'
 " Bundle 'altercation/vim-colors-solarized'
 
@@ -84,8 +83,17 @@ autocmd bufnewfile *.pl so ~/.vim/header/perl
 autocmd bufnewfile *.sh so ~/.vim/header/shell
 au BufRead,BufNewFile *.md set syntax=markdown
 
-" Pour afficher les espaces blancs
+" Display trailing white spaces
 set list listchars=tab:\ \ ,trail:·
-" Pour supprimer les espaces blancs au write
-autocmd BufWritePre * :%s/\s\+$//e
+" Remove trailing white spaces in all files except *.md
+" http://stackoverflow.com/questions/6496778/vim-run-autocmd-on-all-filetypes-except
+fun! StripTrailingWhitespace()
+    " Only strip if the b:noStripeWhitespace variable isn't set
+    if exists('b:noStripWhitespace')
+        return
+    endif
+    %s/\s\+$//e
+endfun
+autocmd BufWritePre * call StripTrailingWhitespace()
+autocmd FileType markdown let b:noStripWhitespace=1
 
