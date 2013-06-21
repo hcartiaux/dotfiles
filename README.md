@@ -31,7 +31,7 @@ these config files:
 
 Run the following commands:
 
-    $> git clone git://github.com/hcartiaux/dotfiles ~/.dotfiles
+    $> git clone https://github.com/hcartiaux/dotfiles.git ~/.dotfiles
     $> ~/.dotfiles/install.sh
 
 ## Environment
