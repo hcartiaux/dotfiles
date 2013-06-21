@@ -127,13 +127,14 @@ alias ssha="ssh-add ~/.ssh/id_dsa"
 alias sshg="ssh-add ~/.ssh/id_rsa_uni"
 alias cdpuppet="cd ~/Uni.lu-repos/puppet-repo"
 alias cdsys="~/Uni.lu-repos/sysadmins-repo"
+alias pass='eval `~/Uni.lu-repos/passwords-repo/.passrc` && pass'
 
 # g5k alias
 alias puppetplay='bundle exec puppetplay'
 alias g5kcap='bundle exec cap'
 alias g5k="~/Grid5000"
 alias g5kpuppet="~/Grid5000/git.grid5000.fr/puppet-repo"
-
+alias g5kpass='cd /home/hcartiaux/Grid5000/gitolite.grid5000.fr/password5k && source .passrc && /usr/bin/pass'
 
 # RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
