@@ -32,11 +32,12 @@
   ls = ls-files
   gr = log --graph --oneline --decorate
   # From http://progit.org/book/ch2-11.html
-  unstage = reset HEAD --
-  last = log -1 HEAD
-  amend = commit --amend
+  unstage     = reset HEAD --
+  last        = log -1 HEAD
+  amend       = commit --amend
+  undo-commit = reset --soft HEAD^
   # From http://j.shirley.im/tech/git-flow/
-  feature-start = !git flow feature start $1
+  feature-start  = !git flow feature start $1
   feature-finish = !git flow feature finish $1 && git push
   # fs, feature start
   fs = !git flow feature start $1 && grb publish feature/$1
