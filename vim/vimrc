@@ -5,31 +5,49 @@
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Bundle 'tpope/vim-fugitive'
+" Git syntax highlighting and integration
 Bundle 'tpope/vim-git'
+Bundle 'tpope/vim-fugitive'
+Bundle 'gregsexton/gitv'
+" nerd plugins
 Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdsnippets'
+" syntax highlighting
 Bundle 'tpope/vim-markdown'
 Bundle 'vim-ruby/vim-ruby'
-" Bundle 'altercation/vim-colors-solarized'
+" Surround selection with quotes, parenthesis…
+Bundle 'tpope/vim-surround'
+" Automatically closes functions, blocks, etc.
+Bundle 'tpope/vim-endwise'
+" A better stats bar
+Bundle 'Lokaltog/vim-powerline'
+" Aligns text.
+Bundle 'godlygeek/tabular'
+" Browse tags of source code files.
+Bundle 'majutsushi/tagbar'
+" Increment dates
+Bundle 'tpope/vim-speeddating'
 
 syntax on
 set background=dark
 colorscheme default
-" hi CursorLineNr   term=bold ctermfg=Yellow gui=bold guifg=Yellow
 filetype on
 
+" set mouse=a
 " set number
+set ruler
 set nocompatible
 set hlsearch
 set nostartofline
-
-" Garde toujours une ligne visible au dessus du curseur
 set scrolloff=1
-
-" Essaye de garder le curseur dans la même colonne quand on change de ligne
 set nostartofline
+set laststatus=2
+set showcmd
+set showmatch
+set cursorline
 
-" set smartindent
+" Indent
 set cindent
 set softtabstop=2
 set tabstop=2
@@ -38,18 +56,16 @@ set shiftwidth=2
 
 " set textwidth=80
 
-" set mouse=a
-
+" Encoding
 set encoding=utf-8
 set fileencoding=utf-8
 
-set showcmd
-set showmatch
-set cursorline
+
+" filename completion
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc
 
 let g:qb_hotkey = "<F1>"
-
-"set laststatus=2
 
 " Centralize backups, swapfiles and undo history
 set backup
@@ -61,6 +77,7 @@ endif
 set viminfo+=n$HOME/.vim/.viminfo
 
 " Vim 7 spell checker (z=)
+" http://ftp.vim.org/pub/vim/runtime/spell/
 if has("spell")
   setlocal spell spelllang=
   " Language : FR
@@ -97,3 +114,14 @@ endfun
 autocmd BufWritePre * call StripTrailingWhitespace()
 autocmd FileType markdown let b:noStripWhitespace=1
 
+" Completion, C-X C-O in insert mode, navigation with C-N/C-P
+" http://vim.wikia.com/wiki/Omni_completion
+filetype plugin on
+set ofu=syntaxcomplete#Complete
+
+map <F3> <Esc>:tabnext<CR>
+map <F2> <Esc>:tabprevious<CR>
+map <F4> :NERDTreeToggle<CR>
+map <F5> :TagbarToggle<CR>
+map <F6> <Esc>:set paste<CR>
+map <F10> <Esc>:s/"/'/g<CR>
