@@ -56,6 +56,7 @@ Hyacinthe Cartiaux, using various contributions on the Internet, in particular:
 *  [Sebastien Varrette dotfiles](http://github.com/Falkor/dotfiles)
 *  [Derek Payton dotfiles](http://bitbucket.org/dmpayton/dotfiles/src/tip/.bashrc)
 *  [Ryan Tomayko dotfiles](http://github.com/rtomayko/dotfiles/blob/rtomayko/.bashrc)
+*  [Sebastien Badia vim configuration](https://github.com/sbadia/grimvim)
 
 As often, I release these files under GNU GPL Licence v3.
 You may use, modify, and/or redistribute them under the terms of the GPL Licence v3.
