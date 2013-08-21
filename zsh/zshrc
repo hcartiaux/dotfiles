@@ -122,9 +122,8 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Personal aliases
 
 alias -s pdf="/usr/bin/xpdf "
-alias killflash=" ps aux | grep flash | xargs | cut -d' ' -f2  | xargs kill"
-alias ssha="ssh-add ~/.ssh/id_dsa"
-alias sshg="ssh-add ~/.ssh/id_rsa_uni"
+alias killflash="ps aux | grep flash | xargs | cut -d' ' -f2  | xargs kill"
+alias ssha="ssh-add"
 alias cdpuppet="cd ~/Uni.lu-repos/puppet-repo"
 alias cdsys="~/Uni.lu-repos/sysadmins-repo"
 alias pass='eval `~/Uni.lu-repos/passwords-repo/.passrc` && pass'
