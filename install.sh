@@ -66,4 +66,10 @@ ln -sf $DOTFILES/ssh/sshpubkey ~/.ssh/sshpubkey
 mkdir -p ~/.config
 ln -sf $DOTFILES/aurvote ~/.config/aurvote
 
+## temporary files
+
+ln -sf /tmp ~/.adobe
+ln -sf /tmp ~/.cache
+ln -sf /tmp ~/.macromedia
+ln -sf /tmp ~/.thumbnails
 
