@@ -60,7 +60,7 @@ ln -sf $DOTFILES/git/gitconfig ~/.gitconfig
 
 mkdir -p ~/.ssh/sockets
 ln -sf $DOTFILES/ssh/sshpubkey ~/.ssh/sshpubkey
-[[ ! -f ~/.ssh/config ]] && cat $DOTFILES/ssh/config{,.*} > ~/.ssh/config
+[[ ! -f ~/.ssh/config ]] && cat $DOTFILES/ssh/config{,.*} > ~/.ssh/config.perso
 
 ## aurvote
 
