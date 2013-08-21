@@ -1,0 +1,27 @@
+#######
+## Kimsufi
+#######
+
+Host ksf 0xf.fr
+  User hcartiaux
+  Port 443
+  Hostname 0xf.fr
+
+########
+## Raspberry Pi
+########
+
+Host rpi rpi.0xf.fr
+  User hcartiaux
+  Port 443
+  Hostname rpi.0xf.fr
+
+########
+## AMD64 Box / Deepspace
+########
+
+Host deepspace deepspace.0xf.fr
+  User hcartiaux
+  Port 993
+  Hostname deepspace.0xf.fr
+
