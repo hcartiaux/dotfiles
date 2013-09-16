@@ -1,6 +1,6 @@
 ################################################################################
 #  .gitconfig -- my personal GIT configuration
-#                see http://github.com/Falkor/dotfiles
+#                see https://github.com/hcartiaux/dotfiles
 #
 #  Copyright (c) 2010 Sebastien Varrette <Sebastien.Varrette@uni.lu>
 #
@@ -15,6 +15,7 @@
 ################################################################################
 # Resources:
 #  - http://stackoverflow.com/questions/267761/what-does-your-gitconfig-contain
+#  - https://github.com/Falkor/dotfiles
 [user]
   name  = Hyacinthe Cartiaux
   email = hyacinthe.cartiaux@uni.lu
