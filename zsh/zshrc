@@ -1,7 +1,8 @@
 source /etc/profile
 
 # Default language
-export LANG=C
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 autoload -U promptinit compinit
 promptinit
