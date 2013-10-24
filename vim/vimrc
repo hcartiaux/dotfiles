@@ -10,9 +10,9 @@ Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-fugitive'
 Bundle 'gregsexton/gitv'
 " nerd plugins
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdsnippets'
+" Bundle 'scrooloose/nerdtree'
+" Bundle 'scrooloose/nerdcommenter'
+" Bundle 'scrooloose/nerdsnippets'
 " syntax highlighting
 Bundle 'tpope/vim-markdown'
 Bundle 'vim-ruby/vim-ruby'
