@@ -137,7 +137,12 @@ alias puppetplay='bundle exec puppetplay'
 alias g5kcap='bundle exec cap'
 alias g5k="~/Grid5000"
 alias g5kpuppet="~/Grid5000/git.grid5000.fr/puppet-repo"
-alias g5kpass='cd /home/hcartiaux/Grid5000/gitolite.grid5000.fr/password5k && source .passrc && /usr/bin/pass'
+g5kpass() {
+  curdir=`pwd`
+  cd /home/hcartiaux/Grid5000/gitolite.grid5000.fr/password5k
+  source .passrc && /usr/bin/pass $*
+  cd $curdir
+}
 
 # RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
