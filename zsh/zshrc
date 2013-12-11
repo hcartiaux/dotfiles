@@ -1,9 +1,43 @@
+################################################################################
+#  .zshrc -- my personal ZSH configuration
+#             see https://github.com/hcartiaux/dotfiles
+#
+#  Copyright (c) 2013 Hyacinthe Cartiaux <Hyacinthe.Cartiaux@uni.lu>
+#                                      _
+#                              _______| |__  _ __ ___
+#                             |_  / __| '_ \| '__/ __|
+#                            _ / /\__ \ | | | | | (__
+#                           (_)___|___/_| |_|_|  \___|
+#
+################################################################################
+# This file is NOT part of ZSH
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+# details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program.  If not, see <http://www.gnu.org/licenses/>.
+################################################################################
+
 source /etc/profile
 
-# Default language
+##################################################################
+## Default locale for command line tools
+#
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
+
+##################################################################
+## Shell and prompt configuration
+#
 autoload -U promptinit compinit
 promptinit
 compinit
@@ -24,11 +58,19 @@ unsetopt ignore_eof
 unsetopt rm_star_silent
 unsetopt list_ambiguous
 
-export SVN_EDITOR=vim
-export EDITOR="vim"
+# This will set the default prompt
+source ~/.zsh/prompt_hyacinthe_setup
 
-eval `dircolors -b`
+# Syntax highlighting
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# type a directory's name to cd to it.
+compctl -/ cd
+
+
+##################################################################
+## Auto-completion
+#
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BDésolé, pas de résultats pour : %d%b'
 zstyle ':completion:*' menu select=2
@@ -79,12 +121,39 @@ bindkey "\e[F" end-of-line
 # completion in the middle of a line
 bindkey '^i' expand-or-complete-prefix
 
+
+##################################################################
+## HISTORY
+#
+HISTFILE=~/.zhistory
+HISTSIZE=10000
+SAVEHIST=10000
+setopt   appendhistory
+setopt   incappendhistory
+
+
+##################################################################
+## Environment variables
+#
+export TSOCKS_CONFFILE=~/.dotfiles/tsocks/tsocks.conf
+export SVN_EDITOR=vim
+export EDITOR="vim"
+
+# git
+unset SSH_ASKPASS
+
+
+##################################################################
+## Aliases
+#
+
 alias vi='/usr/bin/vim'
 alias ls='/bin/ls --color=auto -F --group-directories-first -h'
 alias ll='/bin/ls -l --color=auto'
 alias la='ll -a'
 alias lh='la -h'
 
+eval `dircolors -b`
 export GREP_COLOR=31
 alias grep='grep --color=auto'
 
@@ -101,29 +170,6 @@ man() {
     col -b | \
     vim -R -c 'set ft=man nomod nolist' -
 }
-
-# This will set the default prompt
-source ~/.zsh/prompt_hyacinthe_setup
-
-# type a directory's name to cd to it.
-compctl -/ cd
-
-# history
-
-HISTFILE=~/.zhistory
-HISTSIZE=10000
-SAVEHIST=10000
-setopt   appendhistory
-setopt   incappendhistory
-
-# git
-unset SSH_ASKPASS
-
-# Syntax highlighting
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-
-# Personal aliases
 
 alias -s pdf="/usr/bin/xpdf "
 alias killflash="ps aux | grep flash | xargs | cut -d' ' -f2  | xargs kill"
@@ -144,7 +190,9 @@ g5kpass() {
   cd $curdir
 }
 
-# RVM
+##################################################################
+## RVM
+#
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 PATH=$PATH:/usr/lib/ruby/gems/1.9.1/bin/:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
