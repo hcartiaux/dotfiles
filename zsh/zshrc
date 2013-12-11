@@ -135,7 +135,7 @@ setopt   incappendhistory
 ##################################################################
 ## Environment variables
 #
-export TSOCKS_CONFFILE=~/.dotfiles/tsocks/tsocks.conf
+export TSOCKS_CONF_FILE=~/.dotfiles/tsocks/tsocks.conf
 export SVN_EDITOR=vim
 export EDITOR="vim"
 
