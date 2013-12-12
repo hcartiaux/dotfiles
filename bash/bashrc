@@ -249,7 +249,7 @@ test -n "$INTERACTIVE" && test -n "$OAR_NODE_FILE" && (
 #  GRID5000 specific
 # ----------------------------------------------------------------------
 
-hostname | grep -e 'grid5000.fr$'
+hostname | grep -e 'grid5000.fr$' >/dev/null 2>&1
 if [ $? -eq 0 ] ; then
   export OAR_JOB_KEY_FILE=~/.ssh/id_rsa
   export HTTP_PROXY=http://proxy:3128
