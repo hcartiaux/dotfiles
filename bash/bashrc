@@ -170,6 +170,9 @@ CPLUS_INCLUDE_PATH=${C_INCLUDE_PATH}
 LIBRARY_PATH=/usr/lib:/usr/local/lib
 DYLD_FALLBACK_LIBRARY_PATH=${LIBRARY_PATH}
 
+# Easybuild BUILD PATH
+EASYBUILDBUILDPATH=/tmp/
+
 # RVM specific (see http://beginrescueend.com/)
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 
