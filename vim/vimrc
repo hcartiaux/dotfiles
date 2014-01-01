@@ -1,6 +1,23 @@
-" vundle
-" https://github.com/shingara/vim-conf/blob/master/vimrc
-" http://blog.shingara.fr/vundle-ou-le-bundler-de-vim.html
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"  .bashrc -- my personal VIM configuration
+"             see https://github.com/hcartiaux/dotfiles
+"
+"  Copyright (c) 2013 Hyacinthe Cartiaux <Hyacinthe.Cartiaux@uni.lu>
+"                                _
+"                         __   _(_)_ __ ___  _ __ ___
+"                         \ \ / / | '_ ` _ \| '__/ __|
+"                          \ V /| | | | | | | | | (__
+"                         (_)_/ |_|_| |_| |_|_|  \___|
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Resources:
+" * https://github.com/shingara/vim-conf/blob/master/vimrc
+" * http://blog.shingara.fr/vundle-ou-le-bundler-de-vim.html
+" * http://vim.wikia.com/wiki/Configuring_the_cursor
+" * http://ftp.vim.org/pub/vim/runtime/spell/
+" * http://stackoverflow.com/questions/6496778/vim-run-autocmd-on-all-filetypes-except
+" * http://vim.wikia.com/wiki/Omni_completion
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -9,10 +26,6 @@ call vundle#rc()
 Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-fugitive'
 Bundle 'gregsexton/gitv'
-" nerd plugins
-" Bundle 'scrooloose/nerdtree'
-" Bundle 'scrooloose/nerdcommenter'
-" Bundle 'scrooloose/nerdsnippets'
 " syntax highlighting
 Bundle 'tpope/vim-markdown'
 Bundle 'vim-ruby/vim-ruby'
@@ -26,8 +39,6 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'godlygeek/tabular'
 " Browse tags of source code files.
 Bundle 'majutsushi/tagbar'
-" Increment dates
-Bundle 'tpope/vim-speeddating'
 
 syntax on
 set background=dark
@@ -45,7 +56,19 @@ set nostartofline
 set laststatus=2
 set showcmd
 set showmatch
+
 set cursorline
+hi CursorLine term=bold cterm=bold ctermbg=blue ctermfg=white
+
+" orange in insert mode, red in command mode
+" if you want to use rgb color formatting:
+"   konsoleprofile CustomCursorColor=#255255255
+autocmd VimEnter * silent !konsoleprofile UseCustomCursorColor=1
+let &t_SI = "\<Esc>]50;CustomCursorColor=orange;BlinkingCursorEnabled=1\x7"
+let &t_EI = "\<Esc>]50;CustomCursorColor=red;BlinkingCursorEnabled=0\x7"
+silent !konsoleprofile CustomCursorColor=red
+autocmd VimLeave * silent !konsoleprofile CustomCursorColor=gray;BlinkingCursorEnabled=0
+
 
 " Indent
 set cindent
@@ -77,7 +100,6 @@ endif
 set viminfo+=n$HOME/.vim/.viminfo
 
 " Vim 7 spell checker (z=)
-" http://ftp.vim.org/pub/vim/runtime/spell/
 if has("spell")
   setlocal spell spelllang=
   " Language : FR
@@ -103,7 +125,6 @@ au BufRead,BufNewFile *.md set syntax=markdown
 " Display trailing white spaces
 set list listchars=tab:\ \ ,trail:·
 " Remove trailing white spaces in all files except *.md
-" http://stackoverflow.com/questions/6496778/vim-run-autocmd-on-all-filetypes-except
 fun! StripTrailingWhitespace()
     " Only strip if the b:noStripeWhitespace variable isn't set
     if exists('b:noStripWhitespace')
@@ -115,13 +136,9 @@ autocmd BufWritePre * call StripTrailingWhitespace()
 autocmd FileType markdown let b:noStripWhitespace=1
 
 " Completion, C-X C-O in insert mode, navigation with C-N/C-P
-" http://vim.wikia.com/wiki/Omni_completion
 filetype plugin on
 set ofu=syntaxcomplete#Complete
 
 map <F3> <Esc>:tabnext<CR>
 map <F2> <Esc>:tabprevious<CR>
-map <F4> :NERDTreeToggle<CR>
-map <F5> :TagbarToggle<CR>
 map <F6> <Esc>:set paste<CR>
-map <F10> <Esc>:s/"/'/g<CR>
