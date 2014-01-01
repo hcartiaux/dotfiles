@@ -52,6 +52,11 @@ ln -sf $DOTFILES/tmux/tmux.conf ~/.tmux.conf
 
 ln -sf $DOTFILES/screen/screenrc ~/.screenrc
 
+## rtorrent
+
+ln -sf $DOTFILES/rtorrent/rtorrent.rc ~/.rtorrent.rc
+mkdir -p ~/.rtorrent
+
 ## git
 
 ln -sf $DOTFILES/git/gitconfig ~/.gitconfig
