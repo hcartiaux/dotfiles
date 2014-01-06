@@ -18,6 +18,13 @@
 " * http://ftp.vim.org/pub/vim/runtime/spell/
 " * http://stackoverflow.com/questions/6496778/vim-run-autocmd-on-all-filetypes-except
 " * http://vim.wikia.com/wiki/Omni_completion
+" * http://amix.dk/vim/vimrc.html
+
+set nocompatible
+
+""""""""""""
+" => Vundle
+""""""""""""
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -40,55 +47,131 @@ Bundle 'godlygeek/tabular'
 " Browse tags of source code files.
 Bundle 'majutsushi/tagbar'
 
-syntax on
+""""""""""""
+" => General
+""""""""""""
+
+set history=1000
+filetype on
+filetype plugin on
+filetype indent on
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
+" Fast saving
+nmap <leader>w :w!<cr>
+
+""""""""""""""""""""""""
+" => VIM user interface
+""""""""""""""""""""""""
+
+" Turn on the WiLd menu
+set wildmenu
+set wildmode=list:longest,full
+
+" Ignore compiled files
+set wildignore=*.o,*~,*.pyc,*.obj,.git,*.rbc
+
+" Use the mouse
+set mouse=a
+
+" Always show current position
+set ruler
+
+" A buffer becomes hidden when it is abandoned
+set hid
+
+" Show line numbers
+" set number
+
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+" Ignore case when searching
+set ignorecase
+
+" When searching try to be smart about cases
+set smartcase
+
+" Highlight search results
+set hlsearch
+
+" Makes search act like search in modern browsers
+set incsearch
+
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+
+" For regular expressions turn magic on
+set magic
+
+" Show matching brackets when text indicator is over them
+set showmatch
+
+" How many tenths of a second to blink when matching brackets
+set mat=2
+
+" No annoying sound on errors
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+" Keep 1 line when scrolling
+set scrolloff=1
+
+" Try to preserve column where cursor is positioned during motion commands
+set nostartofline
+
+" Displaying status line always
+set laststatus=2
+
+" Show information about the current command going on
+set showcmd
+
+
+""""""""""""""""""""""
+" => Colors and Fonts
+""""""""""""""""""""""
 set background=dark
 colorscheme default
-filetype on
 
-" set mouse=a
-" set number
-set ruler
-set nocompatible
-set hlsearch
-set nostartofline
-set scrolloff=1
-set nostartofline
-set laststatus=2
-set showcmd
-set showmatch
+" Set utf8 as standard encoding
+set encoding=utf-8
+set fileencoding=utf-8
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
+
+" Enable syntax highlighting
+syntax enable
 
 set cursorline
 hi CursorLine term=bold cterm=bold ctermbg=blue ctermfg=white
 
-" orange in insert mode, red in command mode
-" if you want to use rgb color formatting:
-"   konsoleprofile CustomCursorColor=#255255255
-autocmd VimEnter * silent !konsoleprofile UseCustomCursorColor=1
-let &t_SI = "\<Esc>]50;CustomCursorColor=orange;BlinkingCursorEnabled=1\x7"
-let &t_EI = "\<Esc>]50;CustomCursorColor=red;BlinkingCursorEnabled=0\x7"
-silent !konsoleprofile CustomCursorColor=red
-autocmd VimLeave * silent !konsoleprofile CustomCursorColor=gray;BlinkingCursorEnabled=0
+if $XDG_CURRENT_DESKTOP == "KDE"
+  autocmd VimEnter * silent !konsoleprofile UseCustomCursorColor=1
+  let &t_SI = "\<Esc>]50;CustomCursorColor=orange;BlinkingCursorEnabled=1\x7"
+  let &t_EI = "\<Esc>]50;CustomCursorColor=red;BlinkingCursorEnabled=0\x7"
+  silent !konsoleprofile CustomCursorColor=red
+  autocmd VimLeave * silent !konsoleprofile CustomCursorColor=gray;BlinkingCursorEnabled=0
+endif
+
+" Set extra options when running in GUI mode
+if has("gui_running")
+    set guioptions-=T
+    set guioptions+=e
+    set t_Co=256
+    set guitablabel=%M\ %t
+endif
 
 
-" Indent
-set cindent
-set softtabstop=2
-set tabstop=2
-set expandtab
-set shiftwidth=2
 
-" set textwidth=80
-
-" Encoding
-set encoding=utf-8
-set fileencoding=utf-8
-
-
-" filename completion
-set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc
-
-let g:qb_hotkey = "<F1>"
+"""""""""""""""""""""""""""""
+" => Files, backups and undo
+"""""""""""""""""""""""""""""
 
 " Centralize backups, swapfiles and undo history
 set backup
@@ -98,6 +181,34 @@ if exists("&undodir")
     set undodir=$HOME/.vim/undo
 endif
 set viminfo+=n$HOME/.vim/.viminfo
+
+""""""""""""""""""""""""""""""""""
+" => Text, tab and indent related
+""""""""""""""""""""""""""""""""""
+
+" Indent
+set cindent
+
+" Use spaces instead of tabs
+set expandtab
+
+" Be smart when using tabs ;)
+set smarttab
+
+" 1 tab = 2 spaces
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+
+
+" Linebreak on 500 characters
+set lbr
+set textwidth=200
+
+
+"""""""""""""
+" => Helpers
+"""""""""""""
 
 " Vim 7 spell checker (z=)
 if has("spell")
@@ -117,6 +228,8 @@ autocmd BufEnter *.txt,*.tex set spelllang=fr
 autocmd BufEnter *.md set spelllang=en
 autocmd BufNewFile,BufRead PKGBUILD set syntax=sh
 
+
+" Automatic headers
 autocmd bufnewfile *.rb so ~/.vim/header/ruby
 autocmd bufnewfile *.pl so ~/.vim/header/perl
 autocmd bufnewfile *.sh so ~/.vim/header/shell
@@ -135,10 +248,8 @@ endfun
 autocmd BufWritePre * call StripTrailingWhitespace()
 autocmd FileType markdown let b:noStripWhitespace=1
 
-" Completion, C-X C-O in insert mode, navigation with C-N/C-P
-filetype plugin on
-set ofu=syntaxcomplete#Complete
-
+" Shortcuts
 map <F3> <Esc>:tabnext<CR>
 map <F2> <Esc>:tabprevious<CR>
-map <F6> <Esc>:set paste<CR>
+map <F4> <Esc>:set paste<CR>
+
