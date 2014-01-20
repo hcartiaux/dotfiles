@@ -73,7 +73,7 @@ compctl -/ cd
 setopt complete_aliases
 
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
-zstyle ':completion:*:warnings' format '%BDésolé, pas de résultats pour : %d%b'
+zstyle ':completion:*:warnings' format '%Bno match for:  : %d%b'
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*:rm:*' ignore-line yes
