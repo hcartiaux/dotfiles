@@ -70,6 +70,8 @@ compctl -/ cd
 ##################################################################
 ## Auto-completion
 #
+setopt complete_aliases
+
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BDésolé, pas de résultats pour : %d%b'
 zstyle ':completion:*' menu select=2
