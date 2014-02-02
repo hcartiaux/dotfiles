@@ -73,6 +73,10 @@ cat $DOTFILES/ssh/config.* > ~/.ssh/config.perso
 mkdir -p ~/.config
 ln -sf $DOTFILES/aurvote ~/.config/aurvote
 
+## RVM configuration
+
+ln -sf $DOTFILES/rvm/rvmrc ~/.rvmrc
+
 ## temporary files
 
 ln -sf /tmp ~/.adobe
