@@ -15,6 +15,31 @@
 export LANG LANGUAGE LC_CTYPE LC_ALL
 
 # ----------------------------------------------------------------------
+#  SYSTEM INFO
+# ----------------------------------------------------------------------
+
+# Basic variables
+: ${HOME=~}
+: ${LOGNAME=$(id -un)}
+: ${UNAME=$(uname)}
+
+# complete hostnames from this file
+: ${HOSTFILE=~/.ssh/known_hosts}
+
+# readline config
+: ${INPUTRC=~/.inputrc}
+
+# Get rid of mail notification
+unset MAILCHECK
+
+# Configure a set of useful variables for the prompt
+if [[ "`echo $UNAME | grep -c -i -e '^.*bsd$'`" == "1" ]] ; then
+  DOMAIN=`hostname | cut -d '.' -f 2`
+else
+  DOMAIN=`hostname -f | cut -d '.' -f 2`
+fi
+
+# ----------------------------------------------------------------------
 #  SHELL TYPE
 # ----------------------------------------------------------------------
 
@@ -90,3 +115,27 @@ export EASYBUILDBUILDPATH=/tmp/
 
 # Tsocks config
 export TSOCKS_CONF_FILE=~/.dotfiles/tsocks/tsocks.conf
+
+# ----------------------------------------------------------------------
+#  GRID5000 specific
+# ----------------------------------------------------------------------
+
+if [[ "$DOMAIN" = "luxembourg" ]] ; then
+  export OAR_JOB_KEY_FILE=~/.ssh/id_rsa
+  export HTTP_PROXY=http://proxy:3128
+  export HTTPS_PROXY=$HTTP_PROXY
+fi
+
+# ----------------------------------------------------------------------
+#  GAIA specific (XCS Portal config)
+# ----------------------------------------------------------------------
+
+if [[ "$DOMAIN" = "gaia-cluster" ]] ; then
+  # XF
+  source /XF/App/Scripts/xf_Globalenv.rc
+  export PATH=$PATH:/XF/Admin/Scripts
+  export XF_VNC_GEOMETRY="-geometry 1366x850"
+  export XF_VNC_QUALITY=80
+  #export XF_DEBUG=0
+fi
+
