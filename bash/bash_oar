@@ -39,14 +39,3 @@ test -n "$INTERACTIVE" && test -n "$OAR_NODE_FILE" && (
   sort $OAR_NODE_FILE | uniq -c | awk '{printf("      %s*%d\n",$2,$1)}END{printf("\n")}' | sed -e 's/,$//'
 )
 
-# ----------------------------------------------------------------------
-#  GRID5000 specific
-# ----------------------------------------------------------------------
-
-hostname | grep -e 'grid5000.fr$' >/dev/null 2>&1
-if [ $? -eq 0 ] ; then
-  export OAR_JOB_KEY_FILE=~/.ssh/id_rsa
-  export HTTP_PROXY=http://proxy:3128
-  export HTTPS_PROXY=$HTTP_PROXY
-fi
-
