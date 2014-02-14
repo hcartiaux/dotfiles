@@ -229,7 +229,6 @@ __set_my_prompt() {
 
 # Set the color prompt by default when interactive
 if [ -n "$PS1" ]; then
-    true
     __set_my_prompt
     export PS1
 fi
