@@ -9,14 +9,16 @@
 # - http://wiki-oar.imag.fr/index.php/Customization_tips
 # - http://wiki-oar.imag.fr/index.php/Oarsh_and_bash_completion
 
-# oarsh completion
-function _oarsh_complete_()
-{
-  local word=${COMP_WORDS[COMP_CWORD]}
-  local list=`cat $OAR_NODEFILE | uniq | tr '\n' ' '`
-  COMPREPLY=($(compgen -W "$list" -- "${word}"))
-}
-complete -F _oarsh_complete_ oarsh
+if [[ '$SHELL' = '/bin/bash' ]] ; then
+  # oarsh completion
+  function _oarsh_complete_()
+  {
+    local word=${COMP_WORDS[COMP_CWORD]}
+    local list=`cat $OAR_NODEFILE | uniq | tr '\n' ' '`
+    COMPREPLY=($(compgen -W "$list" -- "${word}"))
+  }
+  complete -F _oarsh_complete_ oarsh
+fi
 
 # Job + Remaining time
 __oar_ps1_remaining_time(){
