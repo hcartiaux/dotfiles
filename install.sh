@@ -20,11 +20,14 @@ ln -sf $DOTFILES/zsh/zshrc ~/.zshrc
 
 ## bash
 
-ln -sf $DOTFILES/bash/bashrc       ~/.bashrc
-ln -sf $DOTFILES/bash/inputrc      ~/.inputrc
-ln -sf $DOTFILES/bash/bash_profile ~/.bash_profile
-ln -sf $DOTFILES/bash/profile      ~/.profile
-ln -sf $DOTFILES/bash/bash_logout  ~/.bash_logout
+ln -sf $DOTFILES/bash/bashrc           ~/.bashrc
+ln -sf $DOTFILES/bash/inputrc          ~/.inputrc
+ln -sf $DOTFILES/bash/bash_profile     ~/.bash_profile
+ln -sf $DOTFILES/bash/profile          ~/.profile
+ln -sf $DOTFILES/bash/bash_logout      ~/.bash_logout
+ln -sf $DOTFILES/bash/bash_environment ~/.bash_environment
+ln -sf $DOTFILES/bash/bash_oar         ~/.bash_oar
+ln -sf $DOTFILES/bash/bash_aliases     ~/.bash_aliases
 
 if [[ ! -f ~/.git-prompt.sh ]] ; then
     curl -o ~/.git-prompt.sh \

@@ -1,0 +1,83 @@
+#
+# ~/.bash_aliases
+#
+
+# ----------------------------------------------------------------------
+# LS COLORS
+# ----------------------------------------------------------------------
+
+# we always pass these to ls(1)
+LS_COMMON="-F --group-directories-first -h"
+
+if [ "$UNAME" = Darwin ]; then
+  # check if you're using gnu core-utils then use --color
+  test "`which ls`" = "/opt/local/bin/ls" && (
+      LS_COMMON="$LS_COMMON --color"
+  ) || (
+      LS_COMMON="$LS_COMMON -G"
+  )
+elif [ "$UNAME" = Linux ]; then
+  LS_COMMON="$LS_COMMON --color"
+fi
+
+# setup the main ls alias if we've established common args
+test -n "$LS_COMMON" &&
+alias ls="command ls $LS_COMMON"
+
+# these use the ls aliases above
+alias ll="ls -l"
+alias la="ll -a"
+alias l.="ls -d .*"
+alias lh='la -h'
+
+# ----------------------------------------------------------------------
+#  ALL ALIASES
+# ----------------------------------------------------------------------
+
+if [ "$UNAME" = Linux ]; then
+  alias grep='grep --color=auto'
+fi
+
+alias vi='vim'
+
+# Mandatory aliases to confirm destructive operations
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias rm='rm -i'
+
+# Fast cd op
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+
+# Use most instead of less if available
+[ -x /usr/bin/most ] && alias more='most' && alias less='most'
+[ -x /usr/bin/htop ] && alias top='htop'
+
+# read man in vim with colors
+man() {
+  /usr/bin/man $* | \
+    col -b | \
+    vim -R -c 'set ft=man nomod nolist' -
+}
+
+# personnal desktop aliases
+alias ssha="ssh-add"
+alias cdpuppet="cd ~/Uni.lu-repos/puppet-repo"
+alias cdsys="~/Uni.lu-repos/sysadmins-repo"
+alias pass='eval `~/Uni.lu-repos/passwords-repo/.passrc` && pass'
+
+# g5k aliases
+alias puppetplay='bundle exec puppetplay'
+alias g5kcap='bundle exec cap'
+alias g5k="~/Grid5000"
+alias g5kpuppet="~/Grid5000/git.grid5000.fr/puppet-repo"
+g5kpass() {
+  curdir=`pwd`
+  cd /home/hcartiaux/Grid5000/gitolite.grid5000.fr/password5k
+  source .passrc && /usr/bin/pass $*
+  cd $curdir
+}
+
