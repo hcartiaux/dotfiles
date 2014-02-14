@@ -33,19 +33,24 @@
 #  - http://bitbucket.org/dmpayton/dotfiles/src/tip/.bashrc
 #  - https://github.com/rtomayko/dotfiles/blob/rtomayko/.bashrc
 
-# Basic variables
-: ${HOME=~}
-: ${LOGNAME=$(id -un)}
-: ${UNAME=$(uname)}
+# -------------------------------------------------------------------
+# USER SHELL ENVIRONMENT
+# -------------------------------------------------------------------
 
-# complete hostnames from this file
-: ${HOSTFILE=~/.ssh/known_hosts}
+# Source bash_environment
+if [ -f ~/.bash_environment ]; then
+  . ~/.bash_environment
+fi
 
-# readline config
-: ${INPUTRC=~/.inputrc}
+# Eventually load you private settings (not exposed here)
+test -f ~/.bash_private &&
+. ~/.bash_private
 
-# Get rid of mail notification
-unset MAILCHECK
+# MOTD
+test -n "$INTERACTIVE" -a -n "$LOGIN" && (
+  uname -npsr
+  uptime
+)
 
 # ----------------------------------------------------------------------
 #  SHELL OPTIONS
@@ -146,13 +151,6 @@ else
   P="$"
 fi
 
-# Configure a set of useful variables for the prompt
-if [[ "`echo $UNAME | grep -c -i -e '^.*bsd$'`" == "1" ]] ; then
-  DOMAIN=`hostname | cut -d '.' -f 2`
-else
-  DOMAIN=`hostname -f | cut -d '.' -f 2`
-fi
-
 # get virtualization information
 XENTYPE=""
 if [ -f "/sys/hypervisor/uuid" ]; then
@@ -229,30 +227,11 @@ __set_my_prompt() {
   PS1="$(__colorized_exit_status) ${LIGHT_CYAN}\t${RESET_COLOR} ${COLOR_USER}\u${RESET_COLOR}@${CYAN_UNDERLINE}\h${RESET_COLOR}(${PS1_EXTRAINFO})${RED}\$(__oar_ps1_remaining_time)${RESET_COLOR}${GREEN}\$(__git_ps1 \" (%s)\")\$(__svn_ps1)${RESET_COLOR} ${BLUE}\W${RESET_COLOR} ${P} "
 }
 
-# -------------------------------------------------------------------
-# USER SHELL ENVIRONMENT
-# -------------------------------------------------------------------
-
-# Source bash_environment
-if [ -f ~/.bash_environment ]; then
-  . ~/.bash_environment
-fi
-
 # Set the color prompt by default when interactive
 if [ -n "$PS1" ]; then
     __set_my_prompt
     export PS1
 fi
-
-# MOTD
-test -n "$INTERACTIVE" -a -n "$LOGIN" && (
-  uname -npsr
-  uptime
-)
-
-# Eventually load you private settings (not exposed here)
-test -f ~/.bash_private &&
-. ~/.bash_private
 
 # ----------------------------------------------------------------------
 # DIRCOLORS
