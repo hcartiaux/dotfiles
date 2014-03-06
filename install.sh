@@ -83,7 +83,7 @@ cat       $DOTFILES/ssh/config.* >  ~/.ssh/config.perso
 
 ## aurvote
 
-[[ -f /etc/arch-release ]] && (
+[[ -f /etc/arch-release && ! -f ~/.config/aurvote ]] && (
     mkdir -p ~/.config
     cp -f $DOTFILES/aurvote ~/.config/aurvote
 )
