@@ -73,8 +73,10 @@ cat $DOTFILES/ssh/config.* > ~/.ssh/config.perso
 
 ## aurvote
 
-mkdir -p ~/.config
-ln -sf $DOTFILES/aurvote ~/.config/aurvote
+[[ -f /etc/arch-release ]] && (
+    mkdir -p ~/.config
+    cp -f $DOTFILES/aurvote ~/.config/aurvote
+)
 
 ## RVM configuration
 
