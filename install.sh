@@ -5,18 +5,18 @@ set -x # Debug
 DOTFILES=~/.dotfiles
 
 [[ ! -d ~/.dotfiles ]] && git clone https://github.com/hcartiaux/dotfiles.git $DOTFILES
-[[ -d ~/.dotfiles ]] && ( cd $DOTFILES ; git pull )
+[[ -d ~/.dotfiles   ]] && ( cd $DOTFILES ; git pull )
 
 cd ~
 
 ## zsh
 
 mkdir -p ~/.zsh
-cd ~/.zsh
-[[ ! -d ~/.zsh/zsh-syntax-highlighting ]] && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-[[ -d ~/.zsh/zsh-syntax-highlighting ]] && (cd ~/.zsh/zsh-syntax-highlighting ; git pull )
+cd       ~/.zsh
+[[ ! -d  ~/.zsh/zsh-syntax-highlighting ]] && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+[[   -d  ~/.zsh/zsh-syntax-highlighting ]] && (cd ~/.zsh/zsh-syntax-highlighting ; git pull )
 ln -sf $DOTFILES/zsh/prompt_hyacinthe_setup ~/.zsh/prompt_hyacinthe_setup
-ln -sf $DOTFILES/zsh/zshrc ~/.zshrc
+ln -sf $DOTFILES/zsh/zshrc                  ~/.zshrc
 
 ## bash
 
@@ -37,23 +37,23 @@ fi
 ## vim (don't forget :BundleInstall & :BundleInstall!)
 
 mkdir -p ~/.vim
-cd ~/.vim
+cd       ~/.vim
 mkdir -p backup undo swap spell bundle
 [[ ! -d bundle/vundle ]] && git clone https://github.com/gmarik/vundle.git bundle/vundle
-[[ -d bundle/vundle ]] && ( cd bundle/vundle ; git pull )
+[[   -d bundle/vundle ]] && ( cd bundle/vundle ; git pull )
 
 ln -sf $DOTFILES/vim/vimrc ~/.vimrc
 [[ ! -h ~/.vim/header ]] && ln -sf $DOTFILES/vim/header ~/.vim/header
 
-[[ -e ~/.viminfo ]] && mv ~/.viminfo ~/.vim/
+[[   -e ~/.viminfo ]]    && mv ~/.viminfo ~/.vim/
 
 ## tmux
 
-ln -sf $DOTFILES/tmux/tmux.conf ~/.tmux.conf
+ln -sf $DOTFILES/tmux/tmux.conf       ~/.tmux.conf
 
 ## screen
 
-ln -sf $DOTFILES/screen/screenrc ~/.screenrc
+ln -sf $DOTFILES/screen/screenrc      ~/.screenrc
 
 ## rtorrent
 
@@ -62,7 +62,7 @@ mkdir -p ~/.rtorrent
 
 ## git
 
-ln -sf $DOTFILES/git/gitconfig ~/.gitconfig
+ln -sf $DOTFILES/git/gitconfig        ~/.gitconfig
 
 ## wget
 
@@ -74,10 +74,12 @@ fi
 
 ## ssh
 
-mkdir -p ~/.ssh/sockets
-ln -sf $DOTFILES/ssh/sshpubkey ~/.ssh/sshpubkey
-cat $DOTFILES/ssh/config.* > ~/.ssh/config.perso
-[[ ! -f ~/.ssh/config ]] && cat $DOTFILES/ssh/config{,.*} > ~/.ssh/config
+mkdir -p  ~/.ssh/sockets
+ln    -sf $DOTFILES/ssh/sshpubkey   ~/.ssh/sshpubkey
+cat       $DOTFILES/ssh/config.* >  ~/.ssh/config.perso
+[[ ! -f ~/.ssh/config ]] && (
+    cat $DOTFILES/ssh/config{,.*} > ~/.ssh/config
+)
 
 ## aurvote
 
@@ -88,7 +90,7 @@ cat $DOTFILES/ssh/config.* > ~/.ssh/config.perso
 
 ## RVM configuration
 
-ln -sf $DOTFILES/rvm/rvmrc ~/.rvmrc
+ln -sf $DOTFILES/rvm/rvmrc  ~/.rvmrc
 
 ## temporary files
 
