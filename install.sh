@@ -64,6 +64,14 @@ mkdir -p ~/.rtorrent
 
 ln -sf $DOTFILES/git/gitconfig ~/.gitconfig
 
+## wget
+
+if [[ "`hostname -f | cut -d '.' -f 3`" = "grid5000" ]] ; then
+    ln -sf $DOTFILES/wget/wgetrc.g5k ~/.wgetrc
+else
+    ln -sf $DOTFILES/wget/wgetrc     ~/.wgetrc
+fi
+
 ## ssh
 
 mkdir -p ~/.ssh/sockets
