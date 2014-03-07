@@ -8,14 +8,14 @@
 ###############################################################################
 
 Host *
-    Protocol 2
-    Compression     yes
-    ConnectTimeout  15
+    Protocol            2
+    Compression         yes
+    ConnectTimeout      15
     ServerAliveInterval 60
     ServerAliveCountMax 30
-    ForwardAgent    no
-    ForwardX11      no
-    ControlMaster   auto
-    ControlPath     ~/.ssh/sockets/ssh-socket-%r-%h-%p
+    ForwardAgent        no
+    ForwardX11          no
+    ControlMaster       auto
+    ControlPath         ~/.ssh/sockets/ssh-socket-%r-%h-%p
 ###############################################################################
 
