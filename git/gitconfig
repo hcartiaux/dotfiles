@@ -59,19 +59,16 @@
 
 [color "diff"]
   meta = yellow bold
-# frag = magenta bold
-# Old = red bold
-# new = green bold
 
 [color "status"]
-  added =  magenta bold
-  changed = green
+  added     =  magenta bold
+  changed   = green
   untracked = red
 
 [core]
-  autocrlf = input
-  pager = less -FRSX
-  editor = vim
+  autocrlf = false
+  pager    = less -FRSX
+  editor   = vim
 
 [merge]
   tool = vimdiff
