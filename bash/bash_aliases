@@ -63,6 +63,17 @@ man() {
     vim -R -c 'set ft=man nomod nolist' -
 }
 
+# print a line as wide as the terminal
+line() {
+  for i in `seq 1 $COLUMNS`; do echo -n =; done
+}
+
+# make a backup of a file
+# https://github.com/grml/grml-etc-core/blob/master/etc/zsh/zshrc
+cpold() {
+  cp -a "$1" "${1}_$(date --iso-8601=seconds)"
+}
+
 # personnal desktop aliases
 alias ssha="ssh-add"
 alias cdpuppet="cd ~/Uni.lu-repos/puppet-repo"
