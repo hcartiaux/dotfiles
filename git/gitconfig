@@ -79,5 +79,3 @@
 [push]
   default = matching
 
-[tig]
-  show-id = yes
