@@ -5,7 +5,7 @@ set -x # Debug
 DOTFILES=~/.dotfiles
 
 [[ ! -d ~/.dotfiles ]] && git clone https://github.com/hcartiaux/dotfiles.git $DOTFILES
-[[ -d ~/.dotfiles   ]] && ( cd $DOTFILES ; git pull )
+[[   -d ~/.dotfiles ]] && ( cd $DOTFILES ; git pull )
 
 cd ~
 
@@ -31,7 +31,7 @@ ln -sf $DOTFILES/bash/bash_aliases     ~/.bash_aliases
 
 if [[ ! -f ~/.git-prompt.sh ]] ; then
     curl -o ~/.git-prompt.sh \
-         https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh
+      https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 fi
 
 ## vim (don't forget :BundleInstall & :BundleInstall!)
