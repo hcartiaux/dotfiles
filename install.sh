@@ -107,6 +107,11 @@ fi
     echo "ssh_config_files: '~/.ssh/config_g5k'" > ~/.net-admin.yaml
     touch ~/.password-store
 
+    if [[ ! -d ~/.restfully ]]; then
+        mkdir ~/.restfully
+        cp $DOTFILES/g5k/restfully/api.grid5000.fr.yml ~/.restfully
+        ln -sf ~/.restfully/api.grid5000.fr.yml ~/.restfully/api.grid5000.fr.yaml
+    fi
 
     ## aurvote
 
