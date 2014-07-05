@@ -73,10 +73,11 @@ ln -sf $DOTFILES/git/gitconfig        ~/.gitconfig
 ## ssh
 
 mkdir -p  ~/.ssh/sockets
-ln    -sf $DOTFILES/ssh/sshpubkey   ~/.ssh/sshpubkey
-cat       $DOTFILES/ssh/config.* >  ~/.ssh/config.perso
+ln  -sf $DOTFILES/ssh/sshpubkey       ~/.ssh/sshpubkey
+cat     $DOTFILES/ssh/config.*      > ~/.ssh/config.perso
+cat     $DOTFILES/ssh/config{,.g5k} > ~/.ssh/config_g5k
 [[ ! -f ~/.ssh/config ]] && (
-    cat $DOTFILES/ssh/config{,.*} > ~/.ssh/config
+    cat $DOTFILES/ssh/config{,.*}   > ~/.ssh/config
 )
 
 ## RVM configuration
