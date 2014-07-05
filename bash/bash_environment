@@ -117,7 +117,11 @@ export EASYBUILDBUILDPATH=/tmp/
 # Tsocks config
 export TSOCKS_CONF_FILE=~/.dotfiles/tsocks/tsocks.conf
 
+# BC configuration for interactive usage
 test -n "$INTERACTIVE" && export BC_ENV_ARGS=~/.dotfiles/bc/bcrc
+
+# PDSH configuration
+PDSH_SSH_ARGS_APPEND="-q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o PreferredAuthentications=publickey"
 
 # ----------------------------------------------------------------------
 #  GRID5000 specific
