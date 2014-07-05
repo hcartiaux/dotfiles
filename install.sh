@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
 
-set -x # Debug
+# set -x # Debug
 
+MYLAPTOP=hc-e7440
+MAIL='hyacinthe.cartiaux@free.fr'
+PLAN='World domination!'
 DOTFILES=~/.dotfiles
+
+echo $MAIL > ~/.forward
+echo $PLAN > ~/.plan
 
 [[ ! -d ~/.dotfiles ]] && git clone https://github.com/hcartiaux/dotfiles.git $DOTFILES
 [[   -d ~/.dotfiles ]] && ( cd $DOTFILES ; git pull )
@@ -64,14 +70,6 @@ mkdir -p ~/.rtorrent
 
 ln -sf $DOTFILES/git/gitconfig        ~/.gitconfig
 
-## wget
-
-if [[ "`hostname -f | cut -d '.' -f 3`" = "grid5000" ]] ; then
-    ln -sf $DOTFILES/wget/wgetrc.g5k ~/.wgetrc
-else
-    ln -sf $DOTFILES/wget/wgetrc     ~/.wgetrc
-fi
-
 ## ssh
 
 mkdir -p  ~/.ssh/sockets
@@ -79,13 +77,6 @@ ln    -sf $DOTFILES/ssh/sshpubkey   ~/.ssh/sshpubkey
 cat       $DOTFILES/ssh/config.* >  ~/.ssh/config.perso
 [[ ! -f ~/.ssh/config ]] && (
     cat $DOTFILES/ssh/config{,.*} > ~/.ssh/config
-)
-
-## aurvote
-
-[[ -f /etc/arch-release && ! -f ~/.config/aurvote ]] && (
-    mkdir -p ~/.config
-    cp -f $DOTFILES/aurvote ~/.config/aurvote
 )
 
 ## RVM configuration
@@ -98,4 +89,30 @@ ln -sf /tmp ~/.adobe
 ln -sf /tmp ~/.cache
 ln -sf /tmp ~/.macromedia
 ln -sf /tmp ~/.thumbnails
+
+## wget
+
+if [[ "`hostname -f | cut -d '.' -f 3`" = "grid5000" ]] ; then
+    ln -sf $DOTFILES/wget/wgetrc.g5k ~/.wgetrc
+else
+    ln -sf $DOTFILES/wget/wgetrc     ~/.wgetrc
+fi
+
+
+[[ "$HOST" = "$MYLAPTOP" ]] && (
+
+    ## G5K
+
+    echo "ssh_config_files: '~/.ssh/config_g5k'" > ~/.net-admin.yaml
+    touch ~/.password-store
+
+
+    ## aurvote
+
+    if [[ -f /etc/arch-release && ! -f ~/.config/aurvote ]]; then
+        mkdir -p ~/.config
+        cp -f $DOTFILES/aurvote ~/.config/aurvote
+    fi
+
+)
 
