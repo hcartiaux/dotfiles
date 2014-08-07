@@ -89,9 +89,9 @@ export SVN_EDITOR=$EDITOR
 
 # Default pager ('less' is so much better than 'more'...)
 if test -n "$(command -v less)" ; then
-  PAGER="less -FirSwX"
+  export PAGER="less -FirSwX"
 else
-  PAGER=more
+  export PAGER=more
 fi
 
 # ----------------------------------------------------------------------
@@ -121,7 +121,7 @@ export TSOCKS_CONF_FILE=~/.dotfiles/tsocks/tsocks.conf
 test -n "$INTERACTIVE" && export BC_ENV_ARGS=~/.dotfiles/bc/bcrc
 
 # PDSH configuration
-PDSH_SSH_ARGS_APPEND="-q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o PreferredAuthentications=publickey"
+export PDSH_SSH_ARGS_APPEND="-q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o PreferredAuthentications=publickey"
 
 # ----------------------------------------------------------------------
 #  GRID5000 specific
