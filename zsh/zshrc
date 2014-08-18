@@ -49,11 +49,14 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_IGNORE_SPACE
 setopt SH_WORD_SPLIT
 setopt nohup
-setopt correctall
 setopt chase_links
 unsetopt ignore_eof
 unsetopt rm_star_silent
 unsetopt list_ambiguous
+
+# Auto-correct
+setopt correctall
+alias vim='nocorrect vim'
 
 # This will set the default prompt
 source ~/.zsh/prompt_hyacinthe_setup
