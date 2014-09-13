@@ -2,10 +2,15 @@
 ## Kimsufi
 #######
 
-Host ksf 0xf.fr
+Host ksf
   User hcartiaux
   Port 443
-  Hostname 0xf.fr
+  Hostname 37.59.124.85
+
+Host vps 0xf.fr
+  User hcartiaux
+  Port 443
+  Hostname vps79723.ovh.net
 
 ########
 ## Raspberry Pi
