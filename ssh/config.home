@@ -1,11 +1,6 @@
 #######
-## Kimsufi
+## VPS OVH
 #######
-
-Host ksf
-  User hcartiaux
-  Port 443
-  Hostname 37.59.124.85
 
 Host vps 0xf.fr
   User hcartiaux
