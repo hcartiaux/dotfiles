@@ -56,11 +56,16 @@ alias ......='cd ../../../../..'
 [ -x /usr/bin/most ] && alias more='most' && alias less='most'
 [ -x /usr/bin/htop ] && alias top='htop'
 
-# read man in vim with colors
+# read man with colors
 man() {
-  /usr/bin/man $* | \
-    col -b | \
-    vim -R -c 'set ft=man nomod nolist' -
+    env LESS_TERMCAP_mb=$'\E[01;31m' \
+    LESS_TERMCAP_md=$'\E[01;38;5;74m' \
+    LESS_TERMCAP_me=$'\E[0m' \
+    LESS_TERMCAP_se=$'\E[0m' \
+    LESS_TERMCAP_so=$'\E[38;5;246m' \
+    LESS_TERMCAP_ue=$'\E[0m' \
+    LESS_TERMCAP_us=$'\E[04;38;5;146m' \
+    man "$@"
 }
 
 # print a line as wide as the terminal
@@ -79,6 +84,7 @@ alias ssha="ssh-add"
 alias cdpuppet="cd ~/Uni.lu-repos/puppet-repo"
 alias cdsys="~/Uni.lu-repos/sysadmins-repo"
 alias pass='eval `~/Uni.lu-repos/passwords-repo/.passrc` && pass'
+alias acroread='export GTK2_RC_FILES="" && acroread'
 
 # g5k aliases
 alias puppetplay='bundle exec puppetplay'
