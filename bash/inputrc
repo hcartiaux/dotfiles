@@ -15,8 +15,8 @@
 # - https://github.com/Falkor/dotfiles/blob/master/bash/.bashrc
 # - https://github.com/rtomayko/dotfiles/blob/rtomayko/.inputrc
 
-# do not bell on tab-completion
-set bell-style bell
+# do not beep on tab-completion
+set bell-style visible
 
 set expand-tilde off
 set input-meta off
