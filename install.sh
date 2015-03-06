@@ -40,13 +40,11 @@ if [[ ! -f ~/.git-prompt.sh ]] ; then
       https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 fi
 
-## vim (don't forget :BundleInstall & :BundleInstall!)
+## vim
 
 mkdir -p ~/.vim
 cd       ~/.vim
-mkdir -p backup undo swap spell bundle
-[[ ! -d bundle/vundle ]] && git clone https://github.com/gmarik/vundle.git bundle/vundle
-[[   -d bundle/vundle ]] && ( cd bundle/vundle ; git pull )
+mkdir -p backup undo swap spell
 
 ln -sf $DOTFILES/vim/vimrc ~/.vimrc
 [[ ! -h ~/.vim/header ]] && ln -sf $DOTFILES/vim/header ~/.vim/header

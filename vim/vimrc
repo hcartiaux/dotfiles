@@ -23,31 +23,6 @@
 set nocompatible
 
 """"""""""""
-" => Vundle
-""""""""""""
-
-" set rtp+=~/.vim/bundle/vundle/
-" call vundle#rc()
-
-" Git syntax highlighting and integration
-" Bundle 'tpope/vim-git'
-" Bundle 'tpope/vim-fugitive'
-" Bundle 'gregsexton/gitv'
-" syntax highlighting
-" Bundle 'tpope/vim-markdown'
-" Bundle 'vim-ruby/vim-ruby'
-" Surround selection with quotes, parenthesis…
-" Bundle 'tpope/vim-surround'
-" Automatically closes functions, blocks, etc.
-" Bundle 'tpope/vim-endwise'
-" A better stats bar
-" Bundle 'Lokaltog/vim-powerline'
-" Aligns text.
-" Bundle 'godlygeek/tabular'
-" Browse tags of source code files.
-" Bundle 'majutsushi/tagbar'
-
-""""""""""""
 " => General
 """"""""""""
 
