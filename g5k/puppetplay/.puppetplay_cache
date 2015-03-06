@@ -1,0 +1,105 @@
+---
+- name: master
+  www_url: https://helpdesk.grid5000.fr/puppet_master/
+  rails_port: "9000"
+  role: master
+  id: 1
+  puppet_server: puppet.grid5000.fr
+  description:
+  rails_base_uri: /puppet_master
+- name: qualif
+  www_url: https://helpdesk.grid5000.fr/puppet_qualif/
+  rails_port: "9000"
+  role: slave
+  id: 2
+  puppet_server: puppet.qualif.grid5000.fr
+  description:
+  rails_base_uri: /puppet_qualif
+- name: rennes
+  www_url: https://helpdesk.grid5000.fr/puppet_rennes/
+  rails_port: "9000"
+  role: slave
+  id: 3
+  puppet_server: puppet.rennes.grid5000.fr
+  description:
+  rails_base_uri: /puppet_rennes
+- name: lille
+  www_url: https://helpdesk.grid5000.fr/puppet_lille/
+  rails_port: "9000"
+  role:
+  id: 6
+  puppet_server: puppet.lille.grid5000.fr
+  description:
+  rails_base_uri: /puppet_lille
+- name: nancy
+  www_url: https://helpdesk.grid5000.fr/puppet_nancy/
+  rails_port: "9000"
+  role:
+  id: 7
+  puppet_server: puppet.nancy.grid5000.fr
+  description:
+  rails_base_uri: /puppet_nancy
+- name: lyon
+  www_url: https://helpdesk.grid5000.fr/puppet_lyon/
+  rails_port: "9000"
+  role:
+  id: 8
+  puppet_server: puppet.lyon.grid5000.fr
+  description:
+  rails_base_uri: /puppet_lyon
+- name: sophia
+  www_url: https://helpdesk.grid5000.fr/puppet_sophia/
+  rails_port: "9000"
+  role:
+  id: 10
+  puppet_server: puppet.sophia.grid5000.fr
+  description:
+  rails_base_uri: /puppet_sophia
+- name: reims
+  www_url: https://helpdesk.grid5000.fr/puppet_reims/
+  rails_port: "9000"
+  role:
+  id: 14
+  puppet_server: puppet.reims.grid5000.fr
+  description:
+  rails_base_uri: /puppet_reims
+- name: grenoble
+  www_url: https://helpdesk.grid5000.fr/puppet_grenoble/
+  rails_port: "9000"
+  role:
+  id: 15
+  puppet_server: puppet.grenoble.grid5000.fr
+  description:
+  rails_base_uri: /puppet_grenoble
+- name: nantes
+  www_url: https://helpdesk.grid5000.fr/puppet_nantes/
+  rails_port: "9000"
+  role:
+  id: 20
+  puppet_server: puppet.nantes.grid5000.fr
+  description:
+  rails_base_uri: /puppet_nantes
+- name: luxembourg
+  www_url: https://helpdesk.grid5000.fr/puppet_luxembourg/
+  rails_port: "9000"
+  role:
+  id: 18
+  puppet_server: puppet.luxembourg.grid5000.fr
+  description:
+  rails_base_uri: /puppet_luxembourg
+- name: toulouse
+  www_url: https://helpdesk.grid5000.fr/puppet_toulouse/
+  rails_port: "9000"
+  role:
+  id: 19
+  puppet_server: puppet.toulouse.grid5000.fr
+  description:
+  rails_base_uri: /puppet_toulouse
+- name: nantes
+  www_url: https://helpdesk.grid5000.fr/puppet_nantes/
+  rails_port: "9000"
+  role:
+  id: 19
+  puppet_server: puppet.nantes.grid5000.fr
+  description:
+  rails_base_uri: /puppet_nantes
