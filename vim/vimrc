@@ -153,12 +153,14 @@ set backup
 set backupdir=$HOME/.vim/backup//
 set directory=$HOME/.vim/swap//
 
-set undofile
-set undolevels=1000 "maximum number of changes that can be undone
-set undoreload=10000 "maximum number lines to save for undo on a buffer reload
-if exists("&undodir")
+if has('persistent_undo')
+  set undofile
+  set undolevels=1000 "maximum number of changes that can be undone
+  set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+  if exists("&undodir")
     set undodir=$HOME/.vim/undo//
-endif
+  endif
+end
 
 set viminfo+=n$HOME/.vim/.viminfo
 
