@@ -110,8 +110,8 @@ set showcmd
 """"""""""""""""""""""
 " => Colors and Fonts
 """"""""""""""""""""""
-set background=dark
 colorscheme default
+set background=dark
 
 " Set utf8 as standard encoding
 set encoding=utf-8
