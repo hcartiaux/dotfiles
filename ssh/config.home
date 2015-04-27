@@ -25,12 +25,3 @@ Host deepspace deepspace.0xf.fr
   Port 993
   Hostname deepspace.0xf.fr
 
-##########
-## Matrix
-##########
-
-Host matrix
-  User h.cartiaux
-  Port 22
-  Hostname matrix.uni.lu
-
