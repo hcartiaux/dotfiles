@@ -124,6 +124,7 @@ export TSOCKS_CONF_FILE=~/.dotfiles/tsocks/tsocks.conf
 test -n "$INTERACTIVE" && export BC_ENV_ARGS=~/.dotfiles/bc/bcrc
 
 # PDSH configuration
+export PDSH_RCMD_TYPE=ssh
 export PDSH_SSH_ARGS_APPEND="-q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o PreferredAuthentications=publickey"
 
 # Vagrant configuration
