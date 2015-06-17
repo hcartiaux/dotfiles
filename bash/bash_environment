@@ -109,10 +109,16 @@ export GIT_COMMITTER_EMAIL=$GIT_AUTHOR_EMAIL
 # MISC
 # ----------------------------------------------------------------------
 
-unset SSH_ASKPASS
-
 # GPG config
 export GNUPGHOME=~/.gnupg
+
+# SSH config
+
+unset SSH_ASKPASS
+
+if [[ -e "${GNUPGHOME}/S.gpg-agent.ssh" ]] ; then
+  export SSH_AUTH_SOCK=$GNUPGHOME/S.gpg-agent.ssh
+fi
 
 # Easybuild BUILD PATH
 export EASYBUILDBUILDPATH=/tmp/
