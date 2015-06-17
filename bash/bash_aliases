@@ -81,19 +81,18 @@ cpold() {
 
 # personnal desktop aliases
 alias ssha="ssh-add"
-alias cdpuppet="cd ~/Uni.lu-repos/puppet-repo"
-alias cdsys="~/Uni.lu-repos/sysadmins-repo"
-alias pass='eval `~/Uni.lu-repos/passwords-repo/.passrc` && pass'
+alias cdpuppet="cd ~/repos/ulhpc_puppet/puppet26-repo"
+alias cdsys="~/repos/ulhpc_gitolite/sysadmins-repo"
+alias pass='eval `~/repos/ulhpc_gitolite/passwords-repo/.passrc` && pass'
 alias acroread='export GTK2_RC_FILES="" && acroread'
 
 # g5k aliases
 alias puppetplay='bundle exec puppetplay'
 alias g5kcap='bundle exec cap'
-alias g5k="~/Grid5000"
-alias g5kpuppet="~/Grid5000/git.grid5000.fr/puppet-repo"
+alias g5kpuppet="~/repos/g5k_git/puppet-repo"
 g5kpass() {
   curdir=`pwd`
-  cd /home/hcartiaux/Grid5000/gitolite.grid5000.fr/password5k
+  cd ~/repos/g5k_gitolite/password5k
   source .passrc && /usr/bin/pass $*
   cd $curdir
 }
