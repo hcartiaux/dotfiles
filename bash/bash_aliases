@@ -11,7 +11,7 @@ LS_COMMON="-F --group-directories-first -h"
 
 if [ "$UNAME" = Darwin ]; then
   # check if you're using gnu core-utils then use --color
-  test "`which ls`" = "/opt/local/bin/ls" && (
+  test "$(which ls)" = "/opt/local/bin/ls" && (
       LS_COMMON="$LS_COMMON --color"
   ) || (
       LS_COMMON="$LS_COMMON -G"
@@ -70,7 +70,7 @@ man() {
 
 # print a line as wide as the terminal
 line() {
-  for i in `seq 1 $COLUMNS`; do echo -n =; done
+  for i in $(seq 1 $COLUMNS); do echo -n =; done
 }
 
 # make a backup of a file
@@ -83,7 +83,7 @@ cpold() {
 alias ssha="ssh-add"
 alias cdpuppet="cd ~/repos/ulhpc_puppet/puppet26-repo"
 alias cdsys="~/repos/ulhpc_gitolite/sysadmins-repo"
-alias pass='eval `~/repos/ulhpc_gitolite/passwords-repo/.passrc` && pass'
+alias pass="eval $(~/repos/ulhpc_gitolite/passwords-repo/.passrc) && pass"
 alias acroread='export GTK2_RC_FILES="" && acroread'
 
 # g5k aliases
@@ -91,9 +91,9 @@ alias puppetplay='bundle exec puppetplay'
 alias g5kcap='bundle exec cap'
 alias g5kpuppet="~/repos/g5k_git/puppet-repo"
 g5kpass() {
-  curdir=`pwd`
+  curdir="$(pwd)"
   cd ~/repos/g5k_gitolite/password5k
   source .passrc && /usr/bin/pass $*
-  cd $curdir
+  cd "$curdir"
 }
 

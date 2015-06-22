@@ -111,11 +111,11 @@ HISTTIMEFORMAT="[%d/%m/%Y %H:%M:%S] "
 
 ## display the current subversion revision (to be used later in the prompt)
 __svn_ps1() {
-  local svnversion=`svnversion | sed -e "s/[:M]//g"`
+  local svnversion=$(svnversion | sed -e "s/[:M]//g")
   # Continue if $svnversion is numerical
   if let $svnversion 2>/dev/null
   then
-      printf " (svn:%s)" `svnversion`
+    printf " (svn:%s)" $(svnversion)
   fi
 }
 
@@ -166,7 +166,7 @@ if [ -z "${PS1_EXTRA}" -a -f "/proc/cmdline" ]; then
   # been set via kernel comment
   kernel_ps1_extra="$(grep PS1_EXTRA /proc/cmdline)"
   if [ -n "${kernel_ps1_extra}" ]; then
-      PS1_EXTRA=` sed -e "s/.*PS1_EXTRA=\"\?\([^ ^\t^\"]\+\)\"\?.*/\1/g" /proc/cmdline `
+    PS1_EXTRA=$(sed -e "s/.*PS1_EXTRA=\"\?\([^ ^\t^\"]\+\)\"\?.*/\1/g" /proc/cmdline)
   fi
 fi
 PS1_EXTRAINFO="${BOLD_COLOR}${DOMAIN}${XENTYPE}${RESET_COLOR}"
@@ -179,10 +179,10 @@ fi
 # exit status of the last run command.
 # Exit status 130 is also considered as good as it corresponds to a CTRL-D
 __colorized_exit_status() {
-  printf -- "\`status=\$? ; if [[ \$status = 0 || \$status = 130  ]]; then \
+  printf -- "\$(status=\$? ; if [[ \$status = 0 || \$status = 130  ]]; then \
                               echo -e '\[\e[01;32m\]'\$status;             \
                             else                                           \
-                              echo -e '\[\e[01;31m\]'\$status; fi\`"
+                              echo -e '\[\e[01;31m\]'\$status; fi\)"
 }
 
 # Simple (basic) prompt
@@ -246,7 +246,7 @@ test -n "$dircolors" && (
   test -e "/etc/DIR_COLORS.$TERM"   && COLORS="/etc/DIR_COLORS.$TERM"
   test -e "$HOME/.dircolors"        && COLORS="$HOME/.dircolors"
   test ! -e "$COLORS"               && COLORS=
-  eval `$dircolors --sh $COLORS`
+  eval $($dircolors --sh $COLORS)
 )
 unset dircolors
 
