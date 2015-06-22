@@ -83,7 +83,7 @@ cpold() {
 alias ssha="ssh-add"
 alias cdpuppet="cd ~/repos/ulhpc_puppet/puppet26-repo"
 alias cdsys="~/repos/ulhpc_gitolite/sysadmins-repo"
-alias pass="eval $(~/repos/ulhpc_gitolite/passwords-repo/.passrc) && pass"
+alias pass="eval \$\(~/repos/ulhpc_gitolite/passwords-repo/.passrc\) && pass"
 alias acroread='export GTK2_RC_FILES="" && acroread'
 
 # g5k aliases
