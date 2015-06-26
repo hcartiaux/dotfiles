@@ -91,7 +91,7 @@ ln -sf /tmp ~/.thumbnails
 
 ## wget
 
-if [[ "`hostname -f | cut -d '.' -f 3`" = "grid5000" ]] ; then
+if [[ "$(hostname -f | cut -d '.' -f 3)" = "grid5000" ]] ; then
     ln -sf $DOTFILES/wget/wgetrc.g5k ~/.wgetrc
 else
     ln -sf $DOTFILES/wget/wgetrc     ~/.wgetrc
