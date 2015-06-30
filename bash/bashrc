@@ -179,7 +179,7 @@ fi
 # exit status of the last run command.
 # Exit status 130 is also considered as good as it corresponds to a CTRL-D
 __colorized_exit_status() {
-  printf -- "$(status=\$? ; if [[ \$status = 0 || \$status = 130  ]]; then \
+  printf -- "\$(status=\$? ; if [[ \$status = 0 || \$status = 130  ]]; then \
                               echo -e '\[\e[01;32m\]'\$status;             \
                             else                                           \
                               echo -e '\[\e[01;31m\]'\$status; fi)"
