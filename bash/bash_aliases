@@ -70,7 +70,7 @@ man() {
 
 # print a line as wide as the terminal
 line() {
-  for i in $(seq 1 $COLUMNS); do echo -n =; done
+  printf %${COLUMNS}s | tr " " "="
 }
 
 # make a backup of a file
