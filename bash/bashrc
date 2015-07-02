@@ -111,11 +111,12 @@ HISTTIMEFORMAT="[%d/%m/%Y %H:%M:%S] "
 
 ## display the current subversion revision (to be used later in the prompt)
 __svn_ps1() {
-  local svnversion=$(svnversion | sed -e "s/[:M]//g")
+  local svnversion
+  svnversion=$(svnversion | sed -e "s/[:M]//g")
   # Continue if $svnversion is numerical
   if let $svnversion 2>/dev/null
   then
-    printf " (svn:%s)" $(svnversion)
+    printf " (svn:%s)" "$(svnversion)"
   fi
 }
 
@@ -129,15 +130,10 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 # Define some colors to use in the prompt
 RESET_COLOR="\[\e[0m\]"
 BOLD_COLOR="\[\e[1m\]"
-# B&W
 WHITE="\[\e[0;37m\]"
-GRAY="\[\e[1;30m\]"
-BLACK="\[\e[0;30m\]"
-# RGB
 RED="\[\e[0;31m\]"
 GREEN="\[\e[0;32m\]"
 BLUE="\[\e[34;1m\]"
-# other
 YELLOW="\[\e[0;33m\]"
 LIGHT_CYAN="\[\e[36;1m\]"
 CYAN_UNDERLINE="\[\e[4;36m\]"
@@ -154,7 +150,7 @@ fi
 # get virtualization information
 XENTYPE=""
 if [ -f "/sys/hypervisor/uuid" ]; then
-  if [ $(</sys/hypervisor/uuid) == "00000000-0000-0000-0000-000000000000" ]; then
+  if [ "$(</sys/hypervisor/uuid)" == "00000000-0000-0000-0000-000000000000" ]; then
       XENTYPE=",Dom0"
   else
       XENTYPE=",DomU"
@@ -246,7 +242,7 @@ test -n "$dircolors" && (
   test -e "/etc/DIR_COLORS.$TERM"   && COLORS="/etc/DIR_COLORS.$TERM"
   test -e "$HOME/.dircolors"        && COLORS="$HOME/.dircolors"
   test ! -e "$COLORS"               && COLORS=
-  eval $($dircolors --sh $COLORS)
+  eval "$($dircolors --sh $COLORS)"
 )
 unset dircolors
 

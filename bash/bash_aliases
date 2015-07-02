@@ -11,11 +11,11 @@ LS_COMMON="-F --group-directories-first -h"
 
 if [ "$UNAME" = Darwin ]; then
   # check if you're using gnu core-utils then use --color
-  test "$(which ls)" = "/opt/local/bin/ls" && (
+  if [[ "$(which ls)" = "/opt/local/bin/ls" ]] ; then
       LS_COMMON="$LS_COMMON --color"
-  ) || (
+  else
       LS_COMMON="$LS_COMMON -G"
-  )
+  fi
 elif [ "$UNAME" = Linux ]; then
   LS_COMMON="$LS_COMMON --color"
 fi
