@@ -17,6 +17,18 @@ Host rpi rpi.0xf.fr
   Hostname rpi.0xf.fr
 
 ########
+## Odroid
+## 10.91.100.145
+## f2:38:da:3d:11:02
+########
+
+Host odroid
+  User hcartiaux
+  Port 22
+  Hostname odroid-xu-2.uni.lux
+  ProxyCommand ssh hcartiaux@gforge.uni.lu -W "%h:%p"
+
+########
 ## AMD64 Box / Deepspace
 ########
 
