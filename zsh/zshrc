@@ -146,6 +146,16 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# zsh specific
+alias -g L="| less" # Write L after a command to page through the output.
+alias -g H="| head -n 20" # Write L after a command to get the 20 first lines
+alias -g G='| grep --color -i' # Write G after the command to grep it
+alias -g TL='| tail -20'
+alias -g NUL="> /dev/null 2>&1" # Redirect stdout and stderr to /dev/null.
+alias -g NE="2> /dev/null" # Redirect stderr to /dev/null
+
+[ -x /usr/bin/xpdf ] && alias -s pdf="xpdf"
+
 ##################################################################
 ## OAR & G5K Integration
 #
