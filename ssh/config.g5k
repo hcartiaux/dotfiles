@@ -2,9 +2,17 @@
 ## G5K
 #######
 
+# Host g5k
+#   Hostname access.grid5000.fr
+#   User g5kadmin
+
 Host g5k grid5000.uni.lu
   Hostname grid5000.uni.lu
-  ProxyCommand ssh hcartiaux@gforge.uni.lu "nc -q 0 `basename %h .g5k` %p"
+  ProxyCommand ssh hcartiaux@gforge.uni.lu "nc -q 0 %h %p"
+
+Host *.g5kadmin
+  User g5kadmin
+  ProxyCommand ssh g5kadmin@g5k "nc -q 0 `basename %h .g5kadmin` %p"
 
 Host *.g5k *.grid5000.fr
   User g5kadmin
