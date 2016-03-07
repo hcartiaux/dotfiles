@@ -37,3 +37,12 @@ Host deepspace deepspace.0xf.fr
   Port 993
   Hostname deepspace.0xf.fr
 
+########
+## Nas
+########
+
+Host disco disco.0xf.fr
+  User admin
+  Port 143
+  Hostname disco.0xf.fr
+
