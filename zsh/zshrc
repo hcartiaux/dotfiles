@@ -57,6 +57,7 @@ unsetopt list_ambiguous
 # Auto-correct
 setopt correctall
 alias vim='nocorrect vim'
+alias git='nocorrect git'
 
 # This will set the default prompt
 source ~/.zsh/prompt_hyacinthe_setup
