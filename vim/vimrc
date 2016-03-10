@@ -12,11 +12,11 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Resources:
+" * https://github.com/Falkor/dotfiles/blob/master/vim/.vimrc
 " * https://github.com/shingara/vim-conf/blob/master/vimrc
-" * http://blog.shingara.fr/vundle-ou-le-bundler-de-vim.html
 " * http://vim.wikia.com/wiki/Configuring_the_cursor
 " * http://ftp.vim.org/pub/vim/runtime/spell/
-" * http://stackoverflow.com/questions/6496778/vim-run-autocmd-on-all-filetypes-except
+" * https://stackoverflow.com/questions/6496778/vim-run-autocmd-on-all-filetypes-except
 " * http://vim.wikia.com/wiki/Omni_completion
 " * http://amix.dk/vim/vimrc.html
 
