@@ -33,7 +33,6 @@
   ls = ls-files
   gr = log --graph --oneline --decorate
   lol = log --graph --pretty=format:\"%C(yellow)%h%Creset%C(cyan)%C(bold)%d%Creset %C(cyan)(%cr)%Creset %C(green)%cn%Creset %s\"
-  # From http://progit.org/book/ch2-11.html
   unstage     = reset HEAD --
   last        = log -1 HEAD
   amend       = commit --amend
@@ -67,9 +66,10 @@
   untracked = red
 
 [core]
-  autocrlf = false
-  pager    = less -FRSX
-  editor   = vim
+  autocrlf     = false
+  pager        = less -FRSX
+  editor       = vim
+  mergeoptions = --no-edit
 
 [merge]
   tool = vimdiff
