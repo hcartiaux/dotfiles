@@ -145,8 +145,8 @@ export PDSH_SSH_ARGS_APPEND="-q -o StrictHostKeyChecking=no -o UserKnownHostsFil
 
 if [[ -n "$(echo $FQDN | grep -o .grid5000.fr)" ]] ; then
   export OAR_JOB_KEY_FILE=~/.ssh/id_rsa
-  export http_proxy=http://proxy:3128
-  export https_proxy=$http_proxy
+#  export http_proxy=http://proxy:3128
+#  export https_proxy=$http_proxy
 fi
 
 # ----------------------------------------------------------------------
