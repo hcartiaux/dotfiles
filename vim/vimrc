@@ -126,12 +126,13 @@ syntax enable
 set cursorline
 hi CursorLine term=bold cterm=bold ctermbg=blue ctermfg=white
 
+" Custom cursor color in konsole, red in visualization mode, green in insert mode
 if $XDG_CURRENT_DESKTOP == "KDE"
-  autocmd VimEnter * silent !konsoleprofile UseCustomCursorColor=1
+  autocmd VimEnter * silent !konsoleprofile UseCustomCursorColor=true;BlinkingCursorEnabled=0 && clear
   let &t_SI = "\<Esc>]50;CustomCursorColor=orange;BlinkingCursorEnabled=1\x7"
   let &t_EI = "\<Esc>]50;CustomCursorColor=red;BlinkingCursorEnabled=0\x7"
   silent !konsoleprofile CustomCursorColor=red
-  autocmd VimLeave * silent !konsoleprofile CustomCursorColor=gray;BlinkingCursorEnabled=0
+  autocmd VimLeave * silent !konsoleprofile CustomCursorColor=false;BlinkingCursorEnabled=0
 endif
 
 " Set extra options when running in GUI mode
