@@ -103,6 +103,10 @@ set nostartofline
 " Displaying status line always
 set laststatus=2
 
+" Set the status line format
+set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
+
+
 " Show information about the current command going on
 set showcmd
 
@@ -116,6 +120,7 @@ set background=dark
 " Set utf8 as standard encoding
 set encoding=utf-8
 set fileencoding=utf-8
+set fileencodings=utf-8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
@@ -137,13 +142,15 @@ endif
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-    set guioptions-=T
-    set guioptions+=e
-    set t_Co=256
-    set guitablabel=%M\ %t
+  set guioptions-=T
+  set guioptions+=e
+  set t_Co=256
+  set guitablabel=%M\ %t
 endif
 
-
+if &term =~ '256color'
+  set t_ut=
+endif
 
 """""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -190,6 +197,9 @@ autocmd FileType make set noexpandtab
 set lbr
 set textwidth=200
 
+"" Use modeline overrides (file specific configuration)
+set modeline
+set modelines=10
 
 """""""""""""
 " => Helpers
