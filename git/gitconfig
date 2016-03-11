@@ -32,7 +32,7 @@
   w  = whatchanged --abbrev-commit
   ls = ls-files
   gr = log --graph --oneline --decorate
-  lol = log --graph --pretty=format:\"%C(yellow)%h%Creset%C(cyan)%C(bold)%d%Creset %C(cyan)(%cr)%Creset %C(green)%cn%Creset %s\"
+  lol = log --graph --pretty=format:'%C(yellow)%h%Creset%C(cyan)%C(bold)%d%Creset %C(cyan)(%cd)%Creset %C(green)%cn%Creset %s' --date=format:'%Y-%m-%d %H:%M:%S'
   unstage     = reset HEAD --
   last        = log -1 HEAD
   amend       = commit --amend
