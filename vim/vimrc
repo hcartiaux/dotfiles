@@ -34,8 +34,8 @@ filetype indent on
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" Fast saving
-nmap <leader>w :w!<cr>
+"" Map leader to ,
+let mapleader=','
 
 """"""""""""""""""""""""
 " => VIM user interface
@@ -209,11 +209,11 @@ set modelines=10
 if has("spell")
   setlocal spell spelllang=
   " Language : FR
-  map ,lf :setlocal spell spelllang=fr<cr>
+  map <Leader>lf :setlocal spell spelllang=fr<cr>
   " Language : EN
-  map ,le :setlocal spell spelllang=en<cr>
+  map <Leader>le :setlocal spell spelllang=en<cr>
   " Language : Aucun
-  map ,ln :setlocal spell spelllang=<cr>
+  map <Leader>ln :setlocal spell spelllang=<cr>
 endif
 
 
@@ -243,8 +243,17 @@ endfun
 autocmd BufWritePre * call StripTrailingWhitespace()
 autocmd FileType markdown let b:noStripWhitespace=1
 
-" Shortcuts
+"===========================================================================
+"" Mappings
+"===========================================================================
+
+map <F4> <Esc>:set paste<CR>
+
 map <F3> <Esc>:tabnext<CR>
 map <F2> <Esc>:tabprevious<CR>
-map <F4> <Esc>:set paste<CR>
+
+"" Copy/Paste/Cut
+if has('unnamedplus')
+  set clipboard=unnamed,unnamedplus
+endif
 
