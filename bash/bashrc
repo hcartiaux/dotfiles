@@ -176,6 +176,10 @@ if [ -n "${PS1_EXTRA}" ]; then
   PS1_EXTRAINFO="${PS1_EXTRAINFO},${YELLOW}${PS1_EXTRA}${RESET_COLOR}"
 fi
 
+# Test if we are in a screen session
+if [ "${SHLVL}" -ge "2" ]; then
+  PS1_SCREEN='\[\033k\033\\\]'
+fi
 
 # This function is called from a subshell in $PS1, to provide the colorized
 # exit status of the last run command.
@@ -185,18 +189,6 @@ __colorized_exit_status() {
                               echo -e '\[\e[01;32m\]'\$status;              \
                             else                                            \
                               echo -e '\[\e[01;31m\]'\$status; fi)"
-}
-
-# Simple (basic) prompt
-__set_simple_prompt() {
-    unset PROMPT_COMMAND
-    PS1="[\u@\h] \w(${DOMAIN}) ${P}> "
-}
-
-# most compact version
-__set_compact_prompt() {
-    unset PROMPT_COMMAND
-    PS1="${COLOR_USER}${P}${RESET_COLOR}> "
 }
 
 ###########
@@ -226,7 +218,7 @@ __set_compact_prompt() {
 # This prompt is perfect for terminal with black background, in my case the
 # Vizor color set (see http://visor.binaryage.com/) or iTerm2
 __set_my_prompt() {
-  PS1="$(__colorized_exit_status) ${LIGHT_CYAN}\t${RESET_COLOR} ${COLOR_USER}\u${RESET_COLOR}@${CYAN_UNDERLINE}\h${RESET_COLOR}(${PS1_EXTRAINFO})${RED}\$(__oar_ps1_remaining_time)${RESET_COLOR}${GREEN}\$(__git_ps1 \" (%s)\")\$(__svn_ps1)${RESET_COLOR} ${BLUE}\W${RESET_COLOR} ${P} "
+    PS1="${PS1_SCREEN}$(__colorized_exit_status) ${LIGHT_CYAN}\t${RESET_COLOR} ${COLOR_USER}\u${RESET_COLOR}@${CYAN_UNDERLINE}\h${RESET_COLOR}(${PS1_EXTRAINFO})${RED}\$(__oar_ps1_remaining_time)${RESET_COLOR}${GREEN}\$(__git_ps1 \" (%s)\")\$(__svn_ps1)${RESET_COLOR} ${BLUE}\W${RESET_COLOR} ${P} "
 }
 
 # Set the color prompt by default when interactive
