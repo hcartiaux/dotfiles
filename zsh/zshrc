@@ -172,13 +172,3 @@ fi
 eval `dircolors --sh`
 export GREP_COLOR=31
 
-##################################################################
-## Ruby & RVM
-#
-
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-# Add System Ruby and  RVM to PATH for scripting
-export PATH=$PATH:/usr/lib/ruby/gems/2.1.0/bin/:$HOME/.rvm/bin
-

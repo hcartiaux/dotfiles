@@ -262,13 +262,3 @@ if [ -f ~/.bash_oar ]; then
   . ~/.bash_oar
 fi
 
-
-# -------------------------------------------------------------------
-# Ruby & RVM
-# -------------------------------------------------------------------
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-# RVM specific (see http://beginrescueend.com/)
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" || true
-

@@ -162,3 +162,16 @@ if [[ "$DOMAIN" = "gaia-cluster" ]] ; then
   #export XF_DEBUG=0
 fi
 
+# -------------------------------------------------------------------
+# Ruby & RVM
+# -------------------------------------------------------------------
+
+export PATH="$PATH:$(echo /usr/lib/ruby/gems/*)/bin:$HOME/.rvm/bin"
+
+# RVM specific (see http://beginrescueend.com/)
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" || true
+if [[ $(which ruby | grep -c "$HOME/.rvm") != 0 ]] ; then
+  # Get off my lawn
+  rvm reset
+fi
+
