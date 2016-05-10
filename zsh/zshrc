@@ -158,14 +158,6 @@ alias -g NE="2> /dev/null" # Redirect stderr to /dev/null
 [ -x /usr/bin/xpdf ] && alias -s pdf="xpdf"
 
 ##################################################################
-## OAR & G5K Integration
-#
-
-if [ -f ~/.bash_oar ]; then
-    . ~/.bash_oar
-fi
-
-##################################################################
 ## Colors
 #
 
