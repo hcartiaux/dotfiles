@@ -38,5 +38,5 @@ test -n "$INTERACTIVE" && test -n "$OAR_NODE_FILE" && (
   echo "[OAR] OAR_JOB_ID=$OAR_JOB_ID"
   echo "[OAR] Your nodes are:"
   sort "$OAR_NODE_FILE" | uniq -c | awk '{printf("      %s*%d\n",$2,$1)}END{printf("\n")}' | sed -e 's/,$//'
-)
+) || true
 
