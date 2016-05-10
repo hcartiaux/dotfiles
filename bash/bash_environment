@@ -164,7 +164,9 @@ fi
 # Ruby & RVM
 # -------------------------------------------------------------------
 
-export PATH="$PATH:$(echo /usr/lib/ruby/gems/*)/bin:$HOME/.rvm/bin"
+
+[ -d "/usr/lib/ruby/gems" ] && export PATH="$PATH:$(echo /usr/lib/ruby/gems/*)/bin"
+[ -d "$HOME/.rvm/bin" ]     && export PATH="$PATH:$HOME/.rvm/bin"
 
 # RVM specific (see http://beginrescueend.com/)
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" || true
