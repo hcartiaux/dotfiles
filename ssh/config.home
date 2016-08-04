@@ -8,15 +8,6 @@ Host vps 0xf.fr
   Hostname vps79723.ovh.net
 
 ########
-## Raspberry Pi
-########
-
-Host rpi rpi.0xf.fr
-  User hcartiaux
-  Port 443
-  Hostname rpi.0xf.fr
-
-########
 ## Odroid
 ## 10.91.100.145
 ## f2:38:da:3d:11:02
