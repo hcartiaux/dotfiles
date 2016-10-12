@@ -90,7 +90,7 @@ export SVN_EDITOR=$EDITOR
 
 # Default pager ('less' is so much better than 'more'...)
 if test -n "$(command -v less)" ; then
-  export PAGER="less -FirSwX"
+  export PAGER="less -FiRSwX"
 else
   export PAGER=more
 fi

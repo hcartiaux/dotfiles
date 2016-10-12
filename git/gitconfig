@@ -67,7 +67,7 @@
 
 [core]
   autocrlf     = false
-  pager        = less -FRSX
+  pager        = less -FiRSwX
   editor       = vim
   mergeoptions = --no-edit
 
