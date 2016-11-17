@@ -193,9 +193,9 @@ set tabstop=4
 " Use tab when editing Makefiles
 autocmd FileType make set noexpandtab
 
-" Linebreak on 500 characters
-set lbr
-set textwidth=200
+" Linebreak on 200 characters
+" set lbr
+" set textwidth=200
 
 "" Use modeline overrides (file specific configuration)
 set modeline
