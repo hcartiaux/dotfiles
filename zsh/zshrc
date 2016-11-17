@@ -56,8 +56,10 @@ unsetopt list_ambiguous
 
 # Auto-correct
 setopt correctall
+alias sudo='nocorrect sudo'
 alias vim='nocorrect vim'
 alias git='nocorrect git'
+alias ssh='nocorrect ssh'
 
 # This will set the default prompt
 source ~/.zsh/prompt_hyacinthe_setup
