@@ -29,7 +29,7 @@ set nocompatible
 set history=1000
 filetype on
 filetype plugin on
-filetype indent on
+" filetype indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -177,7 +177,7 @@ set viminfo+=n$HOME/.vim/.viminfo
 """"""""""""""""""""""""""""""""""
 
 " Indent
-set cindent
+" set cindent
 
 " Use spaces instead of tabs
 set expandtab
