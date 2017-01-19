@@ -300,5 +300,5 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 "" Update svarrette Time-stamps
-map <F5> * :1,20s/Time-stamp: <\zs.*/\=strftime('%a %Y-%m-%d') . ' ' . strftime('%H:%M:%S') . ' ' . $USER . '>'/e<cr>
+map <F5> :%s/Time-stamp: <\zs.*/\=strftime('%a %Y-%m-%d') . ' ' . strftime('%H:%M:%S') . ' ' . $USER . '>'/e<cr>
 
