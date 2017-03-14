@@ -97,6 +97,10 @@ else
     ln -sf $DOTFILES/wget/wgetrc     ~/.wgetrc
 fi
 
+# GnuPG
+
+ln -sf $DOTFILES/gnupg/gpg.conf        ~/.gnupg/gpg.conf
+ln -sf $DOTFILES/gnupg/gpg-agent.conf  ~/.gnupg/gpg-agent.conf
 
 [[ "$HOST" = "$MYLAPTOP" ]] && (
 
