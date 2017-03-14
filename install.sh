@@ -2,7 +2,7 @@
 
 # set -x # Debug
 
-MYLAPTOP=hc-e7440
+MYLAPTOP=hc-xp13
 MAIL='hyacinthe.cartiaux@free.fr'
 PLAN='World domination!'
 DOTFILES=~/.dotfiles
