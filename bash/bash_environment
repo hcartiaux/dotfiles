@@ -33,7 +33,9 @@ export LANG LANGUAGE LC_CTYPE LC_ALL
 unset MAILCHECK
 
 # Configure a set of useful variables
-if [[ "$(echo "$UNAME" | grep -c -i -e '^.*bsd$')" == "1" ]] ; then
+if [[ -e /proc/sys/kernel/hostname ]] ; then
+  FQDN=$(cat /proc/sys/kernel/hostname)
+elif [[ "$(echo "$UNAME" | grep -c -i -e '^.*bsd$')" == "1" ]] ; then
   FQDN=$(hostname)
 else
   FQDN=$(hostname -f)
