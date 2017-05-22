@@ -39,6 +39,7 @@ if [ "$UNAME" = Linux ]; then
 fi
 
 alias vi='vim'
+alias bim='vim'
 
 # Mandatory aliases to confirm destructive operations
 alias cp='cp -iv'
@@ -83,6 +84,7 @@ cpold() {
 alias ssha="ssh-add"
 alias cdpuppet="cd ~/repos/ulhpc_puppet/puppet-repo"
 alias cdsys="~/repos/ulhpc_gitolite/sysadmins-repo"
+alias cdsysn="~/repos/ulhpc_gitlab/ULHPC/sysadmins"
 pass() {
   curdir="$(pwd)"
   cd ~/repos/ulhpc_gitolite/new-passwords-repo
