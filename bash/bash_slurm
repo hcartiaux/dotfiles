@@ -9,7 +9,7 @@ __slurm_ps1_remaining_time(){
   fi
 }
 
-test -n "$SLURM_PTY_PORT" && (
+[[ -n "$INTERACTIVE" && -n "$SLURM_PTY_PORT" ]] && (
   echo "[SLURM] SLURM_JOB_ID=$SLURM_JOB_ID"
   echo "[SLURM] Your nodes are:"
   srun bash -c 'echo "      $(hostname)*$SLURM_CPUS_ON_NODE"' | sort -u
