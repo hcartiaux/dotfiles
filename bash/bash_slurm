@@ -1,10 +1,12 @@
 # Job + Remaining time
+
+[[ -z "$SLURM_JOB_WALLTIME_SECONDS" ]] && SLURM_JOB_WALLTIME_SECONDS=$(scontrol show job $SLURM_JOB_ID | grep -Po 'TimeLimit=\K[^ ]*' | awk -F: '/:/ { print ($1 * 3600) + ($2 * 60) + $3 }')
+
 __slurm_ps1_remaining_time(){
   if [ -n "$SLURM_JOB_ID" ]; then
     DATE_NOW=$(date +%s)
     DATE_JOB_START=$(stat -c %Y "/sys/fs/cgroup/cpu/slurm/uid_${UID}/job_${SLURM_JOB_ID}")
-    [[ -z "$TIME_LIMIT" ]] && TIME_LIMIT=$(scontrol show job $SLURM_JOB_ID | grep -Po 'TimeLimit=\K[^ ]*' | awk -F: '/:/ { print ($1 * 3600) + ($2 * 60) + $3 }')
-    ((DATE_TMP = (TIME_LIMIT - DATE_NOW + DATE_JOB_START) / 60))
+    ((DATE_TMP = (SLURM_JOB_WALLTIME_SECONDS - DATE_NOW + DATE_JOB_START) / 60))
     echo -n "[SLURM$SLURM_JOB_ID->$DATE_TMP]"
   fi
 }
