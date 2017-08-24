@@ -33,6 +33,7 @@ ln -sf $DOTFILES/bash/profile          ~/.profile
 ln -sf $DOTFILES/bash/bash_logout      ~/.bash_logout
 ln -sf $DOTFILES/bash/bash_environment ~/.bash_environment
 ln -sf $DOTFILES/bash/bash_oar         ~/.bash_oar
+ln -sf $DOTFILES/bash/bash_slurm       ~/.bash_slurm
 ln -sf $DOTFILES/bash/bash_aliases     ~/.bash_aliases
 
 if [[ ! -f ~/.git-prompt.sh ]] ; then

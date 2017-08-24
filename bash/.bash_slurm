@@ -1,0 +1,17 @@
+# Job + Remaining time
+__slurm_ps1_remaining_time(){
+  if [ -n "$SLURM_JOB_ID" ]; then
+    DATE_NOW=$(date +%s)
+    DATE_JOB_START=$(stat -c %Y "/sys/fs/cgroup/cpu/slurm/uid_${UID}/job_${SLURM_JOB_ID}")
+    DATE_TMP=$(sacct -j $SLURM_JOB_ID --format Timelimit  | awk -F: '/:/ { print ($1 * 3600) + ($2 * 60) + $3 }')
+    ((DATE_TMP = (DATE_TMP - DATE_NOW + DATE_JOB_START) / 60))
+    echo -n "[SLURM$SLURM_JOB_ID->$DATE_TMP]"
+  fi
+}
+
+test -n "$SLURM_PTY_PORT" && (
+  echo "[SLURM] SLURM_JOB_ID=$SLURM_JOB_ID"
+  echo "[SLURM] Your nodes are:"
+  srun bash -c 'echo "      $(hostname)*$SLURM_CPUS_ON_NODE"' | sort
+) || true
+
