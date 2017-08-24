@@ -178,7 +178,7 @@ fi
 
 # RVM specific (see http://beginrescueend.com/)
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" || true
-if [[ $(which ruby | grep -c "$HOME/.rvm") != 0 ]] ; then
+if [[ $(which ruby | grep -c "$HOME/.rvm" 2>/dev/null) != 0 ]] ; then
   # Get off my lawn
   rvm reset
 fi
