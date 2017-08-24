@@ -107,7 +107,7 @@ prompt_git_info()
                   ;;
           esac
           if [ -n "$__CURRENT_GIT_BRANCH_IS_DIRTY" ]; then
-                  s+="⚡"
+                  s+="✗"
           fi
           s+="$__CURRENT_GIT_BRANCH"
           s+=")"
