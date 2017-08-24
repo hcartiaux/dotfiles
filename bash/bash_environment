@@ -178,8 +178,15 @@ fi
 
 # RVM specific (see http://beginrescueend.com/)
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" || true
-if [[ $(which ruby | grep -c "$HOME/.rvm" 2>/dev/null) != 0 ]] ; then
+if [[ $(which ruby 2>/dev/null | grep -c "$HOME/.rvm") != 0 ]] ; then
   # Get off my lawn
   rvm reset
+fi
+
+if [[ -d ~/repos/ulhpc_gitlab/ULHPC/sysadmins/scripts/idm ]] ; then
+    source ~/repos/ulhpc_gitlab/ULHPC/sysadmins/scripts/idm/ulhpc_user_ad_get_enddate.sh
+    source ~/repos/ulhpc_gitlab/ULHPC/sysadmins/scripts/idm/ulhpc_user_ldap_get_enddate.sh
+    source ~/repos/ulhpc_gitlab/ULHPC/sysadmins/scripts/idm/ulhpc_user_ldap_set_enddate.sh
+    source ~/repos/ulhpc_gitlab/ULHPC/sysadmins/scripts/idm/ulhpc_user_compare_enddate.sh
 fi
 
