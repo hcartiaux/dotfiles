@@ -254,11 +254,16 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # ----------------------------------------------------------------------
-# OAR & G5K support
+# HPC clusters support
 # ----------------------------------------------------------------------
 
-# Source bash_oar
+# OAR integration
 if [ -f ~/.bash_oar ]; then
   . ~/.bash_oar
+fi
+
+# Slurm integration
+if [ -f ~/.bash_slurm ]; then
+  . ~/.bash_slurm
 fi
 
