@@ -82,9 +82,22 @@ cpold() {
 
 # personnal desktop aliases
 alias ssha="ssh-add"
-alias cdpuppet="cd ~/repos/ulhpc_puppet/puppet-repo"
-alias cdsys="~/repos/ulhpc_gitolite/sysadmins-repo"
-alias cdsysn="~/repos/ulhpc_gitlab/ULHPC/sysadmins"
+
+alias cdcontrol='~/repos/ulhpc_puppet/control-repo'
+alias cdpuppet=' ~/repos/ulhpc_puppet/puppet-repo'
+alias cdfaio='   ~/repos/ulhpc_gitolite/fai-repo'
+alias cdpass='   ~/repos/ulhpc_gitolite/new-passwords-repo'
+alias cdstor='   ~/repos/ulhpc_gitolite/storage-repo'
+alias cdsyso='   ~/repos/ulhpc_gitolite/sysadmins-repo'
+alias cdsys='    ~/repos/ulhpc_gitlab/ULHPC/sysadmins'
+alias cdwww='    ~/repos/ulhpc_gitlab/www/ulhpc'
+alias cdtools='  ~/repos/ulhpc_gitlab/ULHPC/ulhpc-tools'
+alias cddocs='   ~/repos/ulhpc_gitlab/ULHPC/documents'
+alias cdfai='    ~/repos/ulhpc_gitlab/ULHPC/fai-repo'
+alias cdslides=' ~/repos/ulhpc_gitlab/ULHPC/slides'
+alias cdstat='   ~/repos/ulhpc_gitlab/ULHPC/statistics'
+alias cdtut='    ~/repos/ulhpc_github/tutorials'
+
 pass() {
   curdir="$(pwd)"
   cd ~/repos/ulhpc_gitolite/new-passwords-repo
