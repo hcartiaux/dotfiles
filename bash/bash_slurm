@@ -17,3 +17,31 @@ __slurm_ps1_remaining_time(){
   srun bash -c 'echo "      $(hostname)*$SLURM_CPUS_ON_NODE"' | sort -u
 ) || true
 
+alias sql=' squeue -la'
+alias sqlu='squeue -la -u $USER'
+alias ssj=' scontrol show job'
+alias sp='  sprio'
+alias spl=' sprio -l'
+alias sd='  sinfo -d'
+alias i='   srun -p interactive --qos qos-interactive --time=5:0 --pty bash -i'
+alias ix='  srun -p interactive --qos qos-interactive --time=5:0 --x11 --pty bash -i'
+
+sjoin(){
+        if [[ -z $1 ]]; then
+                echo "Job ID not given."
+        else
+                JOBID=$1
+                [[ -n $2 ]] && NODE="-w $2"
+                srun --jobid $JOBID $NODE --pty bash -i
+        fi
+}
+irisstat(){
+  printf "%34s\n" "alloc/idle/other/total"
+  printf "%11s %s\n" "IRIS" "$(sinfo -h --format=%C | paste -sd " ")"
+  for p in batch interactive long; do
+        usagedata=$(sinfo -h -p $p --format=%C | paste -sd " ")
+        printf "%11s %s\n" $p "$usagedata"
+  done
+}
+
+
