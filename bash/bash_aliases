@@ -85,7 +85,6 @@ alias ssha="ssh-add"
 
 alias cdcontrol='~/repos/ulhpc_puppet/control-repo'
 alias cdpuppet=' ~/repos/ulhpc_puppet/puppet-repo'
-alias cdfaio='   ~/repos/ulhpc_gitolite/fai-repo'
 alias cdpass='   ~/repos/ulhpc_gitolite/new-passwords-repo'
 alias cdstor='   ~/repos/ulhpc_gitolite/storage-repo'
 alias cdsyso='   ~/repos/ulhpc_gitolite/sysadmins-repo'
