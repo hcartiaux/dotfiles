@@ -127,3 +127,8 @@ ln -sf $DOTFILES/gnupg/gpg-agent.conf  ~/.gnupg/gpg-agent.conf
 
 )
 
+[[ "$WORK" != "" ]] && (
+    mkdir -p $WORK/.local
+    ln -sf $WORK/.local ~/.local
+)
+
