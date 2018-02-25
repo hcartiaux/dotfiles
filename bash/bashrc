@@ -44,7 +44,7 @@ fi
 
 # Eventually load you private settings (not exposed here)
 test -f ~/.bash_private &&
-. ~/.bash_private
+  . ~/.bash_private
 
 # MOTD
 test -n "$INTERACTIVE" -a -n "$LOGIN" && (
@@ -58,7 +58,7 @@ test -n "$INTERACTIVE" -a -n "$LOGIN" && (
 
 # bring in system bashrc
 test -r /etc/bashrc &&
-. /etc/bashrc
+  . /etc/bashrc
 
 # bring in git prompt
 . ~/.git-prompt.sh
@@ -82,13 +82,14 @@ umask 0022
 # BASH COMPLETION
 # ----------------------------------------------------------------------
 
-bash=${BASH_VERSION%.*}; bmajor=${bash%.*}; bminor=${bash#*.}
+bash=${BASH_VERSION%.*}
+bmajor=${bash%.*}
+bminor=${bash#*.}
 test -n "$PS1" && test $bmajor -gt 1 && (
   # search for a bash_completion file to source
   for f in /usr/local/etc/bash_completion \
     /opt/local/etc/bash_completion \
-    /etc/bash_completion
-  do
+    /etc/bash_completion; do
     test -f $f && (
       . $f
       break
@@ -119,8 +120,7 @@ __svn_ps1() {
     svnversion=$(svnversion | sed -e "s/[:M]//g")
     # Continue if $svnversion is numerical
     let $svnversion
-    if [[ "$?" -eq "0" ]]
-    then
+    if [[ $? -eq "0" ]]; then
       printf " (svn:%s)" "$(svnversion)"
     fi
   ) 2>/dev/null
@@ -157,9 +157,9 @@ fi
 XENTYPE=""
 if [ -f "/sys/hypervisor/uuid" ]; then
   if [ "$(</sys/hypervisor/uuid)" == "00000000-0000-0000-0000-000000000000" ]; then
-      XENTYPE=",Dom0"
+    XENTYPE=",Dom0"
   else
-      XENTYPE=",DomU"
+    XENTYPE=",DomU"
   fi
 fi
 # Test the PS1_EXTRA variable
@@ -218,13 +218,13 @@ __colorized_exit_status() {
 # This prompt is perfect for terminal with black background, in my case the
 # Vizor color set (see http://visor.binaryage.com/) or iTerm2
 __set_my_prompt() {
-    PS1="${PS1_SCREEN}$(__colorized_exit_status) ${LIGHT_CYAN}\t${RESET_COLOR} ${COLOR_USER}\u${RESET_COLOR}@${CYAN_UNDERLINE}\h${RESET_COLOR}(${PS1_EXTRAINFO})${RED}\$(__slurm_ps1_remaining_time)\$(__oar_ps1_remaining_time)${RESET_COLOR}${GREEN}\$(__git_ps1 \" (%s)\")\$(__svn_ps1)${RESET_COLOR} ${BLUE}\W${RESET_COLOR} ${P} "
+  PS1="${PS1_SCREEN}$(__colorized_exit_status) ${LIGHT_CYAN}\t${RESET_COLOR} ${COLOR_USER}\u${RESET_COLOR}@${CYAN_UNDERLINE}\h${RESET_COLOR}(${PS1_EXTRAINFO})${RED}\$(__slurm_ps1_remaining_time)\$(__oar_ps1_remaining_time)${RESET_COLOR}${GREEN}\$(__git_ps1 \" (%s)\")\$(__svn_ps1)${RESET_COLOR} ${BLUE}\W${RESET_COLOR} ${P} "
 }
 
 # Set the color prompt by default when interactive
 if [ -n "$PS1" ]; then
-    __set_my_prompt
-    export PS1
+  __set_my_prompt
+  export PS1
 fi
 
 # ----------------------------------------------------------------------
@@ -266,4 +266,3 @@ fi
 if [ -f ~/.bash_slurm ]; then
   . ~/.bash_slurm
 fi
-
