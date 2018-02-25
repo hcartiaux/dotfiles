@@ -11,10 +11,10 @@ LS_COMMON="-F --group-directories-first -h"
 
 if [ "$UNAME" = Darwin ]; then
   # check if you're using gnu core-utils then use --color
-  if [[ "$(which ls)" = "/opt/local/bin/ls" ]] ; then
-      LS_COMMON="$LS_COMMON --color"
+  if [[ "$(which ls)" == "/opt/local/bin/ls" ]]; then
+    LS_COMMON="$LS_COMMON --color"
   else
-      LS_COMMON="$LS_COMMON -G"
+    LS_COMMON="$LS_COMMON -G"
   fi
 elif [ "$UNAME" = Linux ]; then
   LS_COMMON="$LS_COMMON --color"
@@ -22,7 +22,7 @@ fi
 
 # setup the main ls alias if we've established common args
 test -n "$LS_COMMON" &&
-alias ls="command ls $LS_COMMON"
+  alias ls="command ls $LS_COMMON"
 
 # these use the ls aliases above
 alias ll="ls -l"
@@ -59,7 +59,7 @@ alias ......='cd ../../../../..'
 
 # read man with colors
 man() {
-    env LESS_TERMCAP_mb=$'\E[01;31m' \
+  env LESS_TERMCAP_mb=$'\E[01;31m' \
     LESS_TERMCAP_md=$'\E[01;38;5;74m' \
     LESS_TERMCAP_me=$'\E[0m' \
     LESS_TERMCAP_se=$'\E[0m' \
@@ -117,4 +117,3 @@ g5kpass() {
   source .passrc && /usr/bin/pass $*
   cd "$curdir"
 }
-
