@@ -1,8 +1,8 @@
 # Job + Remaining time
 
-[[ -n "$SLURM_JOB_ID" && -z "$SLURM_JOB_WALLTIME_SECONDS" ]] && SLURM_JOB_WALLTIME_SECONDS=$(scontrol show job $SLURM_JOB_ID | grep -Po 'TimeLimit=\K[^ ]*' | awk -F: '/:/ { print ($1 * 3600) + ($2 * 60) + $3 }')
+[[ -n $SLURM_JOB_ID && -z $SLURM_JOB_WALLTIME_SECONDS ]] && SLURM_JOB_WALLTIME_SECONDS=$(scontrol show job $SLURM_JOB_ID | grep -Po 'TimeLimit=\K[^ ]*' | awk -F: '/:/ { print ($1 * 3600) + ($2 * 60) + $3 }')
 
-__slurm_ps1_remaining_time(){
+__slurm_ps1_remaining_time() {
   if [ -n "$SLURM_JOB_ID" ]; then
     DATE_NOW=$(date +%s)
     DATE_JOB_START=$(stat -c %Y "/sys/fs/cgroup/cpu/slurm/uid_${UID}/job_${SLURM_JOB_ID}")
@@ -11,7 +11,7 @@ __slurm_ps1_remaining_time(){
   fi
 }
 
-[[ -n "$INTERACTIVE" && -n "$SLURM_PTY_PORT" ]] && (
+[[ -n $INTERACTIVE && -n $SLURM_PTY_PORT ]] && (
   echo "[SLURM] SLURM_JOB_ID=$SLURM_JOB_ID"
   echo "[SLURM] Your nodes are:"
   srun bash -c 'echo "      $(hostname)*$SLURM_CPUS_ON_NODE"' | sort -u
@@ -26,22 +26,20 @@ alias sd='  sinfo -d'
 alias i='   srun -p interactive --qos qos-interactive --time=5:0 --pty bash -i'
 alias ix='  srun -p interactive --qos qos-interactive --time=5:0 --x11 --pty bash -i'
 
-sjoin(){
-        if [[ -z $1 ]]; then
-                echo "Job ID not given."
-        else
-                JOBID=$1
-                [[ -n $2 ]] && NODE="-w $2"
-                srun --jobid $JOBID $NODE --pty bash -i
-        fi
+sjoin() {
+  if [[ -z $1 ]]; then
+    echo "Job ID not given."
+  else
+    JOBID=$1
+    [[ -n $2 ]] && NODE="-w $2"
+    srun --jobid $JOBID $NODE --pty bash -i
+  fi
 }
-irisstat(){
+irisstat() {
   printf "%34s\n" "alloc/idle/other/total"
   printf "%11s %s\n" "IRIS" "$(sinfo -h --format=%C | paste -sd " ")"
   for p in batch interactive long; do
-        usagedata=$(sinfo -h -p $p --format=%C | paste -sd " ")
-        printf "%11s %s\n" $p "$usagedata"
+    usagedata=$(sinfo -h -p $p --format=%C | paste -sd " ")
+    printf "%11s %s\n" $p "$usagedata"
   done
 }
-
-
