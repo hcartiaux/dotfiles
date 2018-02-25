@@ -9,10 +9,9 @@
 # - http://wiki-oar.imag.fr/index.php/Customization_tips
 # - http://wiki-oar.imag.fr/index.php/Oarsh_and_bash_completion
 
-if [[ "$SHELL" = "/bin/bash" ]] ; then
+if [[ $SHELL == "/bin/bash" ]]; then
   # oarsh completion
-  function _oarsh_complete_()
-  {
+  function _oarsh_complete_() {
     local word=${COMP_WORDS[COMP_CWORD]}
     local list
     list=$(uniq "$OAR_NODEFILE" | tr '\n' ' ')
@@ -22,7 +21,7 @@ if [[ "$SHELL" = "/bin/bash" ]] ; then
 fi
 
 # Job + Remaining time
-__oar_ps1_remaining_time(){
+__oar_ps1_remaining_time() {
   if [ -n "$OAR_JOB_WALLTIME_SECONDS" -a -n "$OAR_NODE_FILE" -a -r "$OAR_NODE_FILE" ]; then
     DATE_NOW=$(date +%s)
     DATE_JOB_START=$(stat -c %Y "$OAR_NODE_FILE")
@@ -39,4 +38,3 @@ test -n "$INTERACTIVE" && test -n "$OAR_NODE_FILE" && (
   echo "[OAR] Your nodes are:"
   sort "$OAR_NODE_FILE" | uniq -c | awk '{printf("      %s*%d\n",$2,$1)}END{printf("\n")}' | sed -e 's/,$//'
 ) || true
-
