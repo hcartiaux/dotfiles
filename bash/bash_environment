@@ -119,9 +119,6 @@ unset SSH_ASKPASS
 unset SSH_AGENT_PID
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
-# Easybuild BUILD PATH
-export EASYBUILDBUILDPATH=/tmp/
-
 # Tsocks config
 export TSOCKS_CONF_FILE=~/.dotfiles/tsocks/tsocks.conf
 
@@ -134,6 +131,21 @@ export PDSH_SSH_ARGS_APPEND="-q -o StrictHostKeyChecking=no -o UserKnownHostsFil
 
 # Vagrant configuration
 #export VAGRANT_DEFAULT_PROVIDER=lxc
+
+# Easybuild
+export EASYBUILDBUILDPATH=/tmp/
+export EASYBUILD_PREFIX=$HOME/.local/easybuild
+export EASYBUILD_MODULES_TOOL=Lmod
+export EASYBUILD_MODULE_NAMING_SCHEME=CategorizedModuleNamingScheme
+
+export LOCAL_MODULES=${EASYBUILD_PREFIX}/modules/all
+
+alias ma="module avail"
+alias ml="module list"
+function mu(){
+   module use $LOCAL_MODULES
+   module load tools/EasyBuild
+}
 
 # ----------------------------------------------------------------------
 #  GRID5000 specific
