@@ -14,7 +14,11 @@ __slurm_ps1_remaining_time() {
 [[ -n $INTERACTIVE && -n $SLURM_PTY_PORT ]] && (
   echo "[SLURM] SLURM_JOB_ID=$SLURM_JOB_ID"
   echo "[SLURM] Your nodes are:"
-  srun bash -c 'echo "      $(hostname)*$SLURM_CPUS_ON_NODE"' | sort -u
+  [[ $(echo "$SLURM_JOB_CPUS_PER_NODE" | grep -q '(x') ]] && nbcpu=$(echo "$SLURM_JOB_CPUS_PER_NODE" | grep -o '^[^(]*' )
+  for node in $(scontrol show hostname "$SLURM_JOB_NODELIST") ; do
+    i=$((i+1))
+    echo "      ${node}*${nbcpu:-$(echo "$SLURM_JOB_CPUS_PER_NODE" | cut -d, -f$i)}"
+  done
 ) || true
 
 alias sql=' squeue -la'
