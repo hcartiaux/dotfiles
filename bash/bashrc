@@ -90,10 +90,7 @@ test -n "$PS1" && test $bmajor -gt 1 && (
   for f in /usr/local/etc/bash_completion \
     /opt/local/etc/bash_completion \
     /etc/bash_completion; do
-    test -f $f && (
-      . $f
-      break
-    )
+      test -f $f && . $f && break
   done
 )
 unset bash bmajor bminor
