@@ -193,9 +193,3 @@ if [[ $(which ruby 2>/dev/null | grep -c "$HOME/.rvm") != 0 ]]; then
   rvm reset
 fi
 
-if [[ -d ~/repos/ulhpc_gitlab/ULHPC/sysadmins/scripts/idm ]]; then
-  source ~/repos/ulhpc_gitlab/ULHPC/sysadmins/scripts/idm/ulhpc_user_ad_get_enddate.sh
-  source ~/repos/ulhpc_gitlab/ULHPC/sysadmins/scripts/idm/ulhpc_user_ldap_get_enddate.sh
-  source ~/repos/ulhpc_gitlab/ULHPC/sysadmins/scripts/idm/ulhpc_user_ldap_set_enddate.sh
-  source ~/repos/ulhpc_gitlab/ULHPC/sysadmins/scripts/idm/ulhpc_user_compare_enddate.sh
-fi
