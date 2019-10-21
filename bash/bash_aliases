@@ -113,7 +113,7 @@ alias g5kcap='bundle exec cap'
 alias g5kpuppet="~/repos/g5k_git/puppet-repo"
 g5kpass() {
   curdir="$(pwd)"
-  cd ~/repos/g5k_gitolite/password5k
+  cd ~/repos/inria_gitlab/password5k
   source .passrc && /usr/bin/pass $*
   cd "$curdir"
 }
