@@ -165,19 +165,6 @@ export GPUPPET_USER=hcartiaux
 export GPUPPET_SSH_CONFIG=$GPUPPET_PREFIX/ssh/config
 alias cdgp='cd $GPUPPET_PREFIX/repo && source setup_env.sh && echo "==> Grid5000 Puppet 4 repository"'
 
-# ----------------------------------------------------------------------
-#  GAIA specific (XCS Portal config)
-# ----------------------------------------------------------------------
-
-if [[ $DOMAIN == "gaia-cluster" ]]; then
-  # XF
-  source /XF/App/Scripts/xf_Globalenv.rc
-  export PATH=$PATH:/XF/Admin/Scripts
-  export XF_VNC_GEOMETRY="-geometry 1366x850"
-  export XF_VNC_QUALITY=80
-  #export XF_DEBUG=0
-fi
-
 # -------------------------------------------------------------------
 # Ruby & RVM
 # -------------------------------------------------------------------
