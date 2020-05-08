@@ -16,17 +16,17 @@
 # Resources:
 #  - http://stackoverflow.com/questions/267761/what-does-your-gitconfig-contain
 #  - https://github.com/Falkor/dotfiles
-[user]
-  name  = Hyacinthe Cartiaux
-  email = hyacinthe.cartiaux@free.fr
-  signingkey = 0x550DF40B
+
+[includeIf "gitdir:~/"]
+    path = .gitconfig-personal
+[includeIf "gitdir:~/repos/work/"]
+    path = .gitconfig-work
 
 [alias]
   up = pull origin
   pu = push origin
   st = status
   df = diff
-# ci = commit -S
   ci = commit
   br = branch
   w  = whatchanged --abbrev-commit
