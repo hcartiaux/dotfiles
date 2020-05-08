@@ -2,10 +2,9 @@
 ## VPS OVH
 #######
 
-Host vps 0xf.fr
+Host 0xf.fr
   User hcartiaux
   Port 443
-  Hostname vps79723.ovh.net
 
 ########
 ## AMD64 Box / Deepspace
