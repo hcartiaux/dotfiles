@@ -85,9 +85,9 @@ alias ssha="ssh-add"
 
 alias cdcontrol='~/repos/ulhpc_puppet/control-repo'
 alias cdpuppet=' ~/repos/ulhpc_puppet/puppet-repo'
-alias cdpass='   ~/repos/ulhpc_gitolite/passwords-repo'
-alias cdstor='   ~/repos/ulhpc_gitolite/storage-repo'
-alias cdsyso='   ~/repos/ulhpc_gitolite/sysadmins-repo'
+alias cdpass='   ~/repos/work/gitolite.hpc/passwords-repo'
+alias cdstor='   ~/repos/work/gitolite.hpc/storage-repo'
+alias cdsyso='   ~/repos/work/gitolite.hpc/sysadmins-repo'
 alias cdsys='    ~/repos/ulhpc_gitlab/ULHPC/sysadmins'
 alias cdwww='    ~/repos/ulhpc_gitlab/www/ulhpc'
 alias cdtools='  ~/repos/ulhpc_gitlab/ULHPC/ulhpc-tools'
@@ -99,7 +99,7 @@ alias cdtut='    ~/repos/ulhpc_github/tutorials'
 
 pass() {
   curdir="$(pwd)"
-  cd ~/repos/ulhpc_gitolite/passwords-repo
+  cd ~/repos/work/gitolite.hpc/passwords-repo
   export PASSWORD_STORE_DIR=$(pwd)
   export PASSWORD_STORE_SIGNING_KEY=1A53FD6E09A44DBA7A9FD72B5D08BCDD4F156AD7
   /usr/bin/pass $*
