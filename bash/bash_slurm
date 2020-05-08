@@ -51,7 +51,7 @@ irisstat(){
           for p in batch bigmem gpu interactive long; do
                 if [[ "$p" == "gpu" ]]; then
                         #NGPUS=$(sinfo -h -N -p gpu -o %G | cut -d : -f3 | paste -sd + | bc)
-                        NGPUS=72
+                        NGPUS=96
                         NGPUSUSED=$(squeue -h -t R -p gpu -o "%b*%D" | grep gpu | cut -d : -f 2 | sed 's/gpu/1/g'  | paste -sd + |bc)
                         gpudata=" GPU: $NGPUSUSED/$NGPUS"
                 else
@@ -65,6 +65,7 @@ irisstat(){
           printf "%0.s-" {1..50} ; printf "\n"
   fi
   [[ "$OPT" == "-s" || "$OPT" == "-a" ]] && (df -Th | egrep 'Filesystem|nfs|gpfs|lustre' | awk '{printf("%20s %5s %5s %5s %5s\n", $7,$3,$4,$5,$6)}');
+  [[ "$OPT" == "-s" || "$OPT" == "-a" ]] && (df -Thi | egrep 'Filesystem|nfs|gpfs|lustre' | awk '{printf("%20s %5s %5s %5s %5s\n", $7,$3,$4,$5,$6)}');
   printf "%0.s-" {1..50} ; printf "\n"
   printf "Jobs status: \n"
   squeue -h -o "%t,%r" | sort | uniq -c | sort -r
