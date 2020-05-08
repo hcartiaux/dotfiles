@@ -105,12 +105,7 @@ pass() {
   /usr/bin/pass $*
   cd "$curdir"
 }
-alias acroread='export GTK2_RC_FILES="" && acroread'
 
-# g5k aliases
-alias puppetplay='bundle exec puppetplay'
-alias g5kcap='bundle exec cap'
-alias g5kpuppet="~/repos/g5k_git/puppet-repo"
 g5kpass() {
   curdir="$(pwd)"
   cd ~/repos/inria_gitlab/password5k
