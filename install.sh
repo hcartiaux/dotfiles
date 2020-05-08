@@ -2,7 +2,7 @@
 
 # set -x # Debug
 
-MYLAPTOP=hc-xp13
+MYLAPTOP=hc-xps13
 MAIL='hyacinthe.cartiaux@free.fr'
 PLAN='World domination!'
 DOTFILES=~/.dotfiles
@@ -67,7 +67,9 @@ mkdir -p ~/.rtorrent
 
 ## git
 
-ln -sf $DOTFILES/git/gitconfig        ~/.gitconfig
+ln -sf $DOTFILES/git/gitconfig          ~/.gitconfig
+ln -sf $DOTFILES/git/gitconfig-work     ~/.gitconfig-work
+ln -sf $DOTFILES/git/gitconfig-personal ~/.gitconfig-personal
 
 ## ssh
 
