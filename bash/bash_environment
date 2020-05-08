@@ -101,11 +101,6 @@ fi
 
 export CVS_RSH='ssh'
 
-export GIT_AUTHOR='Hyacinthe Cartiaux'
-export GIT_AUTHOR_EMAIL='hyacinthe.cartiaux@free.fr'
-export GIT_COMMITER=$GIT_AUTHOR
-export GIT_COMMITTER_EMAIL=$GIT_AUTHOR_EMAIL
-
 # ----------------------------------------------------------------------
 # MISC
 # ----------------------------------------------------------------------
