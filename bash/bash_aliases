@@ -83,19 +83,19 @@ cpold() {
 # personnal desktop aliases
 alias ssha="ssh-add"
 
-alias cdcontrol='~/repos/ulhpc_puppet/control-repo'
-alias cdpuppet=' ~/repos/ulhpc_puppet/puppet-repo'
+alias cdcontrol='~/repos/work/gitlab.uni.lu/Puppet/control-repo'
+alias cdpuppet=' ~/repos/work/gitolite.hpc/puppet-repo'
 alias cdpass='   ~/repos/work/gitolite.hpc/passwords-repo'
 alias cdstor='   ~/repos/work/gitolite.hpc/storage-repo'
 alias cdsyso='   ~/repos/work/gitolite.hpc/sysadmins-repo'
-alias cdsys='    ~/repos/ulhpc_gitlab/ULHPC/sysadmins'
-alias cdwww='    ~/repos/ulhpc_gitlab/www/ulhpc'
-alias cdtools='  ~/repos/ulhpc_gitlab/ULHPC/ulhpc-tools'
-alias cddocs='   ~/repos/ulhpc_gitlab/ULHPC/documents'
-alias cdfai='    ~/repos/ulhpc_gitlab/ULHPC/fai-repo'
-alias cdslides=' ~/repos/ulhpc_gitlab/ULHPC/slides'
-alias cdstat='   ~/repos/ulhpc_gitlab/ULHPC/statistics'
-alias cdtut='    ~/repos/ulhpc_github/tutorials'
+alias cdsys='    ~/repos/work/gitlab.uni.lu/ULHPC/sysadmins'
+alias cdwww='    ~/repos/work/gitlab.uni.lu/www/ulhpc'
+alias cdtools='  ~/repos/work/gitlab.uni.lu/ULHPC/ulhpc-tools'
+alias cddocs='   ~/repos/work/gitlab.uni.lu/ULHPC/documents'
+alias cdfai='    ~/repos/work/gitlab.uni.lu/ULHPC/fai-repo'
+alias cdslides=' ~/repos/work/gitlab.uni.lu/ULHPC/slides'
+alias cdstat='   ~/repos/work/gitlab.uni.lu/ULHPC/statistics'
+alias cdtut='    ~/repos/work/github.com/ULHPC/tutorials'
 
 pass() {
   curdir="$(pwd)"
@@ -108,7 +108,7 @@ pass() {
 
 g5kpass() {
   curdir="$(pwd)"
-  cd ~/repos/inria_gitlab/password5k
+  cd ~/repos/work/gitlab.inria.fr/grid5000/password5k
   source .passrc && /usr/bin/pass $*
   cd "$curdir"
 }
