@@ -179,5 +179,5 @@ fi
 # -------------------------------------------------------------------
 
 [[ -e "$HOME/.config/direnv/init.sh" ]] && . $HOME/.config/direnv/init.sh || true
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+[[ -e "$HOME/.config/pyenv/init.sh"  ]] && . $HOME/.config/pyenv/init.sh || true
 

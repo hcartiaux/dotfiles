@@ -106,6 +106,8 @@ ln -sf $DOTFILES/gnupg/gpg-agent.conf  ~/.gnupg/gpg-agent.conf
     ln -sf $DOTFILES/direnv/direnvrc ~/.config/direnv/direnvrc
     ln -sf $DOTFILES/direnv/envrc    ~/.config/direnv/envrc
     ln -sf $DOTFILES/direnv/init.sh  ~/.config/direnv/init.sh
+    mkdir -p ~/.config/pyenv/
+    ln -sf $DOTFILES/pyenv/init.sh  ~/.config/pyenv/init.sh
 
     ## RVM configuration
 
