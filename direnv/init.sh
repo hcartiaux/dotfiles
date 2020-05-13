@@ -2,7 +2,8 @@
 # See https://direnv.net/
 
 if [ -n "$(which direnv 2>/dev/null)" ]; then
-    eval "$(direnv hook $(basename $SHELL))"
+    current_shell=$(ps -p $$ | awk '$1 != "PID" {print $(NF)}')
+    eval "$(direnv hook $(basename $current_shell))" | true
 
     # See https://github.com/direnv/direnv/wiki/Python#restoring-the-ps
     show_virtual_env() {
