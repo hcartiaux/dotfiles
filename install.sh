@@ -2,10 +2,12 @@
 
 # set -x # Debug
 
-MYLAPTOP=hc-xps13
 MAIL='hyacinthe.cartiaux@free.fr'
 PLAN='World domination!'
 DOTFILES=~/.dotfiles
+MYLAPTOP=hc-xps13
+
+HOST=$(hostname -s)
 
 echo $MAIL > ~/.forward
 echo $PLAN > ~/.plan
