@@ -81,17 +81,6 @@ cat     $DOTFILES/ssh/config{,.g5k} > ~/.ssh/config_g5k
     cat $DOTFILES/ssh/config{,.*}   > ~/.ssh/config
 )
 
-## RVM configuration
-
-ln -sf $DOTFILES/rvm/rvmrc  ~/.rvmrc
-
-## temporary files
-
-ln -sf /tmp ~/.adobe
-ln -sf /tmp ~/.cache
-ln -sf /tmp ~/.macromedia
-ln -sf /tmp ~/.thumbnails
-
 ## wget
 
 if [[ "$(hostname -f | cut -d '.' -f 3)" = "grid5000" ]] ; then
@@ -102,12 +91,16 @@ fi
 
 # GnuPG
 
-
 mkdir -p                               ~/.gnupg
 ln -sf $DOTFILES/gnupg/gpg.conf        ~/.gnupg/gpg.conf
 ln -sf $DOTFILES/gnupg/gpg-agent.conf  ~/.gnupg/gpg-agent.conf
 
+
 [[ "$HOST" = "$MYLAPTOP" ]] && (
+
+    ## RVM configuration
+
+    ln -sf $DOTFILES/rvm/rvmrc  ~/.rvmrc
 
     ## G5K
 
@@ -120,12 +113,12 @@ ln -sf $DOTFILES/gnupg/gpg-agent.conf  ~/.gnupg/gpg-agent.conf
         ln -sf ~/.restfully/api.grid5000.fr.yml ~/.restfully/api.grid5000.fr.yaml
     fi
 
-    ## aurvote
+    ## temporary files
 
-    if [[ -f /etc/arch-release && ! -f ~/.config/aurvote ]]; then
-        mkdir -p ~/.config
-        cp -f $DOTFILES/aurvote ~/.config/aurvote
-    fi
+    ln -sf /tmp ~/.adobe
+    ln -sf /tmp ~/.cache
+    ln -sf /tmp ~/.macromedia
+    ln -sf /tmp ~/.thumbnails
 
 )
 
