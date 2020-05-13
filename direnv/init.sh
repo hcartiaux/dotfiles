@@ -3,7 +3,6 @@
 
 if [ -n "$(which direnv 2>/dev/null)" ]; then
     eval "$(direnv hook $(basename $SHELL))"
-    # export DIRENV_WARN_TIMEOUT=100s
 
     # See https://github.com/direnv/direnv/wiki/Python#restoring-the-ps
     show_virtual_env() {
