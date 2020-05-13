@@ -164,7 +164,6 @@ alias cdgp='cd $GPUPPET_PREFIX/repo && source setup_env.sh && echo "==> Grid5000
 # Ruby & RVM
 # -------------------------------------------------------------------
 
-
 [ -d "/usr/lib/ruby/gems" ] && export PATH="$PATH:$(echo /usr/lib/ruby/gems/*)/bin"
 [ -d "$HOME/.rvm/bin" ]     && export PATH="$PATH:$HOME/.rvm/bin"
 
@@ -174,4 +173,10 @@ if [[ $(which ruby 2>/dev/null | grep -c "$HOME/.rvm") != 0 ]]; then
   # Get off my lawn
   rvm reset
 fi
+
+# -------------------------------------------------------------------
+# direnv
+# -------------------------------------------------------------------
+
+[[ -e "$HOME/.config/direnv/init.sh" ]] && . $HOME/.config/direnv/init.sh || true
 
