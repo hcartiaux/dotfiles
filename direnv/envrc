@@ -1,11 +1,11 @@
 # -*- mode: sh; -*-
 # (rootdir)/.envrc : local direnv configuration file
-# Assumes the presence of '~/.config/direnv/direnvrc' from  
+# Assumes the presence of '~/.config/direnv/direnvrc' from
 #    https://github.com/Falkor/dotfiles/blob/master/direnv/direnvrc
 #
 # Grab the latest version of this file from
 #      https://github.com/Falkor/dotfiles/blob/master/direnv/envrc
-#  
+#
 # Quick installation of this file for your project:
 #    cd /path/to/projectdir
 #    curl -o .envrc https://raw.githubusercontent.com/Falkor/dotfiles/master/direnv/envrc
@@ -18,4 +18,4 @@ use python ${pyversion}
 # Create the virtualenv if not yet done
 layout virtualenv ${pyversion} ${pvenv}
 # activate it
-layout activate ${pvenv} 
+layout activate ${pvenv}
