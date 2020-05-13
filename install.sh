@@ -98,6 +98,13 @@ ln -sf $DOTFILES/gnupg/gpg-agent.conf  ~/.gnupg/gpg-agent.conf
 
 [[ "$HOST" = "$MYLAPTOP" ]] && (
 
+    ## direnv / pyenv configuration
+
+    mkdir -p ~/.config/direnv/
+    ln -sf $DOTFILES/direnv/direnvrc ~/.config/direnv/direnvrc
+    ln -sf $DOTFILES/direnv/envrc    ~/.config/direnv/envrc
+    ln -sf $DOTFILES/direnv/init.sh  ~/.config/direnv/init.sh
+
     ## RVM configuration
 
     ln -sf $DOTFILES/rvm/rvmrc  ~/.rvmrc
