@@ -175,8 +175,9 @@ if [[ $(which ruby 2>/dev/null | grep -c "$HOME/.rvm") != 0 ]]; then
 fi
 
 # -------------------------------------------------------------------
-# direnv
+# direnv, pyenv
 # -------------------------------------------------------------------
 
 [[ -e "$HOME/.config/direnv/init.sh" ]] && . $HOME/.config/direnv/init.sh || true
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
