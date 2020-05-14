@@ -21,6 +21,8 @@
     path = .gitconfig-personal
 [includeIf "gitdir:~/repos/work/"]
     path = .gitconfig-work
+[includeIf "gitdir:~/git/"]
+    path = .gitconfig-work
 
 [alias]
   up = pull origin
