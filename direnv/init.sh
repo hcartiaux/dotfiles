@@ -8,7 +8,7 @@ if [ -n "$(which direnv 2>/dev/null)" ]; then
     # See https://github.com/direnv/direnv/wiki/Python#restoring-the-ps
     show_virtual_env() {
         if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
-            echo "($(basename $VIRTUAL_ENV))"
+            echo "($(basename $VIRTUAL_ENV)) "
         fi
     }
     if [[ -n ${ZSH_VERSION-} ]]; then
@@ -17,5 +17,5 @@ if [ -n "$(which direnv 2>/dev/null)" ]; then
         export -f show_virtual_env
     fi
 
-    PS1='$(show_virtual_env) '$PS1
+    PS1='$(show_virtual_env)'$PS1
 fi
