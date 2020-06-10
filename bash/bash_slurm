@@ -23,62 +23,7 @@ __slurm_ps1_remaining_time() {
 
 alias sql=' squeue -la'
 alias sqlu='squeue -la -u $USER'
-alias ssj=' scontrol show job'
-alias sp='  sprio'
-alias spl=' sprio -l'
 alias sd='  sinfo -d'
 alias i='   srun -p interactive --qos qos-interactive --time=5:0 --pty bash -i'
 alias ix='  srun -p interactive --qos qos-interactive --time=5:0 --x11 --pty bash -i'
 
-sjoin() {
-  if [[ -z $1 ]]; then
-    echo "Job ID not given."
-  else
-    JOBID=$1
-    [[ -n $2 ]] && NODE="-w $2"
-    srun --jobid "$JOBID" "$NODE" --pty bash -i
-  fi
-}
-
-irisstat(){
-  # -c to show compute only, -s to show storage only, (-a is default == all)
-  OPT=${1:-"-a"}
-  if [[ "$OPT" == "-c" || "$OPT" == "-a" ]]; then
-          sinfo -h --format=%C | awk -F '/' '{printf "Utilization: %.2f%%\n", $1/$4*100}'
-          printf "%0.s-" {1..50} ; printf "\n"
-          printf "%34s\n" "alloc/idle/other/total"
-          printf "%11s %s\n" "IRIS" "$(sinfo -h --format=%C | paste -sd " ")"
-          for p in batch bigmem gpu interactive long; do
-                if [[ "$p" == "gpu" ]]; then
-                        #NGPUS=$(sinfo -h -N -p gpu -o %G | cut -d : -f3 | paste -sd + | bc)
-                        NGPUS=96
-                        NGPUSUSED=$(squeue -h -t R -p gpu -o "%b*%D" | grep gpu | cut -d : -f 2 | sed 's/gpu/1/g'  | paste -sd + |bc)
-                        gpudata=" GPU: $NGPUSUSED/$NGPUS"
-                else
-                        gpudata=""
-                fi
-                usagedata=$(sinfo -h -p $p --format=%C | paste -sd " ")
-                printf "%11s %s%s\n" $p "$usagedata" "$gpudata"
-          done
-          printf "%0.s-" {1..50} ; printf "\n"
-          echo "Drained nodes: $(sinfo -h -t drain -o '%D')"
-          printf "%0.s-" {1..50} ; printf "\n"
-  fi
-  [[ "$OPT" == "-s" || "$OPT" == "-a" ]] && (df -Th | egrep 'Filesystem|nfs|gpfs|lustre' | awk '{printf("%20s %5s %5s %5s %5s\n", $7,$3,$4,$5,$6)}');
-  [[ "$OPT" == "-s" || "$OPT" == "-a" ]] && (df -Thi | egrep 'Filesystem|nfs|gpfs|lustre' | awk '{printf("%20s %5s %5s %5s %5s\n", $7,$3,$4,$5,$6)}');
-  printf "%0.s-" {1..50} ; printf "\n"
-  printf "Jobs status: \n"
-  squeue -h -o "%t,%r" | sort | uniq -c | sort -r
-}
-
-irisqosusage(){
-        printf "%20s %8s %9s %9s\n" "QOS" "CPU Max" "CPU Used" "CPU Free"
-        for qosdetails in $(sacctmgr -n -P list qos format=name,grptres | grep ^qos- | sed '/|$/d;s/cpu=//g' | sort); do
-                qos=$(echo $qosdetails | cut -d '|' -f 1)
-                qoscpumax=$(echo $qosdetails | cut -d '|' -f 2)
-                qoscpuused=$(squeue -h --qos $qos -t R -o %C | paste -sd + | bc)
-                qoscpuused=${qoscpuused:=0}
-                qoscpufree=$(echo "$qoscpumax-$qoscpuused" | bc)
-                printf "%20s %8s %9s %9s\n" "$qos" "$qoscpumax" "$qoscpuused" "$qoscpufree"
-        done
-}
