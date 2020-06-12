@@ -80,8 +80,8 @@
 [mergetool]
 	prompt = false
 
-[http]
-  sslverify = false
+#[http]
+#	sslverify = false
 
 [push]
 	default = matching
