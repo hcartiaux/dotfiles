@@ -5,7 +5,7 @@
 MAIL='hyacinthe.cartiaux@free.fr'
 PLAN='World domination!'
 DOTFILES=~/.dotfiles
-MYLAPTOP=hc-xps13
+MYLAPTOP=hc-xps15
 
 HOST=$(hostname -s)
 
