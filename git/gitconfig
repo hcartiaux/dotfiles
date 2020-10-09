@@ -30,7 +30,7 @@
 	st = status
 	df = diff
 	ci = commit
-	r = branch
+	br = branch
 	w  = whatchanged --abbrev-commit
 	ls = ls-files
 	gr = log --graph --oneline --decorate
