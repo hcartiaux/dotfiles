@@ -83,6 +83,9 @@ cpold() {
 # personnal desktop aliases
 alias ssha="ssh-add"
 
+# Git aliases
+alias cdroot='git rev-parse && cd ./$(git rev-parse --show-cdup)'
+
 alias cdcontrol='~/repos/work/gitlab.uni.lu/Puppet/control-repo'
 alias cdpuppet=' ~/repos/work/gitolite.hpc/puppet-repo'
 alias cdstor='   ~/repos/work/gitolite.hpc/storage-repo'
