@@ -86,17 +86,16 @@ alias ssha="ssh-add"
 # Git aliases
 alias cdroot='git rev-parse && cd ./$(git rev-parse --show-cdup)'
 
-alias cdcontrol='~/repos/work/gitlab.uni.lu/Puppet/control-repo'
-alias cdpuppet=' ~/repos/work/gitolite.hpc/puppet-repo'
+alias cdansible='~/repos/work/gitlab.uni.lu/Ansible/control-repo'
+alias cdpuppet=' ~/repos/work/gitlab.uni.lu/Puppet/control-repo'
 alias cdstor='   ~/repos/work/gitolite.hpc/storage-repo'
-alias cdsyso='   ~/repos/work/gitolite.hpc/sysadmins-repo'
 alias cdsys='    ~/repos/work/gitlab.uni.lu/ULHPC/sysadmins'
 alias cdwww='    ~/repos/work/gitlab.uni.lu/www/ulhpc'
 alias cdtools='  ~/repos/work/gitlab.uni.lu/ULHPC/ulhpc-tools'
+alias cdslurm='  ~/repos/work/gitlab.uni.lu/ULHPC/slurm'
 alias cddocs='   ~/repos/work/gitlab.uni.lu/ULHPC/documents'
-alias cdfai='    ~/repos/work/gitlab.uni.lu/ULHPC/fai-repo'
 alias cdslides=' ~/repos/work/gitlab.uni.lu/ULHPC/slides'
-alias cdstat='   ~/repos/work/gitlab.uni.lu/ULHPC/statistics'
+alias cdreport=' ~/repos/work/gitlab.uni.lu/ULHPC/reporting'
 alias cdtut='    ~/repos/work/github.com/ULHPC/tutorials'
 
 alias cdpass='   ~/repos/work/gitolite.hpc/passwords-repo'
