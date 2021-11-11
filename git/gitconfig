@@ -33,6 +33,7 @@
 	br = branch
 	w  = whatchanged --abbrev-commit
 	ls = ls-files
+	gg = log  --graph --pretty=format:'%C(auto)%h -%d %s %Cgreen(%cr)%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --max-count=20
 	gr = log --graph --oneline --decorate
 	lol = log --graph --pretty=format:'%C(yellow)%h%Creset%C(cyan)%C(bold)%d%Creset %C(cyan)(%cd)%Creset %C(green)%cn%Creset %s' --date=format:'%Y-%m-%d %H:%M:%S'
 	unstage     = reset HEAD --
@@ -94,3 +95,6 @@
 
 [pull]
 	rebase = true
+
+[credential]
+	helper = cache
