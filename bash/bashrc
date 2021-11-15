@@ -221,9 +221,13 @@ __set_my_prompt() {
   PS1="${PS1_SCREEN}$(__colorized_exit_status) ${LIGHT_CYAN}\t${RESET_COLOR} ${COLOR_USER}\u${RESET_COLOR}@${CYAN_UNDERLINE}\h${RESET_COLOR}(${PS1_EXTRAINFO})${RED}\$(__slurm_ps1_remaining_time)\$(__oar_ps1_remaining_time)${RESET_COLOR}${GREEN}\$(__git_ps1 \" (%s)\")\$(__svn_ps1)${RESET_COLOR} ${BLUE}\W${RESET_COLOR} ${P} "
 }
 
+__set_training_prompt() {
+    PS1="$(__colorized_exit_status)${RESET_COLOR} \h${job_info} ${BLUE}\W${RESET_COLOR}${GREEN}\$(__git_ps1 \" (%s)\")${RESET_COLOR} \$ "
+}
+
 # Set the color prompt by default when interactive
 if [ -n "$PS1" ]; then
-  __set_my_prompt
+  __set_training_prompt
   export PS1
 fi
 
