@@ -101,7 +101,7 @@ alias cdtut='    ~/repos/work/github.com/ULHPC/tutorials'
 alias cdpass='   ~/repos/work/gitolite.hpc/passwords-repo'
 
 export PASSWORD_STORE_DIR=~/repos/work/gitolite.hpc/passwords-repo
-export PASSWORD_STORE_SIGNING_KEY=1A53FD6E09A44DBA7A9FD72B5D08BCDD4F156AD7
+export PASSWORD_STORE_SIGNING_KEY=62C5D78FE715CF7CA974B5AF37183CEF550DF40B
 
 g5kpass() {
   curdir="$(pwd)"
