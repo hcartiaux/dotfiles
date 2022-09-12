@@ -161,4 +161,7 @@ alias -g NE="2> /dev/null" # Redirect stderr to /dev/null
 #
 
 eval $(dircolors --sh)
-export GREP_COLOR=31
+export GREP_COLORS='mt=31'
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
