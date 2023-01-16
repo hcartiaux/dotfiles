@@ -27,5 +27,5 @@ alias sd='  sinfo -d'
 alias i='   srun -p interactive --qos qos-interactive --time=5:0 --pty bash -i'
 alias ix='  srun -p interactive --qos qos-interactive --time=5:0 --x11 --pty bash -i'
 scol() {
-  sinfo -o "%E|%T|%100N" -p all $* | grep -e '\(drain\|down\)' | column -t -s'|' | tail -n+2 | sort
+  sinfo -o "%E|%T|%100N" -p all $* | grep -e '\(drain\|down\)' | column -t -s'|' | sort
 }
