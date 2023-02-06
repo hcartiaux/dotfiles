@@ -1,0 +1,2 @@
+HISTFILE="$HOME/.ksh_history"
+HISTSIZE=10000
