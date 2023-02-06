@@ -113,17 +113,6 @@ ln -sf $DOTFILES/gnupg/gpg-agent.conf  ~/.gnupg/gpg-agent.conf
 
     ln -sf $DOTFILES/rvm/rvmrc  ~/.rvmrc
 
-    ## G5K
-
-    echo "ssh_config_files: '~/.ssh/config_g5k'" > ~/.net-admin.yaml
-    touch ~/.password-store
-
-    if [[ ! -d ~/.restfully ]]; then
-        mkdir ~/.restfully
-        cp $DOTFILES/g5k/restfully/api.grid5000.fr.yml ~/.restfully
-        ln -sf ~/.restfully/api.grid5000.fr.yml ~/.restfully/api.grid5000.fr.yaml
-    fi
-
     ## temporary files
 
     ln -sf /tmp ~/.adobe
@@ -131,10 +120,5 @@ ln -sf $DOTFILES/gnupg/gpg-agent.conf  ~/.gnupg/gpg-agent.conf
     ln -sf /tmp ~/.macromedia
     ln -sf /tmp ~/.thumbnails
 
-)
-
-[[ "$WORK" != "" ]] && (
-    mkdir -p $WORK/.local
-    ln -sf $WORK/.local ~/.local
 )
 
