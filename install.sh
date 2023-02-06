@@ -43,6 +43,10 @@ if [[ ! -f ~/.git-prompt.sh ]] ; then
       https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 fi
 
+# ksh
+
+ln -sf $DOTFILES/ksh/kshrc                  ~/.kshrc
+
 ## vim
 
 mkdir -p ~/.vim
