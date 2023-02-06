@@ -18,7 +18,3 @@ Host *.g5k *.grid5000.fr
   User g5kadmin
   ProxyCommand ssh g5kadmin@g5k "nc -q 0 `basename %h .g5k` %p"
 
-# Gforge inria
-Host scm.gforge.inria.fr
-  User hcartiaux
-

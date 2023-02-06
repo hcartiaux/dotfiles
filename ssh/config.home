@@ -1,26 +1,22 @@
-#######
-## VPS OVH
-#######
-
-Host 0xf.fr
-  User hcartiaux
-  Port 443
-
 ########
-## AMD64 Box / Deepspace
+# Lab
 ########
 
-Host deepspace deepspace.0xf.fr
+Host dn42
   User hcartiaux
-  Port 993
-  Hostname deepspace.0xf.fr
+  Hostname 46.23.91.207
+  Port 22
+Host dn42-host
+  User hcartiaux
+  Hostname server14.openbsd.amsterdam
+  Port 31415
 
 ########
 ## Nas
 ########
 
-Host disco disco.0xf.fr
+Host disco
   User admin
   Port 143
-  Hostname disco.0xf.fr
+  Hostname 192.168.1.40
 
