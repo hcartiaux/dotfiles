@@ -89,11 +89,7 @@ cat     $DOTFILES/ssh/config{,.g5k} > ~/.ssh/config_g5k
 
 ## wget
 
-if [[ "$(hostname -f | cut -d '.' -f 3)" = "grid5000" ]] ; then
-    ln -sf $DOTFILES/wget/wgetrc.g5k ~/.wgetrc
-else
-    ln -sf $DOTFILES/wget/wgetrc     ~/.wgetrc
-fi
+ln -sf $DOTFILES/wget/wgetrc ~/.wgetrc
 
 # GnuPG
 
