@@ -120,5 +120,5 @@ ln -sf $DOTFILES/gnupg/gpg-agent.conf  ~/.gnupg/gpg-agent.conf
     ln -sf /tmp ~/.macromedia
     ln -sf /tmp ~/.thumbnails
 
-)
+) || true
 
