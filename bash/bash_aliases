@@ -7,17 +7,17 @@
 # ----------------------------------------------------------------------
 
 # we always pass these to ls(1)
-LS_COMMON="-F --group-directories-first -h"
+LS_COMMON="-F -h"
 
 if [ "$UNAME" = Darwin ]; then
   # check if you're using gnu core-utils then use --color
   if [[ "$(which ls)" == "/opt/local/bin/ls" ]]; then
-    LS_COMMON="$LS_COMMON --color"
+    LS_COMMON="$LS_COMMON --group-directories-first --color"
   else
     LS_COMMON="$LS_COMMON -G"
   fi
 elif [ "$UNAME" = Linux ]; then
-  LS_COMMON="$LS_COMMON --color"
+  LS_COMMON="$LS_COMMON --group-directories-first --color"
 fi
 
 # setup the main ls alias if we've established common args
