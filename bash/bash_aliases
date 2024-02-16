@@ -88,16 +88,15 @@ alias cdroot='git rev-parse && cd ./$(git rev-parse --show-cdup)'
 
 alias cdansible='~/repos/work/gitlab.uni.lu/Ansible/control-repo'
 alias cdpuppet=' ~/repos/work/gitlab.uni.lu/Puppet/control-repo'
-alias cdstor='   ~/repos/work/gitolite.hpc/storage-repo'
 alias cdsys='    ~/repos/work/gitlab.uni.lu/ULHPC/sysadmins'
+alias cdwiki='   ~/repos/work/gitlab.uni.lu/ULHPC/sysadmins.wiki'
 alias cdwww='    ~/repos/work/gitlab.uni.lu/www/ulhpc'
 alias cdtools='  ~/repos/work/gitlab.uni.lu/ULHPC/ulhpc-tools'
 alias cdslurm='  ~/repos/work/gitlab.uni.lu/ULHPC/slurm'
 alias cddocs='   ~/repos/work/gitlab.uni.lu/ULHPC/documents'
-alias cdslides=' ~/repos/work/gitlab.uni.lu/ULHPC/slides'
-alias cdreport=' ~/repos/work/gitlab.uni.lu/ULHPC/reporting'
+alias cdudocs='  ~/repos/work/github.com/ULHPC/ulhpc-docs'
 alias cdtut='    ~/repos/work/github.com/ULHPC/tutorials'
-
+alias cdstor='   ~/repos/work/gitolite.hpc/storage-repo'
 alias cdpass='   ~/repos/work/gitolite.hpc/passwords-repo'
 
 export PASSWORD_STORE_DIR=~/repos/work/gitolite.hpc/passwords-repo
