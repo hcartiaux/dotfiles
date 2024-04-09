@@ -86,6 +86,8 @@ alias ssha="ssh-add"
 # Git aliases
 alias cdroot='git rev-parse && cd ./$(git rev-parse --show-cdup)'
 
+alias cdnbsdna=' ~/repos/perso/github.com/hcartiaux/ansible'
+alias cdnbsdnt=' ~/repos/perso/github.com/hcartiaux/terraform'
 alias cdansible='~/repos/work/gitlab.uni.lu/Ansible/control-repo'
 alias cdpuppet=' ~/repos/work/gitlab.uni.lu/Puppet/control-repo'
 alias cdsys='    ~/repos/work/gitlab.uni.lu/ULHPC/sysadmins'
@@ -96,10 +98,10 @@ alias cdslurm='  ~/repos/work/gitlab.uni.lu/ULHPC/slurm'
 alias cddocs='   ~/repos/work/gitlab.uni.lu/ULHPC/documents'
 alias cdudocs='  ~/repos/work/github.com/ULHPC/ulhpc-docs'
 alias cdtut='    ~/repos/work/github.com/ULHPC/tutorials'
-alias cdstor='   ~/repos/work/gitolite.hpc/storage-repo'
-alias cdpass='   ~/repos/work/gitolite.hpc/passwords-repo'
+alias cdstor='   ~/repos/work/hpc-git.uni.lu/ULHPC/storage-repo'
+alias cdpass='   ~/repos/work/hpc-git.uni.lu/ULHPC/passwords-repo'
 
-export PASSWORD_STORE_DIR=~/repos/work/gitolite.hpc/passwords-repo
+export PASSWORD_STORE_DIR=~/repos/work/hpc-git.uni.lu/ULHPC/passwords-repo
 export PASSWORD_STORE_SIGNING_KEY=62C5D78FE715CF7CA974B5AF37183CEF550DF40B
 
 g5kpass() {
