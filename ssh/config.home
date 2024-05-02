@@ -1,17 +1,4 @@
 ########
-# Lab
-########
-
-Host dn42
-  User hcartiaux
-  Hostname 46.23.91.207
-  Port 22
-Host dn42-host
-  User hcartiaux
-  Hostname server14.openbsd.amsterdam
-  Port 31415
-
-########
 ## Nas
 ########
 
