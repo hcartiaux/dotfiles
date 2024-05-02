@@ -23,6 +23,10 @@
 	path = .gitconfig-work
 [includeIf "gitdir:~/git/"]
 	path = .gitconfig-work
+[includeIf "gitdir:~/git/"]
+	path = .gitconfig-work
+[includeIf "gitdir:~/.gpuppet/"]
+	path = .gitconfig-work
 
 [alias]
 	up = pull origin
