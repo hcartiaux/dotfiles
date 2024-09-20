@@ -101,12 +101,17 @@ alias cdstor='   cd ~/repos/work/hpc-git.uni.lu/ULHPC/storage-repo'
 alias cdpass='   cd ~/repos/work/hpc-git.uni.lu/ULHPC/passwords-repo'
 alias cdwww='    cd ~/repos/work/gitlab.com/uniluxembourg/hpc/www/ulhpc-2.0'
 
-export PASSWORD_STORE_DIR=~/repos/work/hpc-git.uni.lu/ULHPC/passwords-repo
-export PASSWORD_STORE_SIGNING_KEY=62C5D78FE715CF7CA974B5AF37183CEF550DF40B
+pass() {
+  export PASSWORD_STORE_DIR=~/repos/work/hpc-git.uni.lu/ULHPC/passwords-repo
+  export PASSWORD_STORE_SIGNING_KEY=62C5D78FE715CF7CA974B5AF37183CEF550DF40B
+  /usr/bin/pass $*
+}
 
 g5kpass() {
   curdir="$(pwd)"
   cd ~/repos/work/gitlab.inria.fr/grid5000/password5k
+  unset PASSWORD_STORE_SIGNING_KEY
   source .passrc && /usr/bin/pass $*
+  export GNUPGHOME=~/.gnupg
   cd "$curdir"
 }
