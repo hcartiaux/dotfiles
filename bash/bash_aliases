@@ -115,3 +115,16 @@ g5kpass() {
   export GNUPGHOME=~/.gnupg
   cd "$curdir"
 }
+
+
+# ----------------------------------------------------------------------
+#  Archlinux utils
+# ----------------------------------------------------------------------
+
+pkgbuild_chroot() {
+  [[ ! -f PKGBUILD ]] && exit 1
+  CHROOT=~/chroot
+  mkdir -p "$CHROOT"
+  mkarchroot "$CHROOT/root" base-devel
+  makechrootpkg -c -r "$CHROOT"
+}
