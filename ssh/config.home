@@ -3,14 +3,12 @@ Host disco
   Hostname 192.168.1.40
   Port 143
 
-Host srv.nbsdn ns1.nbsdn
-  Hostname ns1.nbsdn.fr.eu.org
+Host nbsdn
+  Hostname srv.nbsdn.fr.eu.org
+  Port 443
   ProxyCommand none
-Host boxybsd1.nbsdn ns2.nbsdn
-  Hostname ns2.nbsdn.fr.eu.org
-  ProxyCommand none
+  AddressFamily inet
 
 Host *.nbsdn
-  User hcartiaux
   Port 222
-  ProxyCommand ssh srv.nbsdn -W `basename %h .nbsdn`.nbsdn.fr.eu.org:%p
+  ProxyCommand ssh nbsdn -W `basename %h .nbsdn`.nbsdn.fr.eu.org:%p
