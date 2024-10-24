@@ -26,8 +26,6 @@
 # this program.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-source /etc/profile
-
 ##################################################################
 ## Basic variables
 #
@@ -57,6 +55,14 @@ unsetopt list_ambiguous
 # Auto-correct
 unsetopt correct_all
 setopt correct
+
+# Behave like bash and don't throw errors when file globs don't match
+setopt NULL_GLOB
+
+##################################################################
+## Source external configuration
+#
+source /etc/profile
 
 # This will set the default prompt
 source ~/.zsh/prompt_hyacinthe_setup
