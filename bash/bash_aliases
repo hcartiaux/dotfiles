@@ -133,7 +133,7 @@ sysclean() {
 
 pkgbuild_up() {
   [[ ! -f PKGBUILD ]] && exit 1
-  version=$1
+  VERSION=$1
   sed -i "s/^pkgver=.*$/pkgver=$VERSION/" PKGBUILD
   updpkgsums
   makepkg --printsrcinfo >! .SRCINFO
@@ -149,6 +149,6 @@ pkgbuild_chroot() {
 
 pkgbuild_commit() {
   [[ ! -f PKGBUILD ]] && exit 1
-  version=$1
+  VERSION=$1
   git commit -m "Update to $VERSION"
 }
