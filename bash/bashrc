@@ -99,6 +99,9 @@ unset bash bmajor bminor
 # BASH HISTORY
 # ----------------------------------------------------------------------
 
+# Append to HISTFILE instead of overwriting
+shopt -s histappend
+
 # Increase the history size
 HISTSIZE=10000
 HISTFILESIZE=20000
