@@ -56,6 +56,9 @@ case "$0" in
   *)  unset LOGIN ;;
 esac
 
+test -n "$BASH_VERSION" && SHELLNAME=bash
+test -n "$ZSH_VERSION"  && SHELLNAME=zsh
+
 # ----------------------------------------------------------------------
 # PATH
 # ----------------------------------------------------------------------
@@ -170,3 +173,8 @@ if [[ $(which ruby 2>/dev/null | grep -c "$HOME/.rvm") != 0 ]]; then
   # Get off my lawn
   rvm reset
 fi
+
+# -------------------------------------------------------------------
+# Scaleway CLI autocomplete initialization.
+# -------------------------------------------------------------------
+[ -n "$SHELLNAME" ] && eval "$(scw autocomplete script shell=$SHELLNAME)"
