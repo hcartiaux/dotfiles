@@ -177,4 +177,6 @@ fi
 # -------------------------------------------------------------------
 # Scaleway CLI autocomplete initialization.
 # -------------------------------------------------------------------
-[ -n "$SHELLNAME" ] && eval "$(scw autocomplete script shell=$SHELLNAME)"
+if [ -n "$SHELLNAME" ] && command -v scw 2>&1 >/dev/null; then
+  eval "$(scw autocomplete script shell=$SHELLNAME)"
+fi
