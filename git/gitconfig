@@ -17,6 +17,9 @@
 #  - http://stackoverflow.com/questions/267761/what-does-your-gitconfig-contain
 #  - https://github.com/Falkor/dotfiles
 
+[user]
+	email = hyacinthe.cartiaux@uni.lu
+	name  = Hyacinthe Cartiaux
 [includeIf "gitdir:~/"]
 	path = .gitconfig-personal
 [includeIf "gitdir:~/repos/work/"]
