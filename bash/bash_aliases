@@ -86,8 +86,8 @@ alias ssha="ssh-add"
 # Git aliases
 alias cdroot='git rev-parse && cd ./$(git rev-parse --show-cdup)'
 
-alias cdnbsdna=' cd ~/repos/perso/github.com/hcartiaux/ansible'
-alias cdnbsdnt=' cd ~/repos/perso/github.com/hcartiaux/terraform'
+alias cdflapa=' cd ~/repos/perso/github.com/hcartiaux/ansible'
+alias cdflapt=' cd ~/repos/perso/github.com/hcartiaux/terraform'
 alias cdudocs='  cd ~/repos/work/github.com/ULHPC/ulhpc-docs'
 alias cdtut='    cd ~/repos/work/github.com/ULHPC/tutorials'
 alias cdslurm='  cd ~/repos/work/hpc-git.uni.lu/ULHPC/slurm'
