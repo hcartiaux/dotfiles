@@ -3,12 +3,12 @@ Host disco
   Hostname 192.168.1.40
   Port 143
 
-Host nbsdn
-  Hostname srv.nbsdn.fr.eu.org
+Host flap42
+  Hostname srv.flap42.eu
   Port 443
   ProxyCommand none
   AddressFamily inet
 
-Host *.nbsdn
+Host *.flap
   Port 222
-  ProxyCommand ssh nbsdn -W `basename %h .nbsdn`.nbsdn.fr.eu.org:%p
+  ProxyCommand ssh flap42 -W `basename %h .flap`.flap42.eu:%p
