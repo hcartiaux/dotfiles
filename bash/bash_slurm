@@ -27,5 +27,5 @@ alias sd='  sinfo -d'
 alias i='   srun -p interactive --qos qos-interactive --time=5:0 --pty bash -i'
 alias ix='  srun -p interactive --qos qos-interactive --time=5:0 --x11 --pty bash -i'
 skol() {
-  sinfo -M all -o "%E|%T|%N" -p all $* | grep -e '\(drain\|down\|boot\|inval\)' -e '\*' | column -t -s'|' | sort
+  sinfo -M all -o "%E|%T|%N" -p all $* | grep -e '\(drain\|down\|boot\|inval\|fail\)' -e '\*' | column -t -s'|' | sort
 }
