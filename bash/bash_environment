@@ -98,7 +98,7 @@ export GNUPGHOME=~/.gnupg
 
 unset SSH_ASKPASS
 unset SSH_AGENT_PID
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+test -z "$SSH_AUTH_SOCK" && export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 # Tsocks config
 export TSOCKS_CONF_FILE=~/.dotfiles/tsocks/tsocks.conf
