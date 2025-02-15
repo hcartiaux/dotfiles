@@ -113,8 +113,6 @@ bindkey "\e\e[C" forward-word
 bindkey "\e\e[D" backward-word
 bindkey '5D' emacs-backward-word
 bindkey '5C' emacs-forward-word
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
 
 bindkey "^H" backward-delete-word
 # for rxvt
@@ -128,6 +126,13 @@ bindkey "\e[H" beginning-of-line
 bindkey "\e[F" end-of-line
 # completion in the middle of a line
 bindkey '^i' expand-or-complete-prefix
+
+# SteamDeck sorcery
+bindkey '^R' history-incremental-search-backward
+bindkey "^A" beginning-of-line
+bindkey "^E" end-of-line
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
 
 ##################################################################
 ## HISTORY
