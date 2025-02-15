@@ -98,7 +98,7 @@ zstyle ':completion:*:cd:*' ignore-parents parent pwd
 
 ##################################################################
 ## Key bindings
-## http://mundy.yazzy.org/unix/zsh.php
+## https://web.archive.org/web/20071228122843/http://mundy.yazzy.org/unix/zsh.php
 ## http://www.zsh.org/mla/users/2000/msg00727.html
 #
 typeset -g -A key
@@ -108,11 +108,13 @@ bindkey "\e[5~" beginning-of-history
 bindkey "\e[6~" end-of-history
 bindkey "\e[3~" delete-char
 bindkey "\e[2~" quoted-insert
+
 bindkey "\e\e[C" forward-word
 bindkey "\e\e[D" backward-word
-
 bindkey '5D' emacs-backward-word
 bindkey '5C' emacs-forward-word
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
 
 bindkey "^H" backward-delete-word
 # for rxvt
