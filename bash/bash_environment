@@ -15,6 +15,22 @@ LC_ALL="en_US.UTF-8"
 export LANG LANGUAGE LC_CTYPE LC_ALL
 
 # ----------------------------------------------------------------------
+# PATH
+# ----------------------------------------------------------------------
+
+# we want the various sbins on the path along with /usr/local/bin
+export PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
+export PATH="/usr/local/bin:$PATH"
+
+# put gettext tools on the path
+[ -d "/usr/lib/gettext/" ] && export PATH="$PATH:/usr/lib/gettext"
+
+# put ~/.local/bin & ~/bin on PATH if it exists
+[ -d "$HOME/.local/bin" ]  && export PATH="$PATH:$HOME/.local/bin"
+[ -d "$HOME/bin" ]         && export PATH="$PATH:$HOME/bin"
+
+
+# ----------------------------------------------------------------------
 #  SYSTEM INFO
 # ----------------------------------------------------------------------
 
@@ -58,18 +74,6 @@ esac
 
 test -n "$BASH_VERSION" && SHELLNAME=bash
 test -n "$ZSH_VERSION"  && SHELLNAME=zsh
-
-# ----------------------------------------------------------------------
-# PATH
-# ----------------------------------------------------------------------
-
-# we want the various sbins on the path along with /usr/local/bin
-export PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
-export PATH="/usr/local/bin:$PATH"
-
-# put ~/.local/bin & ~/bin on PATH if it exists
-[ -d "$HOME/.local/bin" ] && export PATH="$PATH:$HOME/.local/bin"
-[ -d "$HOME/bin" ]        && export PATH="$PATH:$HOME/bin"
 
 # ----------------------------------------------------------------------
 # EDITOR & PAGER
