@@ -127,7 +127,7 @@ sysupd() {
 }
 
 sysclean() {
-  pacman -Qtdq | xargs -I {} sudo pacman -Rns $* {}
+  pacman -Qtdq | xargs -I {} sudo pacman -Rns --noconfirm $* {}
   yes | sudo pacman -Scc
 }
 
