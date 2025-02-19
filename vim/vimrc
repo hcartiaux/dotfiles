@@ -20,7 +20,8 @@
 " * http://vim.wikia.com/wiki/Omni_completion
 " * http://amix.dk/vim/vimrc.html
 
-set nocompatible
+" Load vim defaults
+source $VIMRUNTIME/defaults.vim
 
 """"""""""""
 " => General
@@ -48,17 +49,8 @@ set wildmode=list:longest,full
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc,*.obj,.git,*.rbc
 
-" Use the mouse
-set mouse=a
-
-" Always show current position
-set ruler
-
 " A buffer becomes hidden when it is abandoned
 set hid
-
-" Show line numbers
-" set number
 
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
@@ -72,9 +64,6 @@ set smartcase
 
 " Highlight search results
 set hlsearch
-
-" Makes search act like search in modern browsers
-set incsearch
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
@@ -94,9 +83,6 @@ set novisualbell
 set t_vb=
 set tm=500
 
-" Keep 1 line when scrolling
-set scrolloff=1
-
 " Try to preserve column where cursor is positioned during motion commands
 set nostartofline
 
@@ -105,11 +91,6 @@ set laststatus=2
 
 " Set the status line format
 set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
-
-
-" Show information about the current command going on
-set showcmd
-
 
 """"""""""""""""""""""
 " => Colors and Fonts
