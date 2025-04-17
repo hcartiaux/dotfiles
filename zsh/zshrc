@@ -151,6 +151,11 @@ if [ -f ~/.bash_environment ]; then
   . ~/.bash_environment
 fi
 
+if [ -f ~/.bash_private ]; then
+  . ~/.bash_private
+fi
+
+
 ##################################################################
 ## Aliases
 #
