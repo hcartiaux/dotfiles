@@ -10,6 +10,7 @@
 
 Host *
     Protocol            2
+    AddKeysToAgent      yes
     Compression         yes
     ConnectTimeout      15
     ServerAliveInterval 60
