@@ -4,18 +4,22 @@ Host disco
   Port 143
 
 Host flap42
+  User hcartiaux
   Hostname srv.flap42.eu
   Port 222
 
 Host flip42
+  User hcartiaux
   Hostname srv.flap42.eu
   AddressFamily inet
   Port 443
 
 Host *.flap # ipv6
+  User hcartiaux
   Port 222
   ProxyCommand ssh flap42 -W `basename %h .flap`.flap42.eu:%p
 
 Host *.flip # ipv4 + port 443
+  User hcartiaux
   Port 222
   ProxyCommand ssh flip42 -W `basename %h .flip`.flap42.eu:%p

@@ -81,10 +81,10 @@ ln -sf $DOTFILES/git/gitconfig-personal ~/.gitconfig-personal
 
 mkdir -p  ~/.ssh/sockets
 ln  -sf $DOTFILES/ssh/sshpubkey       ~/.ssh/sshpubkey
-cat     $DOTFILES/ssh/config.*      > ~/.ssh/config.perso
-[[ ! -f ~/.ssh/config ]] && (
-    cat $DOTFILES/ssh/config{,.*}   > ~/.ssh/config
+[[ ! -e ~/.ssh/config ]] && (
+    ln -s $DOTFILES/ssh/config      ~/.ssh/
 )
+ln -s $DOTFILES/ssh/config.home ~/.ssh/
 
 ## wget
 

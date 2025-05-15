@@ -9,7 +9,6 @@
 
 
 Host *
-    Protocol            2
     AddKeysToAgent      yes
     Compression         yes
     ConnectTimeout      15
@@ -22,3 +21,4 @@ Host *
     ControlPersist      600
 ###############################################################################
 
+Include ~/.ssh/config.*
