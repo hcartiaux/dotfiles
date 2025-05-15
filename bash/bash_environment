@@ -151,20 +151,6 @@ export GPUPPET_SSH_CONFIG=$GPUPPET_PREFIX/ssh/config
 alias cdgp='cd $GPUPPET_PREFIX/repo && source setup_env.sh && echo "==> Grid5000 Puppet 4 repository"'
 
 # -------------------------------------------------------------------
-# Environment management - direnv, pyenv, nvm
-# -------------------------------------------------------------------
-
-function enable_direnv(){
-  [[ -e "$HOME/.config/direnv/init.sh" ]] && . $HOME/.config/direnv/init.sh || true
-}
-function enable_pyenv(){
-  [[ -e "$HOME/.config/pyenv/init.sh"  ]] && . $HOME/.config/pyenv/init.sh  || true
-}
-function enable_nvm(){
-  [[ -s "/usr/share/nvm/init-nvm.sh"   ]] && . /usr/share/nvm/init-nvm.sh   || true
-}
-
-# -------------------------------------------------------------------
 # Ruby & RVM
 # -------------------------------------------------------------------
 
