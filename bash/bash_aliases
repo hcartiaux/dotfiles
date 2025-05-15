@@ -86,30 +86,30 @@ alias ssha="ssh-add"
 # Git aliases
 alias cdroot='git rev-parse && cd ./$(git rev-parse --show-cdup)'
 
-alias cdflapa=' cd ~/repos/perso/github.com/hcartiaux/ansible'
-alias cdflapt=' cd ~/repos/perso/github.com/hcartiaux/terraform'
-alias cdudocs='  cd ~/repos/work/github.com/ULHPC/ulhpc-docs'
-alias cdtut='    cd ~/repos/work/github.com/ULHPC/tutorials'
-alias cdslurm='  cd ~/repos/work/hpc-git.uni.lu/ULHPC/slurm'
-alias cdpuppet=' cd ~/repos/work/hpc-git.uni.lu/ULHPC/puppet'
-alias cdansible='cd ~/repos/work/hpc-git.uni.lu/ULHPC/ansible-aion'
-alias cdsys='    cd ~/repos/work/hpc-git.uni.lu/ULHPC/sysadmins'
-alias cdwiki='   cd ~/repos/work/hpc-git.uni.lu/ULHPC/sysadmins.wiki'
-alias cdtools='  cd ~/repos/work/hpc-git.uni.lu/ULHPC/ulhpc-tools'
-alias cddocs='   cd ~/repos/work/hpc-git.uni.lu/ULHPC/documents'
-alias cdstor='   cd ~/repos/work/hpc-git.uni.lu/ULHPC/storage-repo'
-alias cdpass='   cd ~/repos/work/hpc-git.uni.lu/ULHPC/passwords-repo'
-alias cdwww='    cd ~/repos/work/gitlab.com/uniluxembourg/hpc/www/ulhpc-2.0'
+alias cdflapa='  cd ~/git/github.com/hcartiaux/ansible'
+alias cdflapt='  cd ~/git/github.com/hcartiaux/terraform'
+alias cdudocs='  cd ~/git/github.com/ULHPC/ulhpc-docs'
+alias cdtut='    cd ~/git/github.com/ULHPC/tutorials'
+alias cdslurm='  cd ~/git/hpc-git.uni.lu/ULHPC/slurm'
+alias cdpuppet=' cd ~/git/hpc-git.uni.lu/ULHPC/puppet'
+alias cdansible='cd ~/git/hpc-git.uni.lu/ULHPC/ansible-aion'
+alias cdsys='    cd ~/git/hpc-git.uni.lu/ULHPC/sysadmins'
+alias cdwiki='   cd ~/git/hpc-git.uni.lu/ULHPC/sysadmins.wiki'
+alias cdtools='  cd ~/git/hpc-git.uni.lu/ULHPC/ulhpc-tools'
+alias cddocs='   cd ~/git/hpc-git.uni.lu/ULHPC/documents'
+alias cdstor='   cd ~/git/hpc-git.uni.lu/ULHPC/storage-repo'
+alias cdpass='   cd ~/git/hpc-git.uni.lu/ULHPC/passwords-repo'
+alias cdwww='    cd ~/git/gitlab.com/uniluxembourg/hpc/www/ulhpc-2.0'
 
 pass() {
-  export PASSWORD_STORE_DIR=~/repos/work/hpc-git.uni.lu/ULHPC/passwords-repo
+  export PASSWORD_STORE_DIR=~/git/hpc-git.uni.lu/ULHPC/passwords-repo
   export PASSWORD_STORE_SIGNING_KEY=62C5D78FE715CF7CA974B5AF37183CEF550DF40B
   /usr/bin/pass $*
 }
 
 g5kpass() {
   curdir="$(pwd)"
-  cd ~/repos/work/gitlab.inria.fr/grid5000/password5k
+  cd ~/git/gitlab.inria.fr/grid5000/password5k
   unset PASSWORD_STORE_SIGNING_KEY
   source .passrc && /usr/bin/pass $*
   export GNUPGHOME=~/.gnupg
