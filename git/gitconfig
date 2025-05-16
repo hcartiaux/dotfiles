@@ -18,86 +18,86 @@
 #  - https://github.com/Falkor/dotfiles
 
 [user]
-	name  = Hyacinthe Cartiaux
-	email = hyacinthe.cartiaux@uni.lu
+    name  = Hyacinthe Cartiaux
+    email = hyacinthe.cartiaux@uni.lu
     signingkey = 0x550DF40B
 [include]
     path = ~/.gitconfig-user
 
 [alias]
-	up = pull origin
-	pu = push origin
-	st = status
-	df = diff
-	ci = commit
-	br = branch
-	w  = whatchanged --abbrev-commit
-	ls = ls-files
-	gg = log  --graph --pretty=format:'%C(auto)%h -%d %s %Cgreen(%cr)%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --max-count=20
-	gr = log --graph --oneline --decorate
-	lol = log --graph --pretty=format:'%C(yellow)%h%Creset%C(cyan)%C(bold)%d%Creset %C(cyan)(%cd)%Creset %C(green)%cn%Creset %s' --date=format:'%Y-%m-%d %H:%M:%S'
-	unstage     = reset HEAD --
-	last        = log -1 HEAD
-	amend       = commit --amend
-	undo-commit = reset --soft HEAD^
-	# From http://j.shirley.im/tech/git-flow/
-	feature-start  = !git flow feature start $1
-	feature-finish = !git flow feature finish $1 && git push
-	# fs, feature start
-	fs = !git flow feature start $1 && grb publish feature/$1
-	# ff, feature finish. Always push to the final branch (remote)
-	# if it was successful
-	ff = !git flow feature finish $1 && git push
+    up = pull origin
+    pu = push origin
+    st = status
+    df = diff
+    ci = commit
+    br = branch
+    w  = whatchanged --abbrev-commit
+    ls = ls-files
+    gg = log  --graph --pretty=format:'%C(auto)%h -%d %s %Cgreen(%cr)%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --max-count=20
+    gr = log --graph --oneline --decorate
+    lol = log --graph --pretty=format:'%C(yellow)%h%Creset%C(cyan)%C(bold)%d%Creset %C(cyan)(%cd)%Creset %C(green)%cn%Creset %s' --date=format:'%Y-%m-%d %H:%M:%S'
+    unstage     = reset HEAD --
+    last        = log -1 HEAD
+    amend       = commit --amend
+    undo-commit = reset --soft HEAD^
+    # From http://j.shirley.im/tech/git-flow/
+    feature-start  = !git flow feature start $1
+    feature-finish = !git flow feature finish $1 && git push
+    # fs, feature start
+    fs = !git flow feature start $1 && grb publish feature/$1
+    # ff, feature finish. Always push to the final branch (remote)
+    # if it was successful
+    ff = !git flow feature finish $1 && git push
 
 [color]
-	ui     = true
-	diff   = auto
-	status = auto
-	branch = auto
+    ui     = true
+    diff   = auto
+    status = auto
+    branch = auto
 
 [color "branch"]
-	current = yellow reverse
-	local   = green
-	remote  = red
+    current = yellow reverse
+    local   = green
+    remote  = red
 
 [color "diff"]
-	meta = yellow bold
+    meta = yellow bold
 
 [color "status"]
-	added     = magenta bold
-	changed   = green
-	untracked = red
+    added     = magenta bold
+    changed   = green
+    untracked = red
 
 [core]
-	autocrlf     = false
-	pager        = less -FiRSwX
-	editor       = vim
-	mergeoptions = --no-edit
+    autocrlf     = false
+    pager        = less -FiRSwX
+    editor       = vim
+    mergeoptions = --no-edit
 
 [merge]
-	tool          = vimdiff
-	conflictstyle = diff3
+    tool          = vimdiff
+    conflictstyle = diff3
 
 [mergetool]
-	prompt = false
+    prompt = false
 
 #[http]
-#	sslverify = false
+#   sslverify = false
 
 [push]
-	default = matching
+    default = matching
 
 [filter "lfs"]
-	clean    = git-lfs clean -- %f
-	smudge   = git-lfs smudge -- %f
-	required = true
-	process  = git-lfs filter-process
+    clean    = git-lfs clean -- %f
+    smudge   = git-lfs smudge -- %f
+    required = true
+    process  = git-lfs filter-process
 
 [pull]
-	rebase = true
+    rebase = true
 
 [credential]
-	helper = cache
+    helper = cache
 
 [init]
-	defaultBranch = main
+    defaultBranch = main
