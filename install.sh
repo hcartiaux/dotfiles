@@ -2,14 +2,14 @@
 
 # set -x # Debug
 
-MAIL='hyacinthe.cartiaux@free.fr'
+MAIL_PERSO='hyacinthe.cartiaux@free.fr'
+MAIL_PRO='hyacinthe.cartiaux@uni.lu'
 PLAN='World domination!'
 DOTFILES=~/.dotfiles
-MYLAPTOP=hc-xps15
+MYLAPTOP=hc-promax14
 
 HOST=$(hostname -s)
 
-echo $MAIL > ~/.forward
 echo $PLAN > ~/.plan
 
 [[ ! -d ~/.dotfiles ]] && git clone https://github.com/hcartiaux/dotfiles.git $DOTFILES
@@ -74,8 +74,6 @@ mkdir -p ~/.rtorrent
 ## git
 
 ln -sf $DOTFILES/git/gitconfig          ~/.gitconfig
-ln -sf $DOTFILES/git/gitconfig-work     ~/.gitconfig-work
-ln -sf $DOTFILES/git/gitconfig-personal ~/.gitconfig-personal
 
 ## ssh
 
@@ -99,9 +97,16 @@ ln -sf $DOTFILES/gnupg/gpg-agent.conf  ~/.gnupg/gpg-agent.conf
 
 [[ "$HOST" = "$MYLAPTOP" ]] && (
 
-    ## RVM configuration
+    if [[ $USER == "hcartiaux" ]] ; then
+        echo $MAIL_PRO > ~/.forward
+        ln -sf $DOTFILES/git/gitconfig-work     ~/.gitconfig-user
 
-    ln -sf $DOTFILES/rvm/rvmrc  ~/.rvmrc
+        ## RVM configuration
+        ln -sf $DOTFILES/rvm/rvmrc  ~/.rvmrc
+    else
+        echo $MAIL_PERSO > ~/.forward
+        ln -sf $DOTFILES/git/gitconfig-personal ~/.gitconfig-user
+    fi
 
     ## temporary files
 

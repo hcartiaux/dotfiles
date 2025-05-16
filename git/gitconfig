@@ -18,16 +18,11 @@
 #  - https://github.com/Falkor/dotfiles
 
 [user]
-	email = hyacinthe.cartiaux@uni.lu
 	name  = Hyacinthe Cartiaux
-[includeIf "gitdir:~/"]
-	path = .gitconfig-personal
-[includeIf "gitdir:~/repos/work/"]
-	path = .gitconfig-work
-[includeIf "gitdir:~/git/"]
-	path = .gitconfig-work
-[includeIf "gitdir:~/.gpuppet/"]
-	path = .gitconfig-work
+	email = hyacinthe.cartiaux@uni.lu
+    signingkey = 0x550DF40B
+[include]
+    path = ~/.gitconfig-user
 
 [alias]
 	up = pull origin
