@@ -80,6 +80,9 @@ cpold() {
   cp -a "$1" "${1}_$(date --iso-8601=seconds)"
 }
 
+# Optimize png file size
+alias optipng='optipng -o6 -zm1-9 -strip all'
+
 # personnal desktop aliases
 alias ssha="ssh-add"
 
