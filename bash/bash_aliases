@@ -83,7 +83,7 @@ cpold() {
 # Optimize png file size
 alias optipng='optipng -o6 -zm1-9 -strip all'
 
-# personnal desktop aliases
+# Add my SSH keys to the agent
 alias ssha="ssh-add"
 
 # Git aliases
