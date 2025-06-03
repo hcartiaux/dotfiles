@@ -3,7 +3,7 @@
 #
 
 # ----------------------------------------------------------------------
-# LS COLORS
+# ls colors
 # ----------------------------------------------------------------------
 
 # we always pass these to ls(1)
@@ -31,7 +31,7 @@ alias l.="ls -d .*"
 alias lh='la -h'
 
 # ----------------------------------------------------------------------
-#  ALL ALIASES
+# Common aliases
 # ----------------------------------------------------------------------
 
 if [ "$UNAME" = Linux ]; then
@@ -60,13 +60,13 @@ alias ......='cd ../../../../..'
 # read man with colors
 man() {
   env LESS_TERMCAP_mb=$'\E[01;31m' \
-    LESS_TERMCAP_md=$'\E[01;38;5;74m' \
-    LESS_TERMCAP_me=$'\E[0m' \
-    LESS_TERMCAP_se=$'\E[0m' \
-    LESS_TERMCAP_so=$'\E[38;5;246m' \
-    LESS_TERMCAP_ue=$'\E[0m' \
-    LESS_TERMCAP_us=$'\E[04;38;5;146m' \
-    man "$@"
+      LESS_TERMCAP_md=$'\E[01;38;5;74m' \
+      LESS_TERMCAP_me=$'\E[0m' \
+      LESS_TERMCAP_se=$'\E[0m' \
+      LESS_TERMCAP_so=$'\E[38;5;246m' \
+      LESS_TERMCAP_ue=$'\E[0m' \
+      LESS_TERMCAP_us=$'\E[04;38;5;146m' \
+      man "$@"
 }
 
 # print a line as wide as the terminal
@@ -89,8 +89,10 @@ alias ssha="ssh-add"
 # Git aliases
 alias cdroot='git rev-parse && cd ./$(git rev-parse --show-cdup)'
 
-alias cdflapa='  cd ~/git/github.com/hcartiaux/ansible'
-alias cdflapt='  cd ~/git/github.com/hcartiaux/terraform'
+# ----------------------------------------------------------------------
+# Work aliases
+# ----------------------------------------------------------------------
+
 alias cdudocs='  cd ~/git/github.com/ULHPC/ulhpc-docs'
 alias cdtut='    cd ~/git/github.com/ULHPC/tutorials'
 alias cdslurm='  cd ~/git/hpc-git.uni.lu/ULHPC/slurm'
@@ -105,12 +107,6 @@ alias cdpass='   cd ~/git/hpc-git.uni.lu/ULHPC/passwords-repo'
 alias cdwww='    cd ~/git/gitlab.com/uniluxembourg/hpc/www/ulhpc-2.0'
 
 # Password store
-
-ppass() {
-  export PASSWORD_STORE_DIR=~/.password-store
-  unset  PASSWORD_STORE_SIGNING_KEY
-  /usr/bin/pass $*
-}
 
 pass() {
   export PASSWORD_STORE_DIR=~/git/hpc-git.uni.lu/ULHPC/passwords-repo
@@ -127,9 +123,40 @@ g5kpass() {
   cd "$curdir"
 }
 
+# ----------------------------------------------------------------------
+# Personal aliases
+# ----------------------------------------------------------------------
+
+alias cdflapa='  cd ~/git/github.com/hcartiaux/ansible'
+alias cdflapt='  cd ~/git/github.com/hcartiaux/terraform'
+
+# Password store
+
+ppass() {
+  export PASSWORD_STORE_DIR=~/.password-store
+  unset  PASSWORD_STORE_SIGNING_KEY
+  /usr/bin/pass $*
+}
+
+# tmux shortcut
+
+tmux_dn42() {
+  if ! tmux ls 2>&1 | grep -q dn42 ; then
+    tmux new-session -d -s dn42
+    tmux splitw -v -p 50 -t dn42:0.0
+    tmux splitw -h -p 50 -t dn42:0.0
+    tmux splitw -h -p 50 -t dn42:0.2
+    tmux select-pane -t dn42:0.0
+    tmux send-keys -t dn42:0.0 'ssh nl-ams1.flap' Enter
+    tmux send-keys -t dn42:0.1 'ssh nl-ams2.flap' Enter
+    tmux send-keys -t dn42:0.2 'ssh fr-par1.flap' Enter
+    tmux send-keys -t dn42:0.3 'ssh pl-war1.flap' Enter
+  fi
+  tmux attach-session -t dn42
+}
 
 # ----------------------------------------------------------------------
-#  Archlinux utils
+# Archlinux utils
 # ----------------------------------------------------------------------
 
 sysupd() {
@@ -162,23 +189,4 @@ pkgbuild_commit() {
   [[ ! -f PKGBUILD ]] && exit 1
   VERSION=$1
   git commit -m "Update to $VERSION"
-}
-
-# ----------------------------------------------------------------------
-#  tmux shortcut
-# ----------------------------------------------------------------------
-
-tmux_dn42() {
-  if ! tmux ls 2>&1 | grep -q dn42 ; then
-    tmux new-session -d -s dn42
-    tmux splitw -v -p 50 -t dn42:0.0
-    tmux splitw -h -p 50 -t dn42:0.0
-    tmux splitw -h -p 50 -t dn42:0.2
-    tmux select-pane -t dn42:0.0
-    tmux send-keys -t dn42:0.0 'ssh nl-ams1.flap' Enter
-    tmux send-keys -t dn42:0.1 'ssh nl-ams2.flap' Enter
-    tmux send-keys -t dn42:0.2 'ssh fr-par1.flap' Enter
-    tmux send-keys -t dn42:0.3 'ssh pl-war1.flap' Enter
-  fi
-  tmux attach-session -t dn42
 }
