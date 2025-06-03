@@ -163,3 +163,22 @@ pkgbuild_commit() {
   VERSION=$1
   git commit -m "Update to $VERSION"
 }
+
+# ----------------------------------------------------------------------
+#  tmux shortcut
+# ----------------------------------------------------------------------
+
+tmux_dn42() {
+  if ! tmux ls 2>&1 | grep -q dn42 ; then
+    tmux new-session -d -s dn42
+    tmux splitw -v -p 50 -t dn42:0.0
+    tmux splitw -h -p 50 -t dn42:0.0
+    tmux splitw -h -p 50 -t dn42:0.2
+    tmux select-pane -t dn42:0.0
+    tmux send-keys -t dn42:0.0 'ssh nl-ams1.flap' Enter
+    tmux send-keys -t dn42:0.1 'ssh nl-ams2.flap' Enter
+    tmux send-keys -t dn42:0.2 'ssh fr-par1.flap' Enter
+    tmux send-keys -t dn42:0.3 'ssh pl-war1.flap' Enter
+  fi
+  tmux attach-session -t dn42
+}
