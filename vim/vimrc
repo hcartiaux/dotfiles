@@ -121,11 +121,6 @@ if $XDG_CURRENT_DESKTOP == "KDE"
   autocmd VimLeave * silent !konsoleprofile CustomCursorColor=false;BlinkingCursorEnabled=0
 endif
 
-
-if &term =~ '256color'
-  set t_ut=
-endif
-
 """""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""
