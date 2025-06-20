@@ -111,7 +111,6 @@ ln -sf $DOTFILES/gnupg/gpg-agent.conf  ~/.gnupg/gpg-agent.conf
     ## temporary files
 
     ln -sf /tmp ~/.cache
-    ln -sf /tmp ~/.thumbnails
 
 ) || true
 
