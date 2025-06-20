@@ -110,9 +110,7 @@ ln -sf $DOTFILES/gnupg/gpg-agent.conf  ~/.gnupg/gpg-agent.conf
 
     ## temporary files
 
-    ln -sf /tmp ~/.adobe
     ln -sf /tmp ~/.cache
-    ln -sf /tmp ~/.macromedia
     ln -sf /tmp ~/.thumbnails
 
 ) || true
