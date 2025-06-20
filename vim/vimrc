@@ -121,13 +121,6 @@ if $XDG_CURRENT_DESKTOP == "KDE"
   autocmd VimLeave * silent !konsoleprofile CustomCursorColor=false;BlinkingCursorEnabled=0
 endif
 
-" Set extra options when running in GUI mode
-if has("gui_running")
-  set guioptions-=T
-  set guioptions+=e
-  set t_Co=256
-  set guitablabel=%M\ %t
-endif
 
 if &term =~ '256color'
   set t_ut=
