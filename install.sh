@@ -19,12 +19,7 @@ cd ~
 
 ## zsh
 
-mkdir -p ~/.zsh
-cd       ~/.zsh
-[[ ! -d  ~/.zsh/zsh-syntax-highlighting ]] && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-[[   -d  ~/.zsh/zsh-syntax-highlighting ]] && git -C ~/.zsh/zsh-syntax-highlighting pull
-ln -sf $DOTFILES/zsh/prompt_hyacinthe_setup ~/.zsh/prompt_hyacinthe_setup
-ln -sf $DOTFILES/zsh/zshrc                  ~/.zshrc
+ln -sf $DOTFILES/zsh/zshrc             ~/.zshrc
 
 ## bash
 
@@ -45,7 +40,7 @@ fi
 
 # ksh
 
-ln -sf $DOTFILES/ksh/kshrc                  ~/.kshrc
+ln -sf $DOTFILES/ksh/kshrc             ~/.kshrc
 
 ## vim
 

@@ -65,10 +65,15 @@ setopt NULL_GLOB
 source /etc/profile
 
 # This will set the default prompt
-source ~/.zsh/prompt_hyacinthe_setup
+if command -v powerline-daemon &> /dev/null && [ -f "/usr/share/powerline/bindings/zsh/powerline.zsh" ]; then
+  powerline-daemon -q
+    . "/usr/share/powerline/bindings/zsh/powerline.zsh"
+fi
 
 # Syntax highlighting
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+  . "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
 
 # type a directory's name to cd to it.
 compctl -/ cd
