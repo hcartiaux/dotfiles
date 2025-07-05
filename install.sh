@@ -50,33 +50,33 @@ ln -sf $DOTFILES/vim/vimrc ~/.vimrc
 
 ## tmux
 
-ln -sf $DOTFILES/tmux/tmux.conf       ~/.tmux.conf
+ln -sf $DOTFILES/tmux/tmux.conf        ~/.tmux.conf
 
 ## screen
 
-ln -sf $DOTFILES/screen/screenrc      ~/.screenrc
+ln -sf $DOTFILES/screen/screenrc       ~/.screenrc
 
 ## rtorrent
 
-ln -sf $DOTFILES/rtorrent/rtorrent.rc ~/.rtorrent.rc
+ln -sf $DOTFILES/rtorrent/rtorrent.rc  ~/.rtorrent.rc
 mkdir -p ~/.rtorrent
 
 ## git
 
-ln -sf $DOTFILES/git/gitconfig          ~/.gitconfig
+ln -sf $DOTFILES/git/gitconfig         ~/.gitconfig
 
 ## ssh
 
 mkdir -p  ~/.ssh/sockets
-ln  -sf $DOTFILES/ssh/sshpubkey       ~/.ssh/sshpubkey
+ln  -sf $DOTFILES/ssh/sshpubkey        ~/.ssh/sshpubkey
 [[ ! -e ~/.ssh/config ]] && (
-    ln -s $DOTFILES/ssh/config      ~/.ssh/
+  ln -s $DOTFILES/ssh/config           ~/.ssh/
 )
-ln -s $DOTFILES/ssh/config.home ~/.ssh/
+ln -s $DOTFILES/ssh/config.home        ~/.ssh/
 
 ## wget
 
-ln -sf $DOTFILES/wget/wgetrc ~/.wgetrc
+ln -sf $DOTFILES/wget/wgetrc           ~/.wgetrc
 
 # GnuPG
 
@@ -87,20 +87,19 @@ ln -sf $DOTFILES/gnupg/gpg-agent.conf  ~/.gnupg/gpg-agent.conf
 
 [[ "$HOST" = "$MYLAPTOP" ]] && (
 
-    if [[ $USER == "hcartiaux" ]] ; then
-        echo $MAIL_PRO > ~/.forward
-        ln -sf $DOTFILES/git/gitconfig-work     ~/.gitconfig-user
+  if [[ $USER == "hcartiaux" ]] ; then
+    echo $MAIL_PRO > ~/.forward
+    ln -sf $DOTFILES/git/gitconfig-work     ~/.gitconfig-user
 
-        ## RVM configuration
-        ln -sf $DOTFILES/rvm/rvmrc  ~/.rvmrc
-    else
-        echo $MAIL_PERSO > ~/.forward
-        ln -sf $DOTFILES/git/gitconfig-personal ~/.gitconfig-user
-    fi
+    ## RVM configuration
+    ln -sf $DOTFILES/rvm/rvmrc  ~/.rvmrc
+  else
+    echo $MAIL_PERSO > ~/.forward
+    ln -sf $DOTFILES/git/gitconfig-personal ~/.gitconfig-user
+  fi
 
-    ## temporary files
-
-    ln -sf /tmp ~/.cache
+  ## temporary files
+  ln -sf /tmp ~/.cache
 
 ) || true
 
