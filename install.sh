@@ -33,11 +33,6 @@ ln -sf $DOTFILES/bash/bash_oar         ~/.bash_oar
 ln -sf $DOTFILES/bash/bash_slurm       ~/.bash_slurm
 ln -sf $DOTFILES/bash/bash_aliases     ~/.bash_aliases
 
-if [[ ! -f ~/.git-prompt.sh ]] ; then
-    curl -o ~/.git-prompt.sh \
-      https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
-fi
-
 # ksh
 
 ln -sf $DOTFILES/ksh/kshrc             ~/.kshrc
