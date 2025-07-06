@@ -90,9 +90,9 @@ bminor=${bash#*.}
 test -n "$PS1" && test $bmajor -gt 1 && (
   # search for a bash_completion file to source
   for f in /usr/local/etc/bash_completion \
-    /opt/local/etc/bash_completion \
-    /etc/bash_completion; do
-      test -f $f && . $f && break
+           /opt/local/etc/bash_completion \
+           /etc/bash_completion; do
+    test -f $f && . $f && break
   done
 )
 unset bash bmajor bminor
@@ -227,7 +227,7 @@ __set_my_prompt() {
 }
 
 __set_training_prompt() {
-    PS1="$(__colorized_exit_status)${RESET_COLOR} \h${job_info} ${BLUE}\W${RESET_COLOR}${GREEN}\$(__git_ps1 \" (%s)\")${RESET_COLOR} \$ "
+  PS1="$(__colorized_exit_status)${RESET_COLOR} \h${job_info} ${BLUE}\W${RESET_COLOR}${GREEN}\$(__git_ps1 \" (%s)\")${RESET_COLOR} \$ "
 }
 
 # Set the color prompt by default when interactive
