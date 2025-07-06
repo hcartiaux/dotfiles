@@ -170,3 +170,7 @@ fi
 if [ -n "$SHELLNAME" ] && command -v scw 2>&1 >/dev/null; then
   eval "$(scw autocomplete script shell=$SHELLNAME)"
 fi
+
+if [ -n "$SHELLNAME" ] && command -v fzf 2>&1 >/dev/null; then
+  eval "$(fzf --$SHELLNAME)"
+fi
