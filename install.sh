@@ -98,6 +98,9 @@ ln -sf $DOTFILES/gnupg/gpg-agent.conf  ~/.gnupg/gpg-agent.conf
     ln -sf $DOTFILES/git/gitconfig-personal ~/.gitconfig-user
   fi
 
+  # neovim
+  ln -sf $DOTFILES/nvim  ~/.config/
+
   ## temporary files
   ln -sf /tmp ~/.cache
 
