@@ -1,4 +1,7 @@
-# 💤 LazyVim
+# 💤 Neovim
 
-A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
-Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
+My own `nvim` configuration, initialized from the starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
+
+## External resources
+
+* [LazyVim documentation](https://lazyvim.github.io/installation)
