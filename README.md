@@ -1,11 +1,7 @@
--*- mode: markdown; mode: auto-fill; fill-column: 80 -*-
+Hyacinthe's dot files
+-------
 
-`README.md`
-
----------
-# Hyacinthe Cartiaux Dot Files
-
-These are my configuration files for `bash`, `git`, `vim` etc. so as to set up a
+These are my configuration files for `bash`, `git`, `vim`, etc. to set up a
 system the way I like it.
 
 In the sequel, when providing a command, `$>` denotes a prompt and is not part
@@ -16,16 +12,16 @@ of the commands.
 You should install the following elements to use the full functionality of
 these config files:
 
-* zsh
-* zsh-completions
-* bash
-* bash-completions
-* screen
-* tmux
-* git
-* subversion
-* vim
-* ssh
+* `zsh`
+* `zsh-completions`
+* `bash`
+* `bash-completions`
+* `powerline`
+* `screen`
+* `tmux`
+* `git`
+* `vim`
+* `ssh`
 
 ## Installation
 
@@ -36,8 +32,8 @@ Run the following commands:
 
 ## Environment
 
-I am running primarily on Archlinux, otherwise on Debian so these config files
-will likely work on your system, eventually with a little tweaking.
+I use primarily Archlinux, otherwise Debian and OpenBSD, so these config files
+will likely work on your system, possibly with a little tweaking.
 
 ## BUGS
 
@@ -58,8 +54,7 @@ Hyacinthe Cartiaux, using various contributions on the Internet, in particular:
 *  [Ryan Tomayko dotfiles](https://github.com/rtomayko/dotfiles/blob/rtomayko/.bashrc)
 *  [Sebastien Badia vim configuration](https://github.com/sbadia/grimvim)
 
-As often, I release these files under GNU GPL Licence v3.
+Except stated otherwise, I release these files under GNU GPL Licence v3.
 You may use, modify, and/or redistribute them under the terms of the GPL Licence v3.
 
 -------
-
