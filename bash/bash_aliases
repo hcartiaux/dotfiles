@@ -53,10 +53,6 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 
-# Use most instead of less if available
-[ -x /usr/bin/most ] && alias more='most' && alias less='most'
-[ -x /usr/bin/htop ] && alias top='htop'
-
 # read man with colors
 man() {
   env LESS_TERMCAP_mb=$'\E[01;31m' \
