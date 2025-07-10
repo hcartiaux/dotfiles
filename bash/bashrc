@@ -60,10 +60,16 @@ test -n "$INTERACTIVE" -a -n "$LOGIN" && (
 test -r /etc/bashrc &&
   . /etc/bashrc
 
-test -f /usr/share/git/git-prompt.sh &&
+
+# look for git-prompt.sh
+# https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+if test -f /usr/share/git/git-prompt.sh ; then
   . /usr/share/git/git-prompt.sh
-test -f /usr/share/git-core/contrib/completion/git-prompt.sh &&
+elif test -f /usr/share/git-core/contrib/completion/git-prompt.sh ; then
   . /usr/share/git-core/contrib/completion/git-prompt.sh
+elif test -f ~/.git-prompt.sh ; then
+  . ~/.git-prompt.sh
+fi
 
 # shell opts. see bash(1) for details
 shopt -s cdspell                 >/dev/null 2>&1  # correct minor errors in the spelling
