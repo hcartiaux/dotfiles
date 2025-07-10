@@ -68,7 +68,7 @@ source /etc/profile
 if command -v powerline-daemon &> /dev/null && [ -f "/usr/share/powerline/bindings/zsh/powerline.zsh" ]; then
   export POWERLINE_CONFIG_OVERRIDES="ext.shell.colorscheme=solarized"
   powerline-daemon -q
-    . "/usr/share/powerline/bindings/zsh/powerline.zsh"
+  . "/usr/share/powerline/bindings/zsh/powerline.zsh"
 fi
 
 # Syntax highlighting
