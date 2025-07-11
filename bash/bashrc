@@ -238,8 +238,7 @@ __set_training_prompt() {
 
 # Set the color prompt by default when interactive
 if [ -n "$PS1" ]; then
-  __set_training_prompt
-  export PS1
+  export PROMPT_COMMAND=__set_training_prompt
 fi
 
 # ----------------------------------------------------------------------
