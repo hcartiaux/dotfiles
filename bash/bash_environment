@@ -48,7 +48,7 @@ export PATH="/usr/local/bin:$PATH"
 # Get rid of mail notification
 unset MAILCHECK
 
-if [[ $(echo $HOSTNAME | grep -c \\.) != 0 ]] ; then
+if [[ "$HOSTNAME" =~ \. ]]; then
   FQDN=$HOSTNAME
 else
   FQDN=$(hostname -f)
