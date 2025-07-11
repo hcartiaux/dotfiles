@@ -87,10 +87,15 @@ export SVN_EDITOR=$EDITOR
 if test -n "$(command -v less)"; then
   export LESS="-FiRMSwX"
   export PAGER="less $LESS"
-  export MANPAGER="$PAGER --use-color -Dd+r -Du+b"
-  export MANROFFOPT="-P -c"
+  export MANPAGER="$PAGER"
 else
   export PAGER=more
+fi
+
+# Colored man pages, usually not supported on old servers distros
+if test -n "$XDG_CURRENT_DESKTOP" ; then
+  export MANPAGER="$PAGER --use-color -Dd+r -Du+b"
+  export MANROFFOPT="-P -c"
 fi
 
 # ----------------------------------------------------------------------
