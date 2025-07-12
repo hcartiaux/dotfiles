@@ -16,6 +16,7 @@ echo $PLAN > ~/.plan
 [[   -d ~/.dotfiles ]] && ( cd $DOTFILES ; git pull )
 
 cd ~
+mkdir -p ~/.config
 
 ## zsh
 
@@ -50,7 +51,7 @@ ln -sf $DOTFILES/vim/vimrc ~/.vimrc
 
 ## tmux
 
-ln -sf $DOTFILES/tmux/tmux.conf        ~/.tmux.conf
+ln -sf $DOTFILES/tmux                 ~/.config/
 
 ## screen
 
