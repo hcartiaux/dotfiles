@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-# set -x # Debug
+set -e
 
 MAIL_PERSO='hyacinthe.cartiaux@free.fr'
 MAIL_PRO='hyacinthe.cartiaux@uni.lu'
@@ -10,10 +10,10 @@ MYLAPTOP=hc-promax14
 
 HOST=$(hostname -s)
 
-echo $PLAN > ~/.plan
+echo "$PLAN" >~/.plan
 
-[[ ! -d ~/.dotfiles ]] && git clone https://github.com/hcartiaux/dotfiles.git $DOTFILES
-[[   -d ~/.dotfiles ]] && ( cd $DOTFILES ; git pull )
+[ ! -d ~/.dotfiles ] && git clone https://github.com/hcartiaux/dotfiles.git $DOTFILES
+[   -d ~/.dotfiles ] && ( cd $DOTFILES; git pull )
 
 cd ~
 mkdir -p ~/.config
@@ -45,9 +45,9 @@ cd       ~/.vim
 mkdir -p backup undo swap spell
 
 ln -sf $DOTFILES/vim/vimrc ~/.vimrc
-[[ ! -h ~/.vim/header ]] && ln -sf $DOTFILES/vim/header ~/.vim/header
+[ ! -L ~/.vim/header ] && ln -sf $DOTFILES/vim/header ~/.vim/header
 
-[[   -e ~/.viminfo ]]    && mv ~/.viminfo ~/.vim/
+[ -e ~/.viminfo   ]    && mv ~/.viminfo ~/.vim/
 
 ## tmux
 
@@ -70,9 +70,9 @@ ln -sf $DOTFILES/git/gitconfig         ~/.gitconfig
 
 mkdir -p  ~/.ssh/sockets
 ln  -sf $DOTFILES/ssh/sshpubkey        ~/.ssh/sshpubkey
-[[ ! -e ~/.ssh/config ]] && (
-  ln -s $DOTFILES/ssh/config           ~/.ssh/
-)
+if [ ! -e ~/.ssh/config ]; then
+    ln -s $DOTFILES/ssh/config         ~/.ssh/
+fi
 ln -s $DOTFILES/ssh/config.home        ~/.ssh/
 
 ## wget
@@ -85,25 +85,31 @@ mkdir -p                               ~/.gnupg
 ln -sf $DOTFILES/gnupg/gpg.conf        ~/.gnupg/gpg.conf
 ln -sf $DOTFILES/gnupg/gpg-agent.conf  ~/.gnupg/gpg-agent.conf
 
+if [ "$HOST" = "$MYLAPTOP" ]; then
 
-[[ "$HOST" = "$MYLAPTOP" ]] && (
+    if [ "$USER" = "hcartiaux" ]; then
 
-  if [[ $USER == "hcartiaux" ]] ; then
-    echo $MAIL_PRO > ~/.forward
-    ln -sf $DOTFILES/git/gitconfig-work     ~/.gitconfig-user
+        echo $MAIL_PRO >~/.forward
+        ln -sf $DOTFILES/git/gitconfig-work     ~/.gitconfig-user
 
-    ## RVM configuration
-    ln -sf $DOTFILES/rvm/rvmrc  ~/.rvmrc
-  else
-    echo $MAIL_PERSO > ~/.forward
-    ln -sf $DOTFILES/git/gitconfig-personal ~/.gitconfig-user
-  fi
+        ## RVM configuration
+        ln -sf $DOTFILES/rvm/rvmrc  ~/.rvmrc
 
-  # neovim
-  ln -sf $DOTFILES/nvim  ~/.config/
+        ## temporary files
+        ln -sf /tmp ~/.cache
 
-  ## temporary files
-  ln -sf /tmp ~/.cache
+    else
 
-) || true
+        echo $MAIL_PERSO >~/.forward
+        ln -sf $DOTFILES/git/gitconfig-personal ~/.gitconfig-user
 
+        ## temporary files
+        ln -sf /dev/shm ~/.cache
+
+
+    fi
+
+    # neovim
+    ln -sf $DOTFILES/nvim ~/.config/
+
+fi
