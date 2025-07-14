@@ -66,14 +66,14 @@ source /etc/profile
 
 # This will set the default prompt
 if command -v powerline-daemon &> /dev/null && [ -f "/usr/share/powerline/bindings/zsh/powerline.zsh" ]; then
-  export POWERLINE_CONFIG_OVERRIDES="ext.shell.colorscheme=solarized"
-  powerline-daemon -q
-  . "/usr/share/powerline/bindings/zsh/powerline.zsh"
+    export POWERLINE_CONFIG_OVERRIDES="ext.shell.colorscheme=solarized"
+    powerline-daemon -q
+    . "/usr/share/powerline/bindings/zsh/powerline.zsh"
 fi
 
 # Syntax highlighting
 if [ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
-  . "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    . "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi
 
 # type a directory's name to cd to it.
@@ -154,11 +154,11 @@ setopt incappendhistory
 #
 
 if [ -f ~/.bash_environment ]; then
-  . ~/.bash_environment
+    . ~/.bash_environment
 fi
 
 if [ -f ~/.bash_private ]; then
-  . ~/.bash_private
+    . ~/.bash_private
 fi
 
 
@@ -167,7 +167,7 @@ fi
 #
 
 if [ -f ~/.bash_aliases ]; then
-  . ~/.bash_aliases
+    . ~/.bash_aliases
 fi
 
 # zsh specific
