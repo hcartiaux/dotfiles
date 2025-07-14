@@ -73,7 +73,9 @@ ln  -sf $DOTFILES/ssh/sshpubkey        ~/.ssh/sshpubkey
 if [ ! -e ~/.ssh/config ]; then
     ln -s $DOTFILES/ssh/config         ~/.ssh/
 fi
-ln -s $DOTFILES/ssh/config.home        ~/.ssh/
+if [ ! -e ~/.ssh/config.home ]; then
+    ln -s $DOTFILES/ssh/config.home    ~/.ssh/
+fi
 
 ## wget
 
