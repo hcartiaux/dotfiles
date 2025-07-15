@@ -54,7 +54,9 @@ else
     FQDN=$(hostname -f)
 fi
 
-DOMAIN=$(echo "$FQDN" | cut -d '.' -f 2)
+if [[ "$FQDN" =~ \. ]]; then
+    DOMAIN=$(echo "$FQDN" | cut -d '.' -f 2)
+fi
 
 # ----------------------------------------------------------------------
 #  SHELL TYPE
