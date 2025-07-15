@@ -47,7 +47,7 @@ fi
 
 # Eventually load you private settings (not exposed here)
 if [ -f ~/.bash_private ]; then
-  # shellcheck disable=SC1090 
+  # shellcheck disable=SC1090
   . ~/.bash_private
 fi
 
@@ -59,7 +59,7 @@ fi
 
 # bring in system bashrc
 if [ -r /etc/bashrc ]; then
-  # shellcheck disable=SC1091 
+  # shellcheck disable=SC1091
   . /etc/bashrc
 fi
 
@@ -239,12 +239,12 @@ __set_my_prompt() {
 }
 
 __set_training_prompt() {
-    PS1="$(__colorized_exit_status)${RESET_COLOR} \h ${BLUE}\W${RESET_COLOR}${GREEN}\$(__git_ps1 \" (%s)\")${RESET_COLOR} \$ "
+    PS1="$(__colorized_exit_status)${RESET_COLOR} \h ${job_info} ${BLUE}\W${RESET_COLOR}${GREEN}\$(__git_ps1 \" (%s)\")${RESET_COLOR} \$ "
 }
 
 # Set the color prompt by default when interactive
 if [ -n "$PS1" ]; then
-    export PROMPT_COMMAND=__set_training_prompt
+    export PROMPT_COMMAND=__set_my_prompt
 fi
 
 # ----------------------------------------------------------------------
@@ -286,6 +286,6 @@ fi
 
 # Slurm integration
 if [ -f ~/.bash_slurm ]; then
-    # shellcheck source=bash_slurm 
+    # shellcheck source=bash_slurm
     . ~/.bash_slurm
 fi
