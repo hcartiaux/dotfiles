@@ -1,8 +1,8 @@
 #
 # ~/.profile
+# shellcheck shell=bash
 #
+SHELL_NAME="$(basename "$SHELL")"
 
-SHELL_NAME="$(basename $SHELL)"
-
-[[ "$SHELL_NAME" == "ksh"  && -f ~/.kshrc  ]] && export ENV="$HOME/.kshrc"
-[[ "$SHELL_NAME" == "bash" && -f ~/.bashrc ]] && . ~/.bashrc
+[ "$SHELL_NAME" = "ksh"  ] && [ -f ~/.kshrc  ] && export ENV="$HOME/.kshrc"
+[ "$SHELL_NAME" = "bash" ] && [ -f ~/.bashrc ] && . ~/.bashrc

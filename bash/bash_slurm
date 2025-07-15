@@ -1,3 +1,8 @@
+#
+# ~/.bash_slurm
+# shellcheck shell=bash
+#
+
 # Job + Remaining time
 
 [[ -n $SLURM_JOB_ID && -z $SLURM_JOB_WALLTIME_SECONDS ]] && SLURM_JOB_WALLTIME_SECONDS=$(scontrol show job "$SLURM_JOB_ID" | grep -Po 'TimeLimit=\K[^ ]*' | awk -F: '/:/ { print ($1 * 3600) + ($2 * 60) + $3 }')

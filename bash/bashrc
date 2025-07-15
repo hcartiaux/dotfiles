@@ -32,6 +32,8 @@
 #  - https://github.com/Falkor/dotfiles/blob/master/bash/.bashrc
 #  - http://bitbucket.org/dmpayton/dotfiles/src/tip/.bashrc
 #  - https://github.com/rtomayko/dotfiles/blob/rtomayko/.bashrc
+#
+# shellcheck shell=bash
 
 # -------------------------------------------------------------------
 # USER SHELL ENVIRONMENT
@@ -39,30 +41,31 @@
 
 # Source bash_environment
 if [ -f ~/.bash_environment ]; then
+  # shellcheck source=bash_environment
   . ~/.bash_environment
 fi
 
 # Eventually load you private settings (not exposed here)
-test -f ~/.bash_private &&
+if [ -f ~/.bash_private ]; then
+  # shellcheck disable=SC1090 
   . ~/.bash_private
+fi
 
 # MOTD
-test -n "$INTERACTIVE" -a -n "$LOGIN" && (
+if [ -n "$INTERACTIVE" ] && [ -n "$LOGIN" ]; then
   uname -npsr
   uptime
-)
-
-# ----------------------------------------------------------------------
-#  SHELL OPTIONS
-# ----------------------------------------------------------------------
+fi
 
 # bring in system bashrc
-test -r /etc/bashrc &&
+if [ -r /etc/bashrc ]; then
+  # shellcheck disable=SC1091 
   . /etc/bashrc
-
+fi
 
 # look for git-prompt.sh
 # https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+# shellcheck disable=SC1090,1091
 if test -f /usr/share/git/git-prompt.sh ; then
   . /usr/share/git/git-prompt.sh
 elif test -f /usr/share/git-core/contrib/completion/git-prompt.sh ; then
@@ -71,12 +74,16 @@ elif test -f ~/.git-prompt.sh ; then
   . ~/.git-prompt.sh
 fi
 
+# ----------------------------------------------------------------------
+#  SHELL OPTIONS
+# ----------------------------------------------------------------------
+
 # shell opts. see bash(1) for details
 shopt -s cdspell                 >/dev/null 2>&1  # correct minor errors in the spelling
-                                                  # of a directory in a cd command
+# of a directory in a cd command
 shopt -s extglob                 >/dev/null 2>&1  # extended pattern matching
 shopt -s hostcomplete            >/dev/null 2>&1  # perform hostname completion
-                                                  # on '@'
+# on '@'
 shopt -s direxpand               >/dev/null 2>&1  # replaces variables on filename completion
 shopt -s cdable_vars             >/dev/null 2>&1
 
@@ -90,18 +97,15 @@ umask 0022
 # BASH COMPLETION
 # ----------------------------------------------------------------------
 
-bash=${BASH_VERSION%.*}
-bmajor=${bash%.*}
-bminor=${bash#*.}
-test -n "$PS1" && test $bmajor -gt 1 && (
-  # search for a bash_completion file to source
-  for f in /usr/local/etc/bash_completion \
-           /opt/local/etc/bash_completion \
-           /etc/bash_completion; do
-    test -f $f && . $f && break
-  done
-)
-unset bash bmajor bminor
+if [ -n "$PS1" ]; then
+    # search for a bash_completion file to source
+    for f in /usr/local/etc/bash_completion \
+             /opt/local/etc/bash_completion \
+             /etc/bash_completion; do
+        # shellcheck disable=SC1090
+        test -f $f && . $f && break
+    done
+fi
 
 # ----------------------------------------------------------------------
 # BASH HISTORY
@@ -126,15 +130,15 @@ HISTTIMEFORMAT="[%d/%m/%Y %H:%M:%S] "
 
 ## display the current subversion revision (to be used later in the prompt)
 __svn_ps1() {
-  (
-    local svnversion
-    svnversion=$(svnversion | sed -e "s/[:M]//g")
-    # Continue if $svnversion is numerical
-    let $svnversion
-    if [[ $? -eq "0" ]]; then
-      printf " (svn:%s)" "$(svnversion)"
-    fi
-  ) 2>/dev/null
+    (
+        local svnversion
+        svnversion=$(svnversion | sed -e "s/[:M]//g")
+        # shellcheck disable=SC2219
+        # Continue if $svnversion is numerical
+        if let $svnversion; then
+            printf " (svn:%s)" "$(svnversion)"
+        fi
+    ) 2>/dev/null
 }
 
 # render __git_ps1 even better so as to show activity in a git repository
@@ -157,49 +161,51 @@ CYAN_UNDERLINE="\[\e[4;36m\]"
 
 # Configure user color and prompt type depending on whoami
 if [ "$LOGNAME" = "root" ]; then
-  COLOR_USER="${RED}"
-  P="#"
+    COLOR_USER="${RED}"
+    P="#"
 else
-  COLOR_USER="${WHITE}"
-  P="$"
+    COLOR_USER="${WHITE}"
+    P="$"
 fi
 
 # get virtualization information
 XENTYPE=""
 if [ -f "/sys/hypervisor/uuid" ]; then
-  if [ "$(</sys/hypervisor/uuid)" == "00000000-0000-0000-0000-000000000000" ]; then
-    XENTYPE=",Dom0"
-  else
-    XENTYPE=",DomU"
-  fi
+    if [ "$(</sys/hypervisor/uuid)" == "00000000-0000-0000-0000-000000000000" ]; then
+        XENTYPE=",Dom0"
+    else
+        XENTYPE=",DomU"
+    fi
 fi
 # Test the PS1_EXTRA variable
-if [ -z "${PS1_EXTRA}" -a -f "/proc/cmdline" ]; then
-  # Here PS1_EXTRA is not set and/or empty, check additionally if it has not
-  # been set via kernel comment
-  kernel_ps1_extra="$(grep PS1_EXTRA /proc/cmdline)"
-  if [ -n "${kernel_ps1_extra}" ]; then
-    PS1_EXTRA=$(sed -e "s/.*PS1_EXTRA=\"\?\([^ ^\t^\"]\+\)\"\?.*/\1/g" /proc/cmdline)
-  fi
+if [ -z "${PS1_EXTRA}" ] && [ -f "/proc/cmdline" ]; then
+    # Here PS1_EXTRA is not set and/or empty, check additionally if it has not
+    # been set via kernel comment
+    kernel_ps1_extra="$(grep PS1_EXTRA /proc/cmdline)"
+    if [ -n "${kernel_ps1_extra}" ]; then
+        PS1_EXTRA=$(sed -e "s/.*PS1_EXTRA=\"\?\([^ ^\t^\"]\+\)\"\?.*/\1/g" /proc/cmdline)
+    fi
 fi
 PS1_EXTRAINFO="${BOLD_COLOR}${DOMAIN}${XENTYPE}${RESET_COLOR}"
 if [ -n "${PS1_EXTRA}" ]; then
-  PS1_EXTRAINFO="${PS1_EXTRAINFO},${YELLOW}${PS1_EXTRA}${RESET_COLOR}"
+    PS1_EXTRAINFO="${PS1_EXTRAINFO},${YELLOW}${PS1_EXTRA}${RESET_COLOR}"
 fi
 
 # Test if we are in a screen session
 if [ "${SHLVL}" -ge "2" ]; then
-  PS1_SCREEN='\[\033k\033\\\]'
+    PS1_SCREEN='\[\033k\033\\\]'
 fi
 
 # This function is called from a subshell in $PS1, to provide the colorized
 # exit status of the last run command.
 # Exit status 130 is also considered as good as it corresponds to a CTRL-D
 __colorized_exit_status() {
-  printf -- "\$(status=\$? ; if [[ \$status = 0 || \$status = 130  ]]; then \
-                              echo -e '\[\e[01;32m\]'\$status;              \
-                            else                                            \
-                              echo -e '\[\e[01;31m\]'\$status; fi)"
+    printf -- "\$(status=\$? ; \
+               if [[ \$status = 0 || \$status = 130  ]]; then \
+                   echo -e '\[\e[01;32m\]'\$status;           \
+               else                                           \
+                   echo -e '\[\e[01;31m\]'\$status;           \
+               fi)"
 }
 
 ###########
@@ -229,16 +235,16 @@ __colorized_exit_status() {
 # This prompt is perfect for terminal with black background, in my case the
 # Vizor color set (see http://visor.binaryage.com/) or iTerm2
 __set_my_prompt() {
-  PS1="${PS1_SCREEN}$(__colorized_exit_status) ${LIGHT_CYAN}\t${RESET_COLOR} ${COLOR_USER}\u${RESET_COLOR}@${CYAN_UNDERLINE}\h${RESET_COLOR}(${PS1_EXTRAINFO})${RED}\$(__slurm_ps1_remaining_time)\$(__oar_ps1_remaining_time)${RESET_COLOR}${GREEN}\$(__git_ps1 \" (%s)\")\$(__svn_ps1)${RESET_COLOR} ${BLUE}\W${RESET_COLOR} ${P} "
+    PS1="${PS1_SCREEN}$(__colorized_exit_status) ${LIGHT_CYAN}\t${RESET_COLOR} ${COLOR_USER}\u${RESET_COLOR}@${CYAN_UNDERLINE}\h${RESET_COLOR}(${PS1_EXTRAINFO})${RED}\$(__slurm_ps1_remaining_time)\$(__oar_ps1_remaining_time)${RESET_COLOR}${GREEN}\$(__git_ps1 \" (%s)\")\$(__svn_ps1)${RESET_COLOR} ${BLUE}\W${RESET_COLOR} ${P} "
 }
 
 __set_training_prompt() {
-  PS1="$(__colorized_exit_status)${RESET_COLOR} \h${job_info} ${BLUE}\W${RESET_COLOR}${GREEN}\$(__git_ps1 \" (%s)\")${RESET_COLOR} \$ "
+    PS1="$(__colorized_exit_status)${RESET_COLOR} \h ${BLUE}\W${RESET_COLOR}${GREEN}\$(__git_ps1 \" (%s)\")${RESET_COLOR} \$ "
 }
 
 # Set the color prompt by default when interactive
 if [ -n "$PS1" ]; then
-  export PROMPT_COMMAND=__set_training_prompt
+    export PROMPT_COMMAND=__set_training_prompt
 fi
 
 # ----------------------------------------------------------------------
@@ -249,13 +255,13 @@ export CLICOLOR=1
 
 # if the dircolors utility is available, set that up to
 dircolors="$(type -P gdircolors dircolors | head -1)"
-test -n "$dircolors" && (
-  COLORS=/etc/DIR_COLORS
-  test -e "/etc/DIR_COLORS.$TERM"   && COLORS="/etc/DIR_COLORS.$TERM"
-  test -e "$HOME/.dircolors"        && COLORS="$HOME/.dircolors"
-  test ! -e "$COLORS"               && COLORS=
-  eval "$($dircolors --sh $COLORS)"
-)
+if [ -n "$dircolors" ]; then
+    COLORS=/etc/DIR_COLORS
+    test -e "/etc/DIR_COLORS.$TERM"   && COLORS="/etc/DIR_COLORS.$TERM"
+    test -e "$HOME/.dircolors"        && COLORS="$HOME/.dircolors"
+    test ! -e "$COLORS"               && COLORS=/dev/null
+    eval "$($dircolors --sh "$COLORS")"
+fi
 unset dircolors
 
 # ----------------------------------------------------------------------
@@ -264,7 +270,8 @@ unset dircolors
 
 # Source bash_aliases
 if [ -f ~/.bash_aliases ]; then
-  . ~/.bash_aliases
+    # shellcheck source=bash_aliases
+    . ~/.bash_aliases
 fi
 
 # ----------------------------------------------------------------------
@@ -273,10 +280,12 @@ fi
 
 # OAR integration
 if [ -f ~/.bash_oar ]; then
-  . ~/.bash_oar
+    # shellcheck source=bash_oar
+    . ~/.bash_oar
 fi
 
 # Slurm integration
 if [ -f ~/.bash_slurm ]; then
-  . ~/.bash_slurm
+    # shellcheck source=bash_slurm 
+    . ~/.bash_slurm
 fi

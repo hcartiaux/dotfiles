@@ -1,5 +1,6 @@
 #
 # ~/.bash_profile
+# shellcheck shell=bash
 #
 
-[[ -f ~/.bashrc ]] && . ~/.bashrc
+[ -f ~/.bashrc ] && . ~/.bashrc

@@ -14,6 +14,8 @@
 # Resource
 # - https://github.com/Falkor/dotfiles/blob/master/bash/.bashrc
 # - https://github.com/rtomayko/dotfiles/blob/rtomayko/.inputrc
+#
+# shellcheck shell=bash
 
 # do not beep on tab-completion
 set bell-style visible
