@@ -11,19 +11,19 @@
 LS_COMMON="-F -h"
 
 if [ "$UNAME" = Darwin ]; then
-  # check if you're using gnu core-utils then use --color
-  if [[ "$(which ls)" == "/opt/local/bin/ls" ]]; then
-    LS_COMMON="$LS_COMMON --group-directories-first --color"
-  else
-    LS_COMMON="$LS_COMMON -G"
-  fi
+    # check if you're using gnu core-utils then use --color
+    if [ "$(which ls)" == "/opt/local/bin/ls" ]; then
+        LS_COMMON="$LS_COMMON --group-directories-first --color"
+    else
+        LS_COMMON="$LS_COMMON -G"
+    fi
 elif [ "$UNAME" = Linux ]; then
-  LS_COMMON="$LS_COMMON --group-directories-first --color"
+    LS_COMMON="$LS_COMMON --group-directories-first --color"
 fi
 
 # setup the main ls alias if we've established common args
 test -n "$LS_COMMON" &&
-  alias ls="command ls $LS_COMMON"
+    alias ls="command ls $LS_COMMON"
 
 # these use the ls aliases above
 alias ll="ls -l"
@@ -36,7 +36,7 @@ alias lh='la -h'
 # ----------------------------------------------------------------------
 
 if [ "$UNAME" = Linux ]; then
-  alias grep='grep --color=auto'
+    alias grep='grep --color=auto'
 fi
 
 alias vi='vim'
@@ -56,13 +56,13 @@ alias ......='cd ../../../../..'
 
 # print a line as wide as the terminal
 line() {
-  printf %${COLUMNS}s | tr " " "="
+    printf %${COLUMNS}s | tr " " "="
 }
 
 # make a backup of a file
 # https://github.com/grml/grml-etc-core/blob/master/etc/zsh/zshrc
 cpold() {
-  cp -a "$1" "${1}_$(date --iso-8601=seconds)"
+    cp -a "$1" "${1}_$(date --iso-8601=seconds)"
 }
 
 # Optimize png file size
@@ -79,43 +79,43 @@ alias cdroot='git rev-parse && cd ./$(git rev-parse --show-cdup)'
 # ----------------------------------------------------------------------
 
 if [ -d ~/git/github.com/ULHPC ]; then
-  alias cdudocs='  cd ~/git/github.com/ULHPC/ulhpc-docs'
-  alias cdtut='    cd ~/git/github.com/ULHPC/tutorials'
+    alias cdudocs='  cd ~/git/github.com/ULHPC/ulhpc-docs'
+    alias cdtut='    cd ~/git/github.com/ULHPC/tutorials'
 fi
 if [ -d ~/git/hpc-git.uni.lu ]; then
-  alias cdslurm='  cd ~/git/hpc-git.uni.lu/ULHPC/slurm'
-  alias cdpuppet=' cd ~/git/hpc-git.uni.lu/ULHPC/puppet'
-  alias cdansible='cd ~/git/hpc-git.uni.lu/ULHPC/ansible-aion'
-  alias cdsys='    cd ~/git/hpc-git.uni.lu/ULHPC/sysadmins'
-  alias cdwiki='   cd ~/git/hpc-git.uni.lu/ULHPC/sysadmins.wiki'
-  alias cdtools='  cd ~/git/hpc-git.uni.lu/ULHPC/ulhpc-tools'
-  alias cddocs='   cd ~/git/hpc-git.uni.lu/ULHPC/documents'
-  alias cdstor='   cd ~/git/hpc-git.uni.lu/ULHPC/storage-repo'
-  alias cdpass='   cd ~/git/hpc-git.uni.lu/ULHPC/passwords-repo'
+    alias cdslurm='  cd ~/git/hpc-git.uni.lu/ULHPC/slurm'
+    alias cdpuppet=' cd ~/git/hpc-git.uni.lu/ULHPC/puppet'
+    alias cdansible='cd ~/git/hpc-git.uni.lu/ULHPC/ansible-aion'
+    alias cdsys='    cd ~/git/hpc-git.uni.lu/ULHPC/sysadmins'
+    alias cdwiki='   cd ~/git/hpc-git.uni.lu/ULHPC/sysadmins.wiki'
+    alias cdtools='  cd ~/git/hpc-git.uni.lu/ULHPC/ulhpc-tools'
+    alias cddocs='   cd ~/git/hpc-git.uni.lu/ULHPC/documents'
+    alias cdstor='   cd ~/git/hpc-git.uni.lu/ULHPC/storage-repo'
+    alias cdpass='   cd ~/git/hpc-git.uni.lu/ULHPC/passwords-repo'
 fi
 if [ -d ~/git/gitlab.com/uniluxembourg ]; then
-  alias cdwww='    cd ~/git/gitlab.com/uniluxembourg/hpc/www/ulhpc-2.0'
+    alias cdwww='    cd ~/git/gitlab.com/uniluxembourg/hpc/www/ulhpc-2.0'
 fi
 
 # Password store
 
 if [ -d ~/git/hpc-git.uni.lu/ULHPC/passwords-repo ]; then
-  pass() {
-    export PASSWORD_STORE_DIR=~/git/hpc-git.uni.lu/ULHPC/passwords-repo
-    export PASSWORD_STORE_SIGNING_KEY=62C5D78FE715CF7CA974B5AF37183CEF550DF40B
-    /usr/bin/pass $*
-  }
+    pass() {
+        export PASSWORD_STORE_DIR=~/git/hpc-git.uni.lu/ULHPC/passwords-repo
+        export PASSWORD_STORE_SIGNING_KEY=62C5D78FE715CF7CA974B5AF37183CEF550DF40B
+        /usr/bin/pass $*
+    }
 fi
 
 if [ -d ~/git/gitlab.inria.fr/grid5000/password5k ]; then
-  g5kpass() {
-    curdir="$(pwd)"
-    cd ~/git/gitlab.inria.fr/grid5000/password5k
-    unset PASSWORD_STORE_SIGNING_KEY
-    source .passrc && /usr/bin/pass $*
-    export GNUPGHOME=~/.gnupg
-    cd "$curdir"
-  }
+    g5kpass() {
+        curdir="$(pwd)"
+        cd ~/git/gitlab.inria.fr/grid5000/password5k
+        unset PASSWORD_STORE_SIGNING_KEY
+        source .passrc && /usr/bin/pass $*
+        export GNUPGHOME=~/.gnupg
+        cd "$curdir"
+    }
 fi
 
 # ----------------------------------------------------------------------
@@ -123,36 +123,36 @@ fi
 # ----------------------------------------------------------------------
 
 if [ -d ~/git/github.com/hcartiaux ]; then
-  alias cdflapa='  cd ~/git/github.com/hcartiaux/ansible'
-  alias cdflapt='  cd ~/git/github.com/hcartiaux/terraform'
+    alias cdflapa='  cd ~/git/github.com/hcartiaux/ansible'
+    alias cdflapt='  cd ~/git/github.com/hcartiaux/terraform'
 fi
 
 # Password store
 
 if [ -e ~/.password-store ]; then
-  pass() {
-    export PASSWORD_STORE_DIR=~/.password-store
-    unset  PASSWORD_STORE_SIGNING_KEY
-    /usr/bin/pass $*
-  }
+    pass() {
+        export PASSWORD_STORE_DIR=~/.password-store
+        unset  PASSWORD_STORE_SIGNING_KEY
+        /usr/bin/pass $*
+    }
 fi
 
 # tmux shortcut
 
 tmux_dn42() {
-  if ! tmux ls 2>&1 | grep -q dn42 ; then
-    EXT=${1:-flap}
-    tmux new-session -d -s dn42
-    tmux splitw -v -p 50 -t dn42:0.0
-    tmux splitw -h -p 50 -t dn42:0.0
-    tmux splitw -h -p 50 -t dn42:0.2
-    tmux select-pane -t dn42:0.0
-    tmux send-keys -t dn42:0.0 "ssh nl-ams1.${EXT}" Enter
-    tmux send-keys -t dn42:0.1 "ssh nl-ams2.${EXT}" Enter
-    tmux send-keys -t dn42:0.2 "ssh fr-par1.${EXT}" Enter
-    tmux send-keys -t dn42:0.3 "ssh pl-war1.${EXT}" Enter
-  fi
-  tmux attach-session -t dn42
+    if ! tmux ls 2>&1 | grep -q dn42 ; then
+        EXT=${1:-flap}
+        tmux new-session -d -s dn42
+        tmux splitw -v -p 50 -t dn42:0.0
+        tmux splitw -h -p 50 -t dn42:0.0
+        tmux splitw -h -p 50 -t dn42:0.2
+        tmux select-pane -t dn42:0.0
+        tmux send-keys -t dn42:0.0 "ssh nl-ams1.${EXT}" Enter
+        tmux send-keys -t dn42:0.1 "ssh nl-ams2.${EXT}" Enter
+        tmux send-keys -t dn42:0.2 "ssh fr-par1.${EXT}" Enter
+        tmux send-keys -t dn42:0.3 "ssh pl-war1.${EXT}" Enter
+    fi
+    tmux attach-session -t dn42
 }
 
 # ----------------------------------------------------------------------
@@ -160,33 +160,33 @@ tmux_dn42() {
 # ----------------------------------------------------------------------
 
 sysupd() {
-  reflector --ipv6 -c de,fr,nl,lu -p https -n 30 -l 30 | sudo tee /etc/pacman.d/mirrorlist
-  yay -Syu $*
+    reflector --ipv6 -c de,fr,nl,lu -p https -n 30 -l 30 | sudo tee /etc/pacman.d/mirrorlist
+    yay -Syu $*
 }
 
 sysclean() {
-  pacman -Qtdq | xargs -I {} sudo pacman -Rns --noconfirm $* {}
-  yes | sudo pacman -Scc
+    pacman -Qtdq | xargs -I {} sudo pacman -Rns --noconfirm $* {}
+    yes | sudo pacman -Scc
 }
 
 pkgbuild_up() {
-  [[ ! -f PKGBUILD ]] && exit 1
-  VERSION=$1
-  sed -i "s/^pkgver=.*$/pkgver=$VERSION/" PKGBUILD
-  updpkgsums
-  makepkg --printsrcinfo >! .SRCINFO
+    [ ! -f PKGBUILD ] && exit 1
+    VERSION=$1
+    sed -i "s/^pkgver=.*$/pkgver=$VERSION/" PKGBUILD
+    updpkgsums
+    makepkg --printsrcinfo >! .SRCINFO
 }
 
 pkgbuild_chroot() {
-  [[ ! -f PKGBUILD ]] && exit 1
-  CHROOT=~/chroot
-  mkdir -p "$CHROOT"
-  mkarchroot "$CHROOT/root" base-devel
-  makechrootpkg -c -r "$CHROOT"
+    [ ! -f PKGBUILD ] && exit 1
+    CHROOT=~/chroot
+    mkdir -p "$CHROOT"
+    mkarchroot "$CHROOT/root" base-devel
+    makechrootpkg -c -r "$CHROOT"
 }
 
 pkgbuild_commit() {
-  [[ ! -f PKGBUILD ]] && exit 1
-  VERSION=$1
-  git commit -m "Update to $VERSION"
+    [ ! -f PKGBUILD ] && exit 1
+    VERSION=$1
+    git commit -m "Update to $VERSION"
 }

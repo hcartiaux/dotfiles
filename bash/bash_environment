@@ -49,9 +49,9 @@ export PATH="/usr/local/bin:$PATH"
 unset MAILCHECK
 
 if [[ "$HOSTNAME" =~ \. ]]; then
-  FQDN=$HOSTNAME
+    FQDN=$HOSTNAME
 else
-  FQDN=$(hostname -f)
+    FQDN=$(hostname -f)
 fi
 
 DOMAIN=$(echo "$FQDN" | cut -d '.' -f 2)
@@ -62,14 +62,14 @@ DOMAIN=$(echo "$FQDN" | cut -d '.' -f 2)
 
 # detect interactive shell
 case "$-" in
-  *i*) INTERACTIVE=yes ;;
-  *)   unset INTERACTIVE ;;
+    *i*) INTERACTIVE=yes ;;
+    *)   unset INTERACTIVE ;;
 esac
 
 # detect login shell
 case "$0" in
-  -*) LOGIN=yes ;;
-  *)  unset LOGIN ;;
+    -*) LOGIN=yes ;;
+    *)  unset LOGIN ;;
 esac
 
 test -n "$BASH_VERSION" && SHELLNAME=bash
@@ -84,18 +84,18 @@ export EDITOR
 export SVN_EDITOR=$EDITOR
 
 # Default pager ('less' is so much better than 'more'...)
-if test -n "$(command -v less)"; then
-  export LESS="-FiRMSwX"
-  export PAGER="less $LESS"
-  export MANPAGER="$PAGER"
+if [ -n "$(command -v less)" ]; then
+    export LESS="-FiRMSwX"
+    export PAGER="less $LESS"
+    export MANPAGER="$PAGER"
 else
-  export PAGER=more
+    export PAGER=more
 fi
 
 # Colored man pages, usually not supported on old servers distros
 if test -n "$XDG_CURRENT_DESKTOP" ; then
-  export MANPAGER="$PAGER --use-color -Dd+r -Du+b"
-  export MANROFFOPT="-P -c"
+    export MANPAGER="$PAGER --use-color -Dd+r -Du+b"
+    export MANROFFOPT="-P -c"
 fi
 
 # ----------------------------------------------------------------------
@@ -128,28 +128,28 @@ export LOCAL_MODULES=${EASYBUILD_PREFIX}/modules/all
 alias ma="module avail"
 alias ml="module list"
 function mu() {
-  module use $LOCAL_MODULES
-  module load tools/EasyBuild
+    module use $LOCAL_MODULES
+    module load tools/EasyBuild
 }
 
 # ----------------------------------------------------------------------
 #  GRID5000 specific
 # ----------------------------------------------------------------------
 
-if [[ -n "$(echo $FQDN | grep -o .grid5000.fr)" ]]; then
-  export OAR_JOB_KEY_FILE=~/.ssh/id_rsa
-#  export http_proxy=http://proxy:3128
-#  export https_proxy=$http_proxy
+if [ -n "$(echo $FQDN | grep -o .grid5000.fr)" ]; then
+    export OAR_JOB_KEY_FILE=~/.ssh/id_rsa
+    # export http_proxy=http://proxy:3128
+    # export https_proxy=$http_proxy
 fi
 
 # Grid5000 Puppet admin tools
-if [[ -d ~/.gpuppet ]]; then
-  export GPUPPET_PREFIX=~/.gpuppet
-  export GPUPPET_PLATFORM=production
-  export GPUPPET_LOCATION=luxembourg
-  export GPUPPET_USER=hcartiaux
-  export GPUPPET_SSH_CONFIG=$GPUPPET_PREFIX/ssh/config
-  alias cdgp='cd $GPUPPET_PREFIX/repo && source setup_env.sh && echo "==> Grid5000 Puppet 4 repository"'
+if [ -d ~/.gpuppet ]; then
+    export GPUPPET_PREFIX=~/.gpuppet
+    export GPUPPET_PLATFORM=production
+    export GPUPPET_LOCATION=luxembourg
+    export GPUPPET_USER=hcartiaux
+    export GPUPPET_SSH_CONFIG=$GPUPPET_PREFIX/ssh/config
+    alias cdgp='cd $GPUPPET_PREFIX/repo && source setup_env.sh && echo "==> Grid5000 Puppet 4 repository"'
 fi
 
 # -------------------------------------------------------------------
@@ -160,19 +160,19 @@ fi
 [ -d "$HOME/.rvm/bin" ]     && export PATH="$PATH:$HOME/.rvm/bin"
 
 # RVM specific (see http://beginrescueend.com/)
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" || true
-if [[ $(which ruby 2>/dev/null | grep -c "$HOME/.rvm") != 0 ]]; then
-  # Get off my lawn
-  rvm reset
+[ -s "$HOME/.rvm/scripts/rvm" ] && . "$HOME/.rvm/scripts/rvm" || true
+if [ $(which ruby 2>/dev/null | grep -c "$HOME/.rvm") != 0 ]; then
+    # Get off my lawn
+    rvm reset
 fi
 
 # -------------------------------------------------------------------
 # Scaleway CLI autocomplete initialization.
 # -------------------------------------------------------------------
 if [ -n "$SHELLNAME" ] && command -v scw 2>&1 >/dev/null; then
-  eval "$(scw autocomplete script shell=$SHELLNAME)"
+    eval "$(scw autocomplete script shell=$SHELLNAME)"
 fi
 
 if [ -n "$SHELLNAME" ] && command -v fzf 2>&1 >/dev/null; then
-  eval "$(fzf --$SHELLNAME)"
+    eval "$(fzf --$SHELLNAME)"
 fi
