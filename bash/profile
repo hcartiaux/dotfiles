@@ -5,4 +5,6 @@
 SHELL_NAME="$(basename "$SHELL")"
 
 [ "$SHELL_NAME" = "ksh"  ] && [ -f ~/.kshrc  ] && export ENV="$HOME/.kshrc"
+# shellcheck disable=SC1091
+# shellcheck source=bashrc
 [ "$SHELL_NAME" = "bash" ] && [ -f ~/.bashrc ] && . ~/.bashrc
