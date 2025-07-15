@@ -103,7 +103,7 @@ if [ -d ~/git/hpc-git.uni.lu/ULHPC/passwords-repo ]; then
     pass() {
         export PASSWORD_STORE_DIR=~/git/hpc-git.uni.lu/ULHPC/passwords-repo
         export PASSWORD_STORE_SIGNING_KEY=62C5D78FE715CF7CA974B5AF37183CEF550DF40B
-        /usr/bin/pass $*
+        /usr/bin/pass "$@"
     }
 fi
 
@@ -112,7 +112,7 @@ if [ -d ~/git/gitlab.inria.fr/grid5000/password5k ]; then
         curdir="$(pwd)"
         cd ~/git/gitlab.inria.fr/grid5000/password5k
         unset PASSWORD_STORE_SIGNING_KEY
-        source .passrc && /usr/bin/pass $*
+        source .passrc && /usr/bin/pass "$@"
         export GNUPGHOME=~/.gnupg
         cd "$curdir"
     }
@@ -133,7 +133,7 @@ if [ -e ~/.password-store ]; then
     pass() {
         export PASSWORD_STORE_DIR=~/.password-store
         unset  PASSWORD_STORE_SIGNING_KEY
-        /usr/bin/pass $*
+        /usr/bin/pass "$@"
     }
 fi
 
@@ -161,11 +161,11 @@ tmux_dn42() {
 
 sysupd() {
     reflector --ipv6 -c de,fr,nl,lu -p https -n 30 -l 30 | sudo tee /etc/pacman.d/mirrorlist
-    yay -Syu $*
+    yay -Syu "$@"
 }
 
 sysclean() {
-    pacman -Qtdq | xargs -I {} sudo pacman -Rns --noconfirm $* {}
+    pacman -Qtdq | xargs -I {} sudo pacman -Rns --noconfirm "$@" {}
     yes | sudo pacman -Scc
 }
 
