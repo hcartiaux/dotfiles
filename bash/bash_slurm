@@ -22,7 +22,7 @@ if [ -n "$INTERACTIVE" ] && [ -n "$SLURM_PTY_PORT" ]; then
     echo "[SLURM] SLURM_JOB_ID=${SLURM_JOB_ID}"
     echo "[SLURM] Your nodes are:"
     # shellcheck disable=SC1007,SC2076
-    [[ "$SLURM_JOB_CPUS_PER_NODE" =~ '(x' ]] && nbcpu= "${SLURM_JOB_CPUS_PER_NODE%%(*}"
+    [[ "$SLURM_JOB_CPUS_PER_NODE" =~ '(x' ]] && nbcpu="${SLURM_JOB_CPUS_PER_NODE%%(*}"
     for node in $(scontrol show hostname "$SLURM_JOB_NODELIST") ; do
         i=$((i+1))
         echo "      ${node}*${nbcpu:-$(echo "$SLURM_JOB_CPUS_PER_NODE" | cut -d, -f$i)}"
