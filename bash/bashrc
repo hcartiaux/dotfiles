@@ -41,7 +41,7 @@
 
 # Source bash_environment
 if [ -f ~/.bash_environment ]; then
-  # shellcheck source=bash_environment
+  # shellcheck disable=SC1091 source=bash_environment
   . ~/.bash_environment
 fi
 
@@ -240,6 +240,7 @@ __set_my_prompt() {
 }
 
 __set_training_prompt() {
+    # shellcheck disable=SC2154
     PS1="$(__colorized_exit_status)${RESET_COLOR} \h ${job_info} ${BLUE}\W${RESET_COLOR}${GREEN}\$(__git_ps1 \" (%s)\")${RESET_COLOR} \$ "
 }
 
@@ -271,7 +272,7 @@ unset dircolors
 
 # Source bash_aliases
 if [ -f ~/.bash_aliases ]; then
-    # shellcheck source=bash_aliases
+    # shellcheck disable=SC1091 source=bash_aliases
     . ~/.bash_aliases
 fi
 
@@ -281,12 +282,12 @@ fi
 
 # OAR integration
 if [ -f ~/.bash_oar ]; then
-    # shellcheck source=bash_oar
+    # shellcheck disable=SC1091 source=bash_oar
     . ~/.bash_oar
 fi
 
 # Slurm integration
 if [ -f ~/.bash_slurm ]; then
-    # shellcheck source=bash_slurm
+    # shellcheck disable=SC1091 source=bash_slurm
     . ~/.bash_slurm
 fi
