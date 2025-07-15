@@ -41,37 +41,37 @@
 
 # Source bash_environment
 if [ -f ~/.bash_environment ]; then
-  # shellcheck disable=SC1091 source=bash_environment
-  . ~/.bash_environment
+    # shellcheck disable=SC1091 source=bash_environment
+    . ~/.bash_environment
 fi
 
 # Eventually load you private settings (not exposed here)
 if [ -f ~/.bash_private ]; then
-  # shellcheck disable=SC1090
-  . ~/.bash_private
+    # shellcheck disable=SC1090
+    . ~/.bash_private
 fi
 
 # MOTD
 if [ -n "$INTERACTIVE" ] && [ -n "$LOGIN" ]; then
-  uname -npsr
-  uptime
+    uname -npsr
+    uptime
 fi
 
 # bring in system bashrc
 if [ -r /etc/bashrc ]; then
-  # shellcheck disable=SC1091
-  . /etc/bashrc
+    # shellcheck disable=SC1091
+    . /etc/bashrc
 fi
 
 # look for git-prompt.sh
 # https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 # shellcheck disable=SC1090,1091
 if test -f /usr/share/git/git-prompt.sh ; then
-  . /usr/share/git/git-prompt.sh
+    . /usr/share/git/git-prompt.sh
 elif test -f /usr/share/git-core/contrib/completion/git-prompt.sh ; then
-  . /usr/share/git-core/contrib/completion/git-prompt.sh
+    . /usr/share/git-core/contrib/completion/git-prompt.sh
 elif test -f ~/.git-prompt.sh ; then
-  . ~/.git-prompt.sh
+    . ~/.git-prompt.sh
 fi
 
 # ----------------------------------------------------------------------
@@ -80,10 +80,9 @@ fi
 
 # shell opts. see bash(1) for details
 shopt -s cdspell                 >/dev/null 2>&1  # correct minor errors in the spelling
-# of a directory in a cd command
+                                                  # of a directory in a cd command
 shopt -s extglob                 >/dev/null 2>&1  # extended pattern matching
-shopt -s hostcomplete            >/dev/null 2>&1  # perform hostname completion
-# on '@'
+shopt -s hostcomplete            >/dev/null 2>&1  # perform hostname completion on '@'
 shopt -s direxpand               >/dev/null 2>&1  # replaces variables on filename completion
 shopt -s cdable_vars             >/dev/null 2>&1
 
