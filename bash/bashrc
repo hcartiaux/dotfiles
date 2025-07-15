@@ -156,7 +156,6 @@ RED="\[\e[0;31m\]"
 GREEN="\[\e[0;32m\]"
 BLUE="\[\e[34;1m\]"
 YELLOW="\[\e[0;33m\]"
-LIGHT_CYAN="\[\e[36;1m\]"
 CYAN_UNDERLINE="\[\e[4;36m\]"
 
 # Configure user color and prompt type depending on whoami
