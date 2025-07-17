@@ -22,8 +22,9 @@ elif [ "$UNAME" = Linux ]; then
 fi
 
 # setup the main ls alias if we've established common args
+# shellcheck disable=SC2032
 test -n "$LS_COMMON" &&
-    alias ls="command ls $LS_COMMON"
+    alias ls="command ls \$LS_COMMON"
 
 # these use the ls aliases above
 alias ll="ls -l"
@@ -110,11 +111,12 @@ fi
 if [ -d ~/git/gitlab.inria.fr/grid5000/password5k ]; then
     g5kpass() {
         curdir="$(pwd)"
-        cd ~/git/gitlab.inria.fr/grid5000/password5k
+        cd ~/git/gitlab.inria.fr/grid5000/password5k || return
         unset PASSWORD_STORE_SIGNING_KEY
+        # shellcheck disable=SC1091
         source .passrc && /usr/bin/pass "$@"
         export GNUPGHOME=~/.gnupg
-        cd "$curdir"
+        cd "$curdir" || return
     }
 fi
 
@@ -140,6 +142,7 @@ fi
 # tmux shortcut
 
 tmux_dn42() {
+    # shellcheck disable=SC2033
     if ! tmux ls 2>&1 | grep -q dn42 ; then
         EXT=${1:-flap}
         tmux new-session -d -s dn42
