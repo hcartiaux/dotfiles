@@ -15,8 +15,8 @@ if [ "$SHELL" == "/bin/bash" ]; then
     function _oarsh_complete_() {
         local word=${COMP_WORDS[COMP_CWORD]}
         local list
-        list=$(uniq "$OAR_NODEFILE" | tr '\n' ' ')
-        COMPREPLY=($(compgen -W "$list" -- "${word}"))
+        list=$(uniq "$OAR_NODE_FILE" | tr '\n' ' ')
+        mapfile -t COMPREPLY < <(compgen -W "$list" -- "${word}")
     }
     complete -F _oarsh_complete_ oarsh
 fi
