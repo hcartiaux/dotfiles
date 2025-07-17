@@ -29,7 +29,7 @@
 ##################################################################
 ## Basic variables
 #
-: ${UNAME=$(uname)}
+: "${UNAME=$(uname)}"
 
 ##################################################################
 ## Shell and prompt configuration
@@ -143,9 +143,9 @@ bindkey "^[[1;5D" backward-word
 ##################################################################
 ## HISTORY
 #
-HISTFILE=~/.zhistory
-HISTSIZE=10000
-SAVEHIST=10000
+export HISTFILE=~/.zhistory
+export HISTSIZE=10000
+export SAVEHIST=10000
 setopt appendhistory
 setopt incappendhistory
 
@@ -184,6 +184,6 @@ alias -g NE="2> /dev/null" # Redirect stderr to /dev/null
 ## Colors
 #
 
-eval $(dircolors --sh)
+eval "$(dircolors --sh)"
 export GREP_COLORS='mt=31'
 
