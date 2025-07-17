@@ -36,15 +36,15 @@ export PATH="/usr/local/bin:$PATH"
 # ----------------------------------------------------------------------
 
 # Basic variables
-: ${HOME=~}
-: ${LOGNAME=$(id -un)}
-: ${UNAME=$(uname)}
+: "${HOME=~}"
+: "${LOGNAME=$(id -un)}"
+: "${UNAME=$(uname)}"
 
 # complete hostnames from this file
-: ${HOSTFILE=~/.ssh/known_hosts}
+: "${HOSTFILE=~/.ssh/known_hosts}"
 
 # readline config
-: ${INPUTRC=~/.inputrc}
+: "${INPUTRC=~/.inputrc}"
 
 # Get rid of mail notification
 unset MAILCHECK
@@ -56,6 +56,7 @@ else
 fi
 
 if [[ "$FQDN" =~ \. ]]; then
+    # shellcheck disable=SC2034
     DOMAIN=$(echo "$FQDN" | cut -d '.' -f 2)
 fi
 
@@ -70,6 +71,7 @@ case "$-" in
 esac
 
 # detect login shell
+# shellcheck disable=SC2034
 case "$0" in
     -*) LOGIN=yes ;;
     *)  unset LOGIN ;;
@@ -126,12 +128,12 @@ export EASYBUILD_PREFIX=$HOME/.local/easybuild
 export EASYBUILD_MODULES_TOOL=Lmod
 export EASYBUILD_MODULE_NAMING_SCHEME=CategorizedModuleNamingScheme
 
-export LOCAL_MODULES=${EASYBUILD_PREFIX}/modules/all
+export LOCAL_MODULES="${EASYBUILD_PREFIX}/modules/all"
 
 alias ma="module avail"
 alias ml="module list"
 function mu() {
-    module use $LOCAL_MODULES
+    module use "$LOCAL_MODULES"
     module load tools/EasyBuild
 }
 
@@ -139,7 +141,7 @@ function mu() {
 #  GRID5000 specific
 # ----------------------------------------------------------------------
 
-if [ -n "$(echo $FQDN | grep -o .grid5000.fr)" ]; then
+if [[ "$FQDN" =~ \.grid5000\.fr ]]; then
     export OAR_JOB_KEY_FILE=~/.ssh/id_rsa
     # export http_proxy=http://proxy:3128
     # export https_proxy=$http_proxy
@@ -159,12 +161,19 @@ fi
 # Ruby & RVM
 # -------------------------------------------------------------------
 
-[ -d "/usr/lib/ruby/gems" ] && export PATH="$PATH:$(echo /usr/lib/ruby/gems/*)/bin"
-[ -d "$HOME/.rvm/bin" ]     && export PATH="$PATH:$HOME/.rvm/bin"
+[ -d "/usr/lib/ruby/gems" ]   && GEM_SYSTEM_BIN_PATH="$(echo /usr/lib/ruby/gems/*)/bin"
+[ -d "$HOME/.rvm/bin" ]       && GEM_USER_BIN_PATH="$HOME/.rvm/bin"
+[ -n "$GEM_SYSTEM_BIN_PATH" ] && export PATH="$PATH:$GEM_SYSTEM_BIN_PATH"
+[ -n "$GEM_USER_BIN_PATH" ]   && export PATH="$PATH:$GEM_USER_BIN_PATH"
 
 # RVM specific (see http://beginrescueend.com/)
-[ -s "$HOME/.rvm/scripts/rvm" ] && . "$HOME/.rvm/scripts/rvm" || true
-if [ $(which ruby 2>/dev/null | grep -c "$HOME/.rvm") != 0 ]; then
+if [ -s "$HOME/.rvm/scripts/rvm" ]; then
+  # shellcheck disable=SC1091
+  . "$HOME/.rvm/scripts/rvm"
+fi
+
+
+if [ "$(which ruby 2>/dev/null | grep -c "$HOME/.rvm")" != 0 ]; then
     # Get off my lawn
     rvm reset
 fi
@@ -172,10 +181,10 @@ fi
 # -------------------------------------------------------------------
 # Scaleway CLI autocomplete initialization.
 # -------------------------------------------------------------------
-if [ -n "$SHELLNAME" ] && command -v scw 2>&1 >/dev/null; then
-    eval "$(scw autocomplete script shell=$SHELLNAME)"
+if [ -n "$SHELLNAME" ] && command -v scw >/dev/null 2>&1; then
+    eval "$(scw autocomplete script "shell=$SHELLNAME")"
 fi
 
-if [ -n "$SHELLNAME" ] && command -v fzf 2>&1 >/dev/null; then
-    eval "$(fzf --$SHELLNAME)"
+if [ -n "$SHELLNAME" ] && command -v fzf >/dev/null 2>&1; then
+    eval "$(fzf "--$SHELLNAME")"
 fi
