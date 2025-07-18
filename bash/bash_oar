@@ -9,7 +9,7 @@
 # Resource:
 # - http://oar.imag.fr/wiki:use_cases_and_user_tips
 
-if [ "$SHELL" == "/bin/bash" ]; then
+if [ "$SHELL_NAME" = "bash" ]; then
     # oarsh completion
     function _oarsh_complete_() {
         local word=${COMP_WORDS[COMP_CWORD]}
