@@ -6,9 +6,8 @@
 # ----------------------------------------------------------------------
 # OAR Batch scheduler
 # ----------------------------------------------------------------------
-# Resources:
-# - http://wiki-oar.imag.fr/index.php/Customization_tips
-# - http://wiki-oar.imag.fr/index.php/Oarsh_and_bash_completion
+# Resource:
+# - http://oar.imag.fr/wiki:use_cases_and_user_tips
 
 if [ "$SHELL" == "/bin/bash" ]; then
     # oarsh completion
@@ -33,8 +32,7 @@ __oar_ps1_remaining_time() {
 }
 
 # OAR motd
-
-if [ -n "$INTERACTIVE" ] && [ -n "$OAR_NODE_FILE" ]; then
+if [ -n "$OAR_NODE_FILE" ]; then
     echo "[OAR] OAR_JOB_ID=$OAR_JOB_ID"
     echo "[OAR] Your nodes are:"
     sort "$OAR_NODE_FILE" | uniq -c | awk '{printf("      %s*%d\n",$2,$1)}END{printf("\n")}' | sed -e 's/,$//'

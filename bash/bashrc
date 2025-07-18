@@ -96,7 +96,7 @@ umask 0022
 # BASH COMPLETION
 # ----------------------------------------------------------------------
 
-if [ -n "$PS1" ]; then
+if [ -n "$INTERACTIVE" ]; then
     # search for a bash_completion file to source
     for f in /usr/local/etc/bash_completion \
              /opt/local/etc/bash_completion \
@@ -244,7 +244,7 @@ __set_training_prompt() {
 }
 
 # Set the color prompt by default when interactive
-if [ -n "$PS1" ]; then
+if [ -n "$INTERACTIVE" ]; then
     export PROMPT_COMMAND=__set_my_prompt
 fi
 
@@ -270,7 +270,7 @@ unset dircolors
 # ----------------------------------------------------------------------
 
 # Source bash_aliases
-if [ -f ~/.bash_aliases ]; then
+if [ -n "$INTERACTIVE" ] && [ -f ~/.bash_aliases ]; then
     # shellcheck disable=SC1091 source=bash_aliases
     . ~/.bash_aliases
 fi
@@ -280,13 +280,13 @@ fi
 # ----------------------------------------------------------------------
 
 # OAR integration
-if [ -f ~/.bash_oar ]; then
+if [ -n "$INTERACTIVE" ] && [ -f ~/.bash_oar ]; then
     # shellcheck disable=SC1091 source=bash_oar
     . ~/.bash_oar
 fi
 
 # Slurm integration
-if [ -f ~/.bash_slurm ]; then
+if [ -n "$INTERACTIVE" ] && [ -f ~/.bash_slurm ]; then
     # shellcheck disable=SC1091 source=bash_slurm
     . ~/.bash_slurm
 fi
