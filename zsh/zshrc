@@ -166,7 +166,7 @@ fi
 ## Aliases
 #
 
-if [ -f ~/.bash_aliases ]; then
+if [ -n "$INTERACTIVE" ] && [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
