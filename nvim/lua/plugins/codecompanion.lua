@@ -23,16 +23,26 @@ return {
           },
         })
       end,
+      qwen3 = function()
+        return require("codecompanion.adapters").extend("ollama", {
+          name = "qwen3-coder",
+          schema = {
+            model = {
+              default = "qwen3-coder:latest",
+            },
+          },
+        })
+      end,
     },
     strategies = {
       chat = {
-        adapter = "mistral",
+        adapter = "qwen3",
       },
       inline = {
-        adapter = "mistral",
+        adapter = "qwen3",
       },
       cmd = {
-        adapter = "mistral",
+        adapter = "qwen3",
       }
     },
   },
