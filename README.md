@@ -1,5 +1,4 @@
-Hyacinthe's dot files
--------
+# Hyacinthe's dot files
 
 These are my configuration files for `bash`, `git`, `vim`, etc. to set up a
 system the way I like it.
@@ -49,10 +48,10 @@ FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 Hyacinthe Cartiaux, using various contributions on the Internet, in particular:
 
-*  [Sebastien Varrette dotfiles](https://github.com/Falkor/dotfiles)
-*  [Derek Payton dotfiles](http://bitbucket.org/dmpayton/dotfiles/src/tip/.bashrc)
-*  [Ryan Tomayko dotfiles](https://github.com/rtomayko/dotfiles/blob/rtomayko/.bashrc)
-*  [Sebastien Badia vim configuration](https://github.com/sbadia/grimvim)
+* [Sebastien Varrette dotfiles](https://github.com/Falkor/dotfiles)
+* [Derek Payton dotfiles](http://bitbucket.org/dmpayton/dotfiles/src/tip/.bashrc)
+* [Ryan Tomayko dotfiles](https://github.com/rtomayko/dotfiles/blob/rtomayko/.bashrc)
+* [Sebastien Badia vim configuration](https://github.com/sbadia/grimvim)
 
 Except stated otherwise, I release these files under GNU GPL Licence v3.
 You may use, modify, and/or redistribute them under the terms of the GPL Licence v3.
