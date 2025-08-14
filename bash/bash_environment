@@ -86,7 +86,6 @@ test -n "$ZSH_VERSION"  && SHELLNAME=zsh
 
 test -n "$(command -v vim)" && EDITOR=vim || EDITOR=nano
 export EDITOR
-export SVN_EDITOR=$EDITOR
 
 # Default pager ('less' is so much better than 'more'...)
 if [ -n "$(command -v less)" ]; then
