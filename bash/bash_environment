@@ -84,8 +84,14 @@ test -n "$ZSH_VERSION"  && SHELLNAME=zsh
 # EDITOR & PAGER
 # ----------------------------------------------------------------------
 
-test -n "$(command -v vim)" && EDITOR=vim || EDITOR=nano
-export EDITOR
+# shellcheck disable=SC2209
+if command -v nvim >/dev/null; then
+    export EDITOR=nvim
+elif command -v vim >/dev/null; then
+    export EDITOR=vim
+else
+    export EDITOR=vi
+fi
 
 # Default pager ('less' is so much better than 'more'...)
 if [ -n "$(command -v less)" ]; then
