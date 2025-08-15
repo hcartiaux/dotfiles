@@ -188,8 +188,7 @@ endif
 
 set spellsuggest=5
 autocmd BufEnter *.txt,*.tex,*.md set spell
-autocmd BufEnter *.txt,*.tex set spelllang=fr
-autocmd BufEnter *.md set spelllang=en
+autocmd BufEnter *.txt,*.tex,*.md set spelllang=en
 autocmd BufNewFile,BufRead PKGBUILD set syntax=sh
 autocmd BufNewFile,BufRead *.md set syntax=markdown
 
