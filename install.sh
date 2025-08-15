@@ -43,11 +43,7 @@ ln -sf $DOTFILES/ksh/kshrc             ~/.kshrc
 mkdir -p ~/.vim
 cd       ~/.vim
 mkdir -p backup undo swap spell
-
 ln -sf $DOTFILES/vim/vimrc ~/.vimrc
-[ ! -L ~/.vim/header ] && ln -sf $DOTFILES/vim/header ~/.vim/header
-
-[ -e ~/.viminfo   ]    && mv ~/.viminfo ~/.vim/
 
 ## tmux
 

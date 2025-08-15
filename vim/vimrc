@@ -191,13 +191,7 @@ autocmd BufEnter *.txt,*.tex,*.md set spell
 autocmd BufEnter *.txt,*.tex set spelllang=fr
 autocmd BufEnter *.md set spelllang=en
 autocmd BufNewFile,BufRead PKGBUILD set syntax=sh
-
-
-" Automatic headers
-autocmd bufnewfile *.rb so ~/.vim/header/ruby
-autocmd bufnewfile *.pl so ~/.vim/header/perl
-autocmd bufnewfile *.sh so ~/.vim/header/shell
-au BufRead,BufNewFile *.md set syntax=markdown
+autocmd BufNewFile,BufRead *.md set syntax=markdown
 
 " Display trailing white spaces
 set list listchars=tab:\ \ ,trail:·
