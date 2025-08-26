@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-"  .bashrc -- my personal VIM configuration
+"  .vimrc -- my personal VIM configuration
 "             see https://github.com/hcartiaux/dotfiles
 "
 "  Copyright (c) 2013 Hyacinthe Cartiaux <Hyacinthe.Cartiaux@uni.lu>
@@ -30,7 +30,7 @@ source $VIMRUNTIME/defaults.vim
 set history=1000
 filetype on
 filetype plugin on
-" filetype indent on
+filetype indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -50,7 +50,7 @@ set wildmode=list:longest,full
 set wildignore=*.o,*~,*.pyc,*.obj,.git,*.rbc
 
 " A buffer becomes hidden when it is abandoned
-set hid
+set hidden
 
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
@@ -65,6 +65,9 @@ set smartcase
 " Highlight search results
 set hlsearch
 
+" Incremental search
+set incsearch
+
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
 
@@ -75,13 +78,13 @@ set magic
 set showmatch
 
 " How many tenths of a second to blink when matching brackets
-set mat=2
+set matchtime=2
 
 " No annoying sound on errors
 set noerrorbells
 set novisualbell
 set t_vb=
-set tm=500
+set timeoutlen=500
 
 " Try to preserve column where cursor is positioned during motion commands
 set nostartofline
@@ -95,6 +98,10 @@ set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
 """"""""""""""""""""""
 " => Colors and Fonts
 """"""""""""""""""""""
+if has('termguicolors')
+  set termguicolors
+endif
+
 colorscheme default
 set background=dark
 
@@ -104,7 +111,7 @@ set fileencoding=utf-8
 set fileencodings=utf-8
 
 " Use Unix as the standard file type
-set ffs=unix,dos,mac
+set fileformats=unix,dos,mac
 
 " Enable syntax highlighting
 syntax enable
@@ -125,19 +132,28 @@ endif
 " => Files, backups and undo
 """""""""""""""""""""""""""""
 
+" Create directories if they don't exist
+if !isdirectory($HOME.'/.vim/backup')
+  call mkdir($HOME.'/.vim/backup', 'p')
+endif
+if !isdirectory($HOME.'/.vim/swap')
+  call mkdir($HOME.'/.vim/swap', 'p')
+endif
+if !isdirectory($HOME.'/.vim/undo')
+  call mkdir($HOME.'/.vim/undo', 'p')
+endif
+
 " Centralize backups, swapfiles and undo history
 set backup
-set backupdir=$HOME/.vim/backup//
-set directory=$HOME/.vim/swap//
+set backupdir=$HOME/.vim/backup/
+set directory=$HOME/.vim/swap/
 
 if has('persistent_undo')
   set undofile
   set undolevels=1000 "maximum number of changes that can be undone
   set undoreload=10000 "maximum number lines to save for undo on a buffer reload
-  if exists("&undodir")
-    set undodir=$HOME/.vim/undo//
-  endif
-end
+  set undodir=$HOME/.vim/undo/
+endif
 
 set viminfo+=n$HOME/.vim/.viminfo
 
@@ -145,14 +161,14 @@ set viminfo+=n$HOME/.vim/.viminfo
 " => Text, tab and indent related
 """"""""""""""""""""""""""""""""""
 
-" Indent
-" set cindent
-
 " Use spaces instead of tabs
 set expandtab
 
 " Be smart when using tabs ;)
 set smarttab
+
+" Smart indenting
+set smartindent
 
 " 1 tab = 4 spaces
 set shiftwidth=4
@@ -162,13 +178,12 @@ set tabstop=4
 " Use tab when editing Makefiles
 autocmd FileType make set noexpandtab
 
-" Linebreak on 200 characters
-" set lbr
-" set textwidth=200
-
-"" Use modeline overrides (file specific configuration)
+" Use modeline overrides (file specific configuration)
 set modeline
 set modelines=10
+
+" Better completion
+set completeopt=menu,menuone,noselect,noinsert
 
 """""""""""""
 " => Helpers
@@ -176,6 +191,9 @@ set modelines=10
 
 " Vim 7 spell checker (z=)
 if has("spell")
+  if !isdirectory($HOME.'/.vim/spell')
+    call mkdir($HOME.'/.vim/spell', 'p')
+  endif
   setlocal spell spelllang=
   " Language : FR
   map <Leader>lf :setlocal spell spelllang=fr<cr>
@@ -185,29 +203,32 @@ if has("spell")
   map <Leader>ln :setlocal spell spelllang=<cr>
 endif
 
-
 set spellsuggest=5
 autocmd BufEnter *.txt,*.tex,*.md set spell
 autocmd BufEnter *.txt,*.tex,*.md set spelllang=en
 autocmd BufNewFile,BufRead PKGBUILD set syntax=sh
 autocmd BufNewFile,BufRead *.md set syntax=markdown
 
-" Display trailing white spaces
-set list listchars=tab:\ \ ,trail:·
+" Display white spaces
+set list listchars=tab:\ \ ,trail:·,nbsp:⎵
+
 " Remove trailing white spaces in all files except *.md
-fun! StripTrailingWhitespace()
-    " Only strip if the b:noStripeWhitespace variable isn't set
+function! StripTrailingWhitespace()
+    " Only strip if the b:noStripWhitespace variable isn't set
     if exists('b:noStripWhitespace')
         return
     endif
+    let l:save = winsaveview()
     %s/\s\+$//e
-endfun
+    call winrestview(l:save)
+endfunction
+
 autocmd BufWritePre * call StripTrailingWhitespace()
 autocmd FileType markdown let b:noStripWhitespace=1
 
-"===========================================================================
-"" File explorer panel config
-"===========================================================================
+"===============================
+" => File explorer panel config
+"===============================
 " https://shapeshed.com/vim-netrw/
 
 let g:netrw_banner = 0
@@ -215,19 +236,21 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
-let g:netrw_banner = 0
 
-"===========================================================================
-"" Mappings
-"===========================================================================
+"=============
+" => Mappings
+"=============
 
-map <F4> <Esc>:set paste<CR>
+" Paste mode toggle
+map <F4> <Esc>:set paste!<CR>
 
-"" Copy/Paste/Cut
+" Clear search highlighting
+nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
+
+" Copy/Paste/Cut
 if has('unnamedplus')
   set clipboard=unnamed,unnamedplus
 endif
 
 "" Update svarrette Time-stamps
 map <F5> :%s/Time-stamp: <\zs.*/\=strftime('%a %Y-%m-%d') . ' ' . strftime('%H:%M:%S') . ' ' . $USER . '>'/e<cr>
-

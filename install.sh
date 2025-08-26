@@ -40,9 +40,6 @@ ln -sf $DOTFILES/ksh/kshrc             ~/.kshrc
 
 ## vim
 
-mkdir -p ~/.vim
-cd       ~/.vim
-mkdir -p backup undo swap spell
 ln -sf $DOTFILES/vim/vimrc ~/.vimrc
 
 ## tmux
