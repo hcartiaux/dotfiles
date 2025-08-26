@@ -223,43 +223,10 @@ let g:netrw_banner = 0
 
 map <F4> <Esc>:set paste<CR>
 
-"" Split
-noremap <Leader>h :<C-u>split<CR>
-noremap <Leader>v :<C-u>vsplit<CR>
-
-"" Tabs
-nnoremap <Tab> gt
-nnoremap <S-Tab> gT
-nnoremap <silent> <S-t> :tabnew<CR>
-map <F3> <Esc>:tabnext<CR>
-map <F2> <Esc>:tabprevious<CR>
-
 "" Copy/Paste/Cut
 if has('unnamedplus')
   set clipboard=unnamed,unnamedplus
 endif
-
-noremap YY "+y<CR>
-noremap <leader>p "+gP<CR>
-noremap XX "+x<CR>
-
-"" Buffer nav
-noremap <leader>q :bp<CR>
-noremap <leader>s :bn<CR>
-
-"" Close buffer
-noremap <leader>c :bd<CR>
-
-"" Clean search (highlight)
-nnoremap <silent> <leader><space> :noh<cr>
-
-"" Vmap for maintain Visual Mode after shifting > and <
-vmap < <gv
-vmap > >gv
-
-"" Move visual block
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
 
 "" Update svarrette Time-stamps
 map <F5> :%s/Time-stamp: <\zs.*/\=strftime('%a %Y-%m-%d') . ' ' . strftime('%H:%M:%S') . ' ' . $USER . '>'/e<cr>
