@@ -77,6 +77,10 @@ alias ssha="ssh-add"
 # Git aliases
 alias cdroot='git rev-parse && cd ./$(git rev-parse --show-cdup)'
 
+if command -v dool && ! command -v dstat ; then
+    alias dstat='dool'
+fi >/dev/null 2>&1
+
 # ----------------------------------------------------------------------
 # Work aliases
 # ----------------------------------------------------------------------
