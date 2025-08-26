@@ -40,8 +40,10 @@ if [ "$UNAME" = Linux ]; then
     alias grep='grep --color=auto'
 fi
 
-alias vi='vim'
-alias bim='vim'
+if command -v vim >/dev/null 2>&1; then
+    alias vi='vim'
+    alias bim='vim'
+fi
 
 # Mandatory aliases to confirm destructive operations
 alias cp='cp -iv'
