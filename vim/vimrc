@@ -42,7 +42,10 @@ let mapleader=','
 " => VIM user interface
 """"""""""""""""""""""""
 
-" Turn on the WiLd menu
+" Disable line numbers (redundant)
+set nonumber
+
+" Turn on the wild menu
 set wildmenu
 set wildmode=list:longest,full
 
