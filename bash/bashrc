@@ -61,7 +61,7 @@ fi
 # Source system profile
 if [ -f /etc/profile ]; then
     # shellcheck disable=SC1091
-    source /etc/profile
+    . /etc/profile
 fi
 
 # Source system bashrc
