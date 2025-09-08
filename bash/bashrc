@@ -57,7 +57,14 @@ if [ -n "$INTERACTIVE" ] && [ -n "$LOGIN" ]; then
     uptime
 fi
 
-# bring in system bashrc
+
+# Source system profile
+if [ -f /etc/profile ]; then
+    # shellcheck disable=SC1091
+    source /etc/profile
+fi
+
+# Source system bashrc
 if [ -r /etc/bashrc ]; then
     # shellcheck disable=SC1091
     . /etc/bashrc

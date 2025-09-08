@@ -62,7 +62,9 @@ setopt NULL_GLOB
 ##################################################################
 ## Source external configuration
 #
-source /etc/profile
+if [ -f /etc/profile ]; then
+    source /etc/profile
+fi
 
 # This will set the default prompt
 if command -v powerline-daemon &> /dev/null && [ -f "/usr/share/powerline/bindings/zsh/powerline.zsh" ]; then
