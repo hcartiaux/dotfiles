@@ -77,6 +77,8 @@ if test -f /usr/share/git/git-prompt.sh ; then
     . /usr/share/git/git-prompt.sh
 elif test -f /usr/share/git-core/contrib/completion/git-prompt.sh ; then
     . /usr/share/git-core/contrib/completion/git-prompt.sh
+elif test -f /usr/lib/git-core/git-sh-prompt ; then
+    . /usr/lib/git-core/git-sh-prompt
 elif test -f ~/.git-prompt.sh ; then
     . ~/.git-prompt.sh
 fi
