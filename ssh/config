@@ -17,7 +17,7 @@ Host *
     ForwardAgent        no
     ForwardX11          no
     ControlMaster       auto
-    ControlPath         ~/.ssh/sockets/ssh-socket-%r-%h-%p
+    ControlPath         ~/.ssh/sockets/ssh-socket-%C
     ControlPersist      600
 ###############################################################################
 
