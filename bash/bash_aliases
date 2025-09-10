@@ -159,7 +159,7 @@ tmux_dn42() {
         tmux send-keys -t dn42:0.0 "ssh nl-ams1.${EXT}" Enter
         tmux send-keys -t dn42:0.1 "ssh nl-ams2.${EXT}" Enter
         tmux send-keys -t dn42:0.2 "ssh fr-par1.${EXT}" Enter
-        tmux send-keys -t dn42:0.3 "ssh pl-war1.${EXT}" Enter
+        tmux send-keys -t dn42:0.3 "ssh pl-waw1.${EXT}" Enter
     fi
     tmux attach-session -t dn42
 }
