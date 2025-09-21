@@ -152,18 +152,31 @@ tmux_dn42() {
     if ! tmux ls 2>&1 | grep -q dn42 ; then
         EXT=${1:-flap}
         tmux new-session -d -s dn42
+
         tmux splitw -v -p 50 -t dn42:0.0
-        tmux splitw -h -p 50 -t dn42:0.0
-        tmux splitw -h -p 50 -t dn42:0.2
+
         tmux select-pane -t dn42:0.0
-        tmux send-keys -t dn42:0.0 "ssh nl-ams1.${EXT}" Enter
-        tmux send-keys -t dn42:0.1 "ssh nl-ams2.${EXT}" Enter
-        tmux send-keys -t dn42:0.2 "ssh fr-par1.${EXT}" Enter
-        tmux send-keys -t dn42:0.3 "ssh pl-waw1.${EXT}" Enter
+        tmux splitw -h -p 66
+
+        tmux select-pane -t dn42:0.1
+        tmux splitw -h -p 50
+
+        tmux select-pane -t dn42:0.3
+        tmux splitw -h -p 66
+
+        tmux select-pane -t dn42:0.4
+        tmux splitw -h -p 50
+
+        # Assign connections
+        tmux send-keys -t dn42:0.0 "ssh nl-ams1.${EXT}" Enter       # Top-Left
+        tmux send-keys -t dn42:0.1 "ssh nl-ams2.${EXT}" Enter       # Top-Middle
+        tmux send-keys -t dn42:0.2 "ssh us-nyc1.${EXT}" Enter       # Top-Right
+        tmux send-keys -t dn42:0.3 "ssh pl-waw1.${EXT}" Enter       # Bottom-Left
+        tmux send-keys -t dn42:0.4 "ssh fr-par1.${EXT}" Enter       # Bottom-Middle
+        tmux send-keys -t dn42:0.5 "ssh de-fra1.${EXT}" Enter       # Bottom-Right
     fi
     tmux attach-session -t dn42
 }
-
 # ----------------------------------------------------------------------
 # Archlinux utils
 # ----------------------------------------------------------------------
