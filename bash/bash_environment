@@ -154,8 +154,7 @@ function mu() {
 
 if [[ "$FQDN" =~ \.grid5000\.fr ]]; then
     export OAR_JOB_KEY_FILE=~/.ssh/id_rsa
-    # export http_proxy=http://proxy:3128
-    # export https_proxy=$http_proxy
+    export OMPI_MCA_orte_rsh_agent=oarsh
 fi
 
 # Grid5000 Puppet admin tools
