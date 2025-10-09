@@ -49,8 +49,8 @@ FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 Hyacinthe Cartiaux, using various contributions on the Internet, in particular:
 
 * [Sebastien Varrette dotfiles](https://github.com/Falkor/dotfiles)
-* [Derek Payton dotfiles](http://bitbucket.org/dmpayton/dotfiles/src/tip/.bashrc)
-* [Ryan Tomayko dotfiles](https://github.com/rtomayko/dotfiles/blob/rtomayko/.bashrc)
+* [Derek Payton dotfiles](https://github.com/dmpayton/dotfiles/blob/master/.bashrc)
+* [Ryan Tomayko dotfiles](https://github.com/NARKOZ/dotfiles/blob/rtomayko/.bashrc)
 * [Sebastien Badia vim configuration](https://github.com/sbadia/grimvim)
 
 Except stated otherwise, I release these files under GNU GPL Licence v3.
