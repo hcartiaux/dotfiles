@@ -247,9 +247,6 @@ let g:netrw_winsize = 25
 " Paste mode toggle
 map <F4> <Esc>:set paste!<CR>
 
-" Clear search highlighting
-nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
-
 " Copy/Paste/Cut
 if has('unnamedplus')
   set clipboard=unnamed,unnamedplus
