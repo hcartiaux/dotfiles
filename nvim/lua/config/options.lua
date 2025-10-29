@@ -26,3 +26,6 @@ vim.opt.undodir = undo_dir
 vim.opt.swapfile = true
 vim.opt.backup = true
 vim.opt.undofile = true
+
+-- Do not sync with system clipboard
+vim.opt.clipboard:remove("unnamedplus")
