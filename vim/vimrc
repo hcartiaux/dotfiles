@@ -247,10 +247,5 @@ let g:netrw_winsize = 25
 " Paste mode toggle
 map <F4> <Esc>:set paste!<CR>
 
-" Copy/Paste/Cut
-if has('unnamedplus')
-  set clipboard=unnamed,unnamedplus
-endif
-
 "" Update svarrette Time-stamps
 map <F5> :%s/Time-stamp: <\zs.*/\=strftime('%a %Y-%m-%d') . ' ' . strftime('%H:%M:%S') . ' ' . $USER . '>'/e<cr>
