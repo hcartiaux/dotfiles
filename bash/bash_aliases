@@ -130,8 +130,10 @@ fi
 # Personal aliases
 # ----------------------------------------------------------------------
 
-if [ -d ~/git/github.com/hcartiaux ]; then
+if [ -d ~/git/github.com/hcartiaux/ansible ]; then
     alias cdflapa='  cd ~/git/github.com/hcartiaux/ansible'
+fi
+if [ -d ~/git/github.com/hcartiaux/terraform ]; then
     alias cdflapt='  cd ~/git/github.com/hcartiaux/terraform'
 fi
 
