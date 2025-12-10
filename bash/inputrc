@@ -26,6 +26,7 @@ set history-preserve-point on
 set mark-directories on
 set mark-symlinked-directories on
 set match-hidden-files off
+set enable-bracketed-paste on
 
 # completion settings
 set page-completions off
