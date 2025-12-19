@@ -193,7 +193,7 @@ if [ -z "${PS1_EXTRA}" ] && [ -f "/proc/cmdline" ]; then
         PS1_EXTRA=$(sed -e "s/.*PS1_EXTRA=\"\?\([^ ^\t^\"]\+\)\"\?.*/\1/g" /proc/cmdline)
     fi
 fi
-declare -a PS1_EXTRAINFO_PARTS
+declare -a PS1_EXTRAINFO_PARTS=()
 [ -n "${DOMAIN}"        ] && PS1_EXTRAINFO_PARTS+=("${BOLD_COLOR}${DOMAIN}${RESET_COLOR}")
 [ -n "${XENTYPE}"       ] && PS1_EXTRAINFO_PARTS+=("${BOLD_COLOR}${XENTYPE}${RESET_COLOR}")
 [ -n "${PS1_EXTRA}"     ] && PS1_EXTRAINFO_PARTS+=("${YELLOW}${PS1_EXTRA}${RESET_COLOR}")
