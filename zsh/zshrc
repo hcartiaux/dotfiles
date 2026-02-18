@@ -78,6 +78,11 @@ if [ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.
     . "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi
 
+# Auto suggestions
+if [ -f "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+    . "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+fi
+
 # type a directory's name to cd to it.
 compctl -/ cd
 
