@@ -192,25 +192,3 @@ sysclean() {
     pacman -Qtdq | xargs -I {} sudo pacman -Rns "$@" {}
     yes | sudo pacman -Scc
 }
-
-pkgbuild_up() {
-    [ ! -f PKGBUILD ] && exit 1
-    VERSION=$1
-    sed -i "s/^pkgver=.*$/pkgver=$VERSION/" PKGBUILD
-    updpkgsums
-    makepkg --printsrcinfo >! .SRCINFO
-}
-
-pkgbuild_chroot() {
-    [ ! -f PKGBUILD ] && exit 1
-    CHROOT=~/chroot
-    mkdir -p "$CHROOT"
-    mkarchroot "$CHROOT/root" base-devel
-    makechrootpkg -c -r "$CHROOT"
-}
-
-pkgbuild_commit() {
-    [ ! -f PKGBUILD ] && exit 1
-    VERSION=$1
-    git commit -m "Update to $VERSION"
-}
