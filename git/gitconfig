@@ -84,6 +84,9 @@
 [pull]
     rebase = true
 
+[rebase]
+	autoSquash = true
+
 [credential]
     helper = cache
 
