@@ -40,14 +40,6 @@
     last        = log -1 HEAD
     amend       = commit --amend
     undo-commit = reset --soft HEAD^
-    # From http://j.shirley.im/tech/git-flow/
-    feature-start  = !git flow feature start $1
-    feature-finish = !git flow feature finish $1 && git push
-    # fs, feature start
-    fs = !git flow feature start $1 && grb publish feature/$1
-    # ff, feature finish. Always push to the final branch (remote)
-    # if it was successful
-    ff = !git flow feature finish $1 && git push
 
 [color]
     ui     = true
@@ -79,9 +71,6 @@
 
 [mergetool]
     prompt = false
-
-#[http]
-#   sslverify = false
 
 [push]
     default = matching
