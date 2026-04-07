@@ -85,7 +85,7 @@
     rebase = true
 
 [rebase]
-	autoSquash = true
+    autoSquash = true
 
 [credential]
     helper = cache
