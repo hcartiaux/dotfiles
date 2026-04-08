@@ -131,10 +131,10 @@ fi
 # ----------------------------------------------------------------------
 
 if [ -d ~/git/github.com/hcartiaux/ansible ]; then
-    alias cdflapa='  cd ~/git/github.com/hcartiaux/ansible'
+    alias cdflapa='  cd ~/git/codeberg.org/hcartiaux/ansible'
 fi
 if [ -d ~/git/github.com/hcartiaux/terraform ]; then
-    alias cdflapt='  cd ~/git/github.com/hcartiaux/terraform'
+    alias cdflapt='  cd ~/git/codeberg.org/hcartiaux/terraform'
 fi
 
 # Password store
