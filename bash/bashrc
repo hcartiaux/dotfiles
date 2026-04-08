@@ -1,7 +1,7 @@
 #! /bin/bash
 ################################################################################
 #  .bashrc -- my personal Bourne-Again shell (aka bash) configuration
-#             see https://github.com/hcartiaux/dotfiles
+#             see https://codeberg.org/hcartiaux/dotfiles
 #
 #  Copyright (c) 2010 Sebastien Varrette <Sebastien.Varrette@uni.lu>
 #                https://varrette.gforge.uni.lu

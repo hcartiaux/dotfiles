@@ -12,7 +12,7 @@ HOST=$(hostname -s)
 
 echo "$PLAN" >~/.plan
 
-[ ! -d ~/.dotfiles ] && git clone https://github.com/hcartiaux/dotfiles.git $DOTFILES
+[ ! -d ~/.dotfiles ] && git clone https://codeberg.org/hcartiaux/dotfiles.git $DOTFILES
 [   -d ~/.dotfiles ] && ( cd $DOTFILES; git pull )
 
 cd ~

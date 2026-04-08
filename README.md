@@ -26,7 +26,7 @@ these config files:
 
 Run the following commands:
 
-    $> git clone https://github.com/hcartiaux/dotfiles.git ~/.dotfiles
+    $> git clone https://codeberg.org/hcartiaux/dotfiles.git ~/.dotfiles
     $> ~/.dotfiles/install.sh
 
 ## Environment
@@ -36,7 +36,7 @@ will likely work on your system, possibly with a little tweaking.
 
 ## BUGS
 
-Find a bug? Just post a new issue on [Github](https://github.com/hcartiaux/dotfiles/issues)!
+Find a bug? Just post a new issue on [Codeberg](https://codeberg.org/hcartiaux/dotfiles/issues)!
 
 ## DISCLAIMER
 
