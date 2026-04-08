@@ -100,9 +100,6 @@ if [ -d ~/git/hpc-git.uni.lu ]; then
     alias cdstor='   cd ~/git/hpc-git.uni.lu/ULHPC/storage-repo'
     alias cdpass='   cd ~/git/hpc-git.uni.lu/ULHPC/passwords-repo'
 fi
-if [ -d ~/git/gitlab.com/uniluxembourg ]; then
-    alias cdwww='    cd ~/git/gitlab.com/uniluxembourg/hpc/www/ulhpc-2.0'
-fi
 
 # Password store
 
