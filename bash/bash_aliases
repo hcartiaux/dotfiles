@@ -161,10 +161,10 @@ tmux_dn42() {
         tmux splitw -h -p 50
 
         # Assign connections
-        tmux send-keys -t dn42:0.0 "ssh nl-ams1.${EXT}" Enter # Top-Left
-        tmux send-keys -t dn42:0.1 "ssh nl-ams2.${EXT}" Enter # Top-Middle
+        tmux send-keys -t dn42:0.0 "ssh fr-rns1.${EXT}" Enter # Top-Left
+        tmux send-keys -t dn42:0.1 "ssh nl-ams2.${EXT}" Enter # Top-Right
         tmux send-keys -t dn42:0.2 "ssh pl-waw1.${EXT}" Enter # Bottom-Left
-        tmux send-keys -t dn42:0.3 "ssh fr-par1.${EXT}" Enter # Bottom-Middle
+        tmux send-keys -t dn42:0.3 "ssh fr-par1.${EXT}" Enter # Bottom-Right
     fi
     tmux attach-session -t dn42
 }
