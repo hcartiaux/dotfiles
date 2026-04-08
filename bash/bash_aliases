@@ -127,10 +127,10 @@ fi
 # Personal aliases
 # ----------------------------------------------------------------------
 
-if [ -d ~/git/github.com/hcartiaux/ansible ]; then
+if [ -d ~/git/codeberg.org/hcartiaux/ansible ]; then
     alias cdflapa='  cd ~/git/codeberg.org/hcartiaux/ansible'
 fi
-if [ -d ~/git/github.com/hcartiaux/terraform ]; then
+if [ -d ~/git/codeberg.org/hcartiaux/terraform ]; then
     alias cdflapt='  cd ~/git/codeberg.org/hcartiaux/terraform'
 fi
 
