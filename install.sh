@@ -91,7 +91,7 @@ if [ "$HOST" = "$MYLAPTOP" ]; then
         ln -sf $DOTFILES/rvm/rvmrc  ~/.rvmrc
 
         ## temporary files
-        ln -sf /tmp ~/.cache
+        [ -L ~/.cache ] || ln -sf /tmp ~/.cache
 
     else
 
@@ -99,8 +99,7 @@ if [ "$HOST" = "$MYLAPTOP" ]; then
         ln -sf $DOTFILES/git/gitconfig-personal ~/.gitconfig-user
 
         ## temporary files
-        ln -sf /dev/shm ~/.cache
-
+        [ -L ~/.cache ] || ln -sf /dev/shm ~/.cache
 
     fi
 
