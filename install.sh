@@ -97,6 +97,7 @@ if [ "$HOST" = "$MYLAPTOP" ]; then
 
         echo $MAIL_PERSO >~/.forward
         ln -sf $DOTFILES/git/gitconfig-personal ~/.gitconfig-user
+        ln -sf $DOTFILES/git/gitconfig-arch     ~/.gitconfig-arch
 
         ## temporary files
         [ -L ~/.cache ] || ln -sf /dev/shm ~/.cache
