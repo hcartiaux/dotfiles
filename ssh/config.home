@@ -1,7 +1,11 @@
+# Home
+
 Host disco
   User admin
   Hostname 192.168.1.40
   Port 143
+
+# Lab infrastructure
 
 Host flap42
   User hcartiaux
@@ -23,3 +27,12 @@ Host *.flip # ipv4 + port 443
   User hcartiaux
   Port 222
   ProxyCommand ssh flip42 -W `basename %h .flip`.flap42.eu:%p
+
+# Arch Linux infrastructure
+
+Host *.archlinux.org
+  User hyacinthe
+
+Host build.archlinux.org
+  RemoteForward /run/user/1092/gnupg/S.gpg-agent /run/user/%i/gnupg/S.gpg-agent.extra
+  RemoteForward /run/user/1092/gnupg/S.gpg-agent.ssh /run/user/%i/gnupg/S.gpg-agent.ssh
