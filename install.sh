@@ -74,12 +74,6 @@ fi
 
 ln -sf $DOTFILES/wget/wgetrc           ~/.wgetrc
 
-# GnuPG
-
-mkdir -p                               ~/.gnupg
-ln -sf $DOTFILES/gnupg/gpg.conf        ~/.gnupg/gpg.conf
-ln -sf $DOTFILES/gnupg/gpg-agent.conf  ~/.gnupg/gpg-agent.conf
-
 if [ "$HOST" = "$MYLAPTOP" ]; then
 
     if [ "$USER" = "hcartiaux" ]; then
@@ -105,6 +99,13 @@ if [ "$HOST" = "$MYLAPTOP" ]; then
     fi
 
     # neovim
+
     ln -sf $DOTFILES/nvim ~/.config/
+
+    # GnuPG
+
+    mkdir -p                               ~/.gnupg
+    ln -sf $DOTFILES/gnupg/gpg.conf        ~/.gnupg/gpg.conf
+    ln -sf $DOTFILES/gnupg/gpg-agent.conf  ~/.gnupg/gpg-agent.conf
 
 fi
