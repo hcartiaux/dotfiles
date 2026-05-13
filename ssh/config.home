@@ -36,3 +36,6 @@ Host *.archlinux.org
 Host build.archlinux.org
   RemoteForward /run/user/1092/gnupg/S.gpg-agent /run/user/%i/gnupg/S.gpg-agent.extra
   RemoteForward /run/user/1092/gnupg/S.gpg-agent.ssh /run/user/%i/gnupg/S.gpg-agent.ssh
+
+Host aur.archlinux.org
+  SendEnv AUR_OVERWRITE
