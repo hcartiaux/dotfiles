@@ -23,6 +23,7 @@
 [alias]
     up = pull origin
     pu = push origin
+    pf = push --force-with-lease --force-if-includes
     st = status
     df = diff
     ci = commit
