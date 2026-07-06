@@ -142,7 +142,6 @@ export EASYBUILD_MODULE_NAMING_SCHEME=CategorizedModuleNamingScheme
 export LOCAL_MODULES="${EASYBUILD_PREFIX}/modules/all"
 
 alias ma="module avail"
-alias ml="module list"
 function mu() {
     module use "$LOCAL_MODULES"
     module load tools/EasyBuild
