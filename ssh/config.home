@@ -34,8 +34,7 @@ Host *.archlinux.org
   User hyacinthe
 
 Host build.archlinux.org
-  RemoteForward /run/user/1092/gnupg/S.gpg-agent /run/user/%i/gnupg/S.gpg-agent.extra
-  RemoteForward /run/user/1092/gnupg/S.gpg-agent.ssh /run/user/%i/gnupg/S.gpg-agent.ssh
+  RemoteForward /run/user/1092/gnupg/S.gpg-agent /home/%u/.gnupg-archlinux/S.gpg-agent-archlinux.extra
 
 Host aur.archlinux.org
   SendEnv AUR_OVERWRITE
