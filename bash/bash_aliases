@@ -174,11 +174,6 @@ tmux_dn42() {
 
 alias pkgctl='DEVTOOLS_GITLAB_TOKEN="$(pass web/gitlab.archlinux.org/token)" pkgctl'
 
-sysupd() {
-    reflector --ipv6 -c de,fr,nl,lu -p https -n 30 -l 30 | sudo tee /etc/pacman.d/mirrorlist
-    yay -Syu "$@"
-}
-
 sysclean() {
     pacman -Qtdq | xargs -I {} sudo pacman -Rns "$@" {}
     yes | sudo pacman -Scc
