@@ -85,20 +85,17 @@ fi >/dev/null 2>&1
 # Work aliases
 # ----------------------------------------------------------------------
 
-if [ -d ~/git/github.com/ULHPC ]; then
-    alias cdudocs='  cd ~/git/github.com/ULHPC/ulhpc-docs'
-    alias cdtut='    cd ~/git/github.com/ULHPC/tutorials'
+if [ -d ~/git/github.com/ULHPC/ulhpc-docs ]; then
+    alias cdudocs=' cd ~/git/github.com/ULHPC/ulhpc-docs'
 fi
 if [ -d ~/git/hpc-git.uni.lu ]; then
-    alias cdslurm='  cd ~/git/hpc-git.uni.lu/ULHPC/slurm'
-    alias cdpuppet=' cd ~/git/hpc-git.uni.lu/ULHPC/puppet'
-    alias cdansible='cd ~/git/hpc-git.uni.lu/ULHPC/ansible-aion'
-    alias cdsys='    cd ~/git/hpc-git.uni.lu/ULHPC/sysadmins'
-    alias cdwiki='   cd ~/git/hpc-git.uni.lu/ULHPC/sysadmins.wiki'
-    alias cdtools='  cd ~/git/hpc-git.uni.lu/ULHPC/ulhpc-tools'
-    alias cddocs='   cd ~/git/hpc-git.uni.lu/ULHPC/documents'
-    alias cdstor='   cd ~/git/hpc-git.uni.lu/ULHPC/storage-repo'
-    alias cdpass='   cd ~/git/hpc-git.uni.lu/ULHPC/passwords-repo'
+    alias cdpuppet='cd ~/git/hpc-git.uni.lu/ULHPC/puppet'
+    alias cdwwi='   cd ~/git/hpc-git.uni.lu/ULHPC/warewulf-images'
+    alias cdwwo='   cd ~/git/hpc-git.uni.lu/ULHPC/warewulf-overlays'
+    alias cdwiki='  cd ~/git/hpc-git.uni.lu/ULHPC/sysadmins.wiki'
+    alias cdtools=' cd ~/git/hpc-git.uni.lu/ULHPC/ulhpc-tools'
+    alias cdstor='  cd ~/git/hpc-git.uni.lu/ULHPC/storage-repo'
+    alias cdpass='  cd ~/git/hpc-git.uni.lu/ULHPC/passwords-repo'
 fi
 
 # Password store
