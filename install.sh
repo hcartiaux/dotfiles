@@ -8,7 +8,7 @@ PLAN='World domination!'
 DOTFILES=~/.dotfiles
 MYLAPTOP=hc-promax14
 
-HOST=$(hostname -s)
+HOST=$(uname -n)
 
 echo "$PLAN" >~/.plan
 
